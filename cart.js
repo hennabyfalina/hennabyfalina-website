@@ -7,7 +7,33 @@ const CartSystem = {
     key: 'henna_cart',
     
     // --- Core Data Methods ---
+    migrateCartData() {
+        const oldCart = localStorage.getItem('cart');
+        if (oldCart) {
+            try {
+                const parsed = JSON.parse(oldCart);
+                // Check if it's using the old format (from shop.js)
+                if (parsed.length > 0 && (parsed[0].image || !parsed[0].img)) {
+                    // Convert to new format
+                    const newCart = parsed.map(item => ({
+                        id: item.id || item.name,
+                        name: item.name,
+                        price: item.price,
+                        img: item.image || item.img || '/assets/products/default.jpg',
+                        quantity: item.quantity || 1
+                    }));
+                    localStorage.setItem(this.key, JSON.stringify(newCart));
+                    localStorage.removeItem('cart');
+                    console.log('Migrated cart data to new format', newCart);
+                }
+            } catch (e) {
+                console.error('Error migrating cart:', e);
+            }
+        }
+    },
+
     getCart() {
+        this.migrateCartData(); // Migrate old data if exists
         const stored = localStorage.getItem(this.key);
         return stored ? JSON.parse(stored) : [];
     },
@@ -28,6 +54,7 @@ const CartSystem = {
         }
 
         this.saveCart(cart);
+        console.log('Cart updated:', cart); // DEBUG
 
         // Only redirect if explicitly requested (false by default)
         if (redirect) {
@@ -38,20 +65,19 @@ const CartSystem = {
     },
 
     removeFromCart(id) {
-    let cart = this.getCart();
-    const removedItem = cart.find(item => item.id === id); // Find item before removing
-    cart = cart.filter(item => item.id !== id);
-    this.saveCart(cart);
-    
-    // Show toast notification
-    if (removedItem) {
-        this.showToast(`Removed ${removedItem.name} from cart`);
-    }
-    
-    if (window.location.pathname.includes('cart.html')) {
-        this.renderCartPage();
-    }
-},
+        let cart = this.getCart();
+        const removedItem = cart.find(item => item.id === id);
+        cart = cart.filter(item => item.id !== id);
+        this.saveCart(cart);
+        
+        if (removedItem) {
+            this.showToast(`Removed ${removedItem.name} from cart`);
+        }
+        
+        if (window.location.pathname.includes('cart.html')) {
+            this.renderCartPage();
+        }
+    },
 
     updateQuantity(id, change) {
         let cart = this.getCart();
@@ -80,46 +106,46 @@ const CartSystem = {
 
     // --- Navigation Logic with Heart Icon ---
     updateNavigation() {
-    const cart = this.getCart();
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const cart = this.getCart();
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        console.log('Navigation count:', count); // DEBUG
 
-    // 1. Desktop Navigation – use the static link with ID
-    const desktopCartLink = document.getElementById('desktopCartLink');
-    if (desktopCartLink) {
-        if (count > 0) {
-            desktopCartLink.innerHTML = `Cart (${count}) ♥`;
-        } else {
-            desktopCartLink.innerHTML = `Cart ♥`;
+        // 1. Desktop Navigation
+        const desktopCartLink = document.getElementById('desktopCartLink');
+        if (desktopCartLink) {
+            if (count > 0) {
+                desktopCartLink.innerHTML = `Cart (${count}) ♥`;
+            } else {
+                desktopCartLink.innerHTML = `Cart ♥`;
+            }
+            if (window.location.pathname.includes('cart.html')) {
+                desktopCartLink.classList.add('active');
+            } else {
+                desktopCartLink.classList.remove('active');
+            }
         }
-        // Add active class if on cart page
-        if (window.location.pathname.includes('cart.html')) {
-            desktopCartLink.classList.add('active');
-        } else {
-            desktopCartLink.classList.remove('active');
-        }
-    }
 
-    // 2. Mobile Navigation (Bottom) – keep as is, but ensure it uses the same logic
-    const mobileNav = document.querySelector('.mobile-bottom-nav');
-    if (mobileNav) {
-        let cartItem = mobileNav.querySelector('#mobileCartIcon');
-        if (!cartItem) {
-            cartItem = document.createElement('a');
-            cartItem.href = 'cart.html';
-            cartItem.className = 'mobile-nav-item';
-            cartItem.id = 'mobileCartIcon';
-            mobileNav.appendChild(cartItem);
+        // 2. Mobile Navigation
+        const mobileNav = document.querySelector('.mobile-bottom-nav');
+        if (mobileNav) {
+            let cartItem = mobileNav.querySelector('#mobileCartIcon');
+            if (!cartItem) {
+                cartItem = document.createElement('a');
+                cartItem.href = 'cart.html';
+                cartItem.className = 'mobile-nav-item';
+                cartItem.id = 'mobileCartIcon';
+                mobileNav.appendChild(cartItem);
+            }
+            if (count > 0) {
+                cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart (${count}) ♥</span>`;
+            } else {
+                cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart ♥</span>`;
+            }
+            if (window.location.pathname.includes('cart.html')) {
+                cartItem.classList.add('active');
+            }
         }
-        if (count > 0) {
-            cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart (${count}) ♥</span>`;
-        } else {
-            cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart ♥</span>`;
-        }
-        if (window.location.pathname.includes('cart.html')) {
-            cartItem.classList.add('active');
-        }
-    }
-},
+    },
 
     // --- WhatsApp Checkout ---
     checkoutWhatsApp() {
@@ -150,6 +176,8 @@ const CartSystem = {
         if (!container) return;
 
         const cart = this.getCart();
+        console.log('Rendering cart page with data:', cart); // DEBUG
+        
         const headerTitle = document.getElementById('cartHeaderTitle');
 
         if (cart.length === 0) {
@@ -185,7 +213,7 @@ const CartSystem = {
             html += `
                 <div class="cart-page-item">
                     <div class="cart-item-img">
-                        <img src="${item.img}" alt="${item.name}">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='/assets/products/placeholder.jpg'">
                     </div>
                     <div class="cart-item-info">
                         <h4>${item.name}</h4>
@@ -213,7 +241,6 @@ const CartSystem = {
 
     // --- Utilities ---
     showToast(msg) {
-        // Remove any existing toast
         const existingToast = document.querySelector('.cart-toast');
         if (existingToast) existingToast.remove();
         
@@ -222,10 +249,8 @@ const CartSystem = {
         toast.innerHTML = `<i class="ri-checkbox-circle-fill"></i> ${msg}`;
         document.body.appendChild(toast);
         
-        // Trigger animation
         setTimeout(() => toast.classList.add('show'), 100);
         
-        // Remove after 2 seconds
         setTimeout(() => {
             toast.classList.remove('show');
             setTimeout(() => toast.remove(), 300);
