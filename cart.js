@@ -54,9 +54,8 @@ const CartSystem = {
         }
 
         this.saveCart(cart);
-        console.log('Cart updated:', cart); // DEBUG
+        console.log('Cart updated:', cart);
 
-        // Only redirect if explicitly requested (false by default)
         if (redirect) {
             window.location.href = 'cart.html';
         } else {
@@ -108,7 +107,7 @@ const CartSystem = {
     updateNavigation() {
         const cart = this.getCart();
         const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-        console.log('Navigation count:', count); // DEBUG
+        console.log('Navigation count:', count);
 
         // 1. Desktop Navigation
         const desktopCartLink = document.getElementById('desktopCartLink');
@@ -176,7 +175,7 @@ const CartSystem = {
         if (!container) return;
 
         const cart = this.getCart();
-        console.log('Rendering cart page with data:', cart); // DEBUG
+        console.log('Rendering cart page with data:', cart);
         
         const headerTitle = document.getElementById('cartHeaderTitle');
 
@@ -271,10 +270,11 @@ const CartSystem = {
     }
 };
 
-// Initialize on load
+// Initialize on load – use element check instead of URL
 document.addEventListener('DOMContentLoaded', () => {
     CartSystem.updateNavigation();
-    if (window.location.pathname.includes('cart.html')) {
+    // If the cart page container exists, render the cart
+    if (document.getElementById('cartPageContent')) {
         CartSystem.renderCartPage();
     }
 });
