@@ -19,7 +19,7 @@ const CartSystem = {
                         id: item.id || item.name,
                         name: item.name,
                         price: item.price,
-                        img: item.image || item.img || '/assets/products/default.jpg',
+                        img: item.image || item.img || 'assets/products/default.jpg',
                         quantity: item.quantity || 1
                     }));
                     localStorage.setItem(this.key, JSON.stringify(newCart));
@@ -213,7 +213,7 @@ const CartSystem = {
             html += `
                 <div class="cart-page-item">
                     <div class="cart-item-img">
-                        <img src="${item.img}" alt="${item.name}" onerror="this.src='/assets/products/placeholder.jpg'">
+                        <img src="${item.img}" alt="${item.name}" onerror="this.src='assets/products/placeholder.jpg'">
                     </div>
                     <div class="cart-item-info">
                         <h4>${item.name}</h4>
