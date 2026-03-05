@@ -135,41 +135,87 @@ const CartSystem = {
     },
 
     // --- WhatsApp Checkout (with modal and auto-clear) ---
-    checkoutWhatsApp() {
-        const cart = this.getCart();
-        if (cart.length === 0) return;
+   // --- WhatsApp Checkout (with tick icon and shop redirect) ---
+checkoutWhatsApp() {
+    const cart = this.getCart();
+    if (cart.length === 0) return;
 
-        // Show modal
-        const modal = document.createElement('div');
-        modal.className = 'preparing-modal';
-        modal.innerHTML = `
-            <div class="preparing-content">
-                <div class="spinner"></div>
-                <p>Thank you for choosing us.<br>Preparing your order details and redirecting to WhatsApp...</p>
+    // Create overlay with blur effect
+    const overlay = document.createElement('div');
+    overlay.className = 'whatsapp-overlay';
+    overlay.innerHTML = `
+        <div class="whatsapp-modal">
+            <div class="animation-container">
+                <div class="progress-ring">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <circle class="progress-ring__bg" cx="60" cy="60" r="54" fill="none" stroke="#333" stroke-width="3"/>
+                        <circle class="progress-ring__progress" cx="60" cy="60" r="54" fill="none" stroke="#d4af37" stroke-width="3" 
+                                stroke-linecap="round" stroke-dasharray="339.292" stroke-dashoffset="339.292"/>
+                    </svg>
+                    <div class="checkmark-container">
+                        <i class="ri-check-line"></i>
+                    </div>
+                </div>
             </div>
-        `;
-        document.body.appendChild(modal);
+            <p class="whatsapp-message">Thank you for choosing us.</p>
+            <p class="whatsapp-submessage">Preparing your order details and redirecting to WhatsApp...</p>
+        </div>
+    `;
+    document.body.appendChild(overlay);
 
-        // Prepare message
-        let message = "Hi, I want to order:%0A%0A";
-        let total = 0;
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            total += itemTotal;
-            message += `${item.name} ×${item.quantity} – ₹${itemTotal}%0A`;
-        });
-        message += `%0A*Total ₹${total}*`;
+    // Animate the progress ring
+    const progressRing = overlay.querySelector('.progress-ring__progress');
+    const circumference = 2 * Math.PI * 54; // 2πr where r=54
+    progressRing.style.strokeDasharray = `${circumference}`;
+    
+    let startTime = null;
+    const duration = 2000; // 2 seconds
+    
+    function animate(currentTime) {
+        if (!startTime) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Calculate dashoffset - goes from full to zero
+        const dashoffset = circumference * (1 - progress);
+        progressRing.style.strokeDashoffset = dashoffset;
+        
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+    
+    requestAnimationFrame(animate);
 
-        // Clear cart and redirect after delay
+    // Prepare message
+    let message = "Hi, I want to order:%0A%0A";
+    let total = 0;
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        message += `${item.name} ×${item.quantity} – ₹${itemTotal}%0A`;
+    });
+    message += `%0A*Total ₹${total}*`;
+
+    // Clear cart and redirect after delay
+    setTimeout(() => {
+        // Clear cart first
+        this.clearCart();
+        
+        // Open WhatsApp
+        window.open(`https://wa.me/917358671248?text=${message}`, '_blank');
+        
+        // Redirect to shop page after a tiny delay to ensure WhatsApp opens
         setTimeout(() => {
-            // Clear cart
-            this.clearCart(); // This also updates navigation and re-renders if on cart page
-            // Redirect to WhatsApp
-            window.open(`https://wa.me/917358671248?text=${message}`, '_blank');
-            // Remove modal
-            modal.remove();
-        }, 2000);
-    },
+            window.location.href = 'shop.html';
+        }, 100);
+        
+        // Fade out animation
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => overlay.remove(), 300);
+    }, 2000);
+},
 
     // --- Page Rendering (Cart Page) ---
     renderCartPage() {

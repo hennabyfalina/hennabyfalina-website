@@ -216,73 +216,52 @@ function initNavigation() {
 // =========================================
 
 function setActiveNavLink() {
-    // Get current page filename
-    let currentPage = window.location.pathname.split('/').pop();
-    
-    // If no filename or empty, default to index.html
-    if (!currentPage || currentPage === '') {
-        currentPage = 'index.html';
-    }
-    
-    // Get all navigation links and action buttons
+    // Get current URL path and clean it
+    const path = window.location.pathname;
+    let currentPage = path.replace(/^\/|\/$/g, '').split('/').pop() || 'index';
+    // Remove .html if present
+    currentPage = currentPage.replace(/\.html$/, '');
+
+    // Select all navigation elements
     const navLinks = document.querySelectorAll('.nav__link');
     const studioBtn = document.querySelector('.btn-header-premium');
     const shopBtn = document.querySelector('.btn-outline');
-    
-    // First, remove all active classes from nav links
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    // Remove active classes from action buttons
+
+    // First, remove all active classes
+    navLinks.forEach(link => link.classList.remove('active'));
     if (studioBtn) studioBtn.classList.remove('active');
     if (shopBtn) shopBtn.classList.remove('active');
-    
-    // Handle navigation menu links (Home, About, Services, Contact)
+
+    // Activate regular nav links (Home, About, Collection, Services, Cart)
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        
-        // For exact page matches
-        if (href === currentPage) {
+        if (!href) return;
+
+        // Extract clean page name from href
+        const linkPage = href.replace(/\.html$/, '').split('/').pop();
+
+        // Special case: home page
+        if (linkPage === 'index' && (currentPage === '' || currentPage === 'index')) {
             link.classList.add('active');
         }
-        
-        // For home page with anchor links
-        if (currentPage === 'index.html') {
-            if (href === 'index.html#home' || href === '#home') {
-                // Don't auto-activate home - will be handled by scroll
-                // Just ensure it's not active by default
-            }
-            if (href === 'contact.html') {
-                // Contact link should not be active on home page
-                link.classList.remove('active');
-            }
-        }
-        
-        // For contact page
-        if (currentPage === 'contact.html' && href === 'contact.html') {
+        // Normal match
+        else if (linkPage === currentPage) {
             link.classList.add('active');
         }
     });
-    
-    // Handle action buttons (AI Studio and Shop)
-    if (currentPage === 'ai-studio.html' && studioBtn) {
-        studioBtn.classList.add('active');
-    }
-    
-    if (currentPage === 'shop.html' && shopBtn) {
+
+    // Activate action buttons (Shop and AI Studio)
+    if (currentPage === 'shop' && shopBtn) {
         shopBtn.classList.add('active');
     }
-    
-    // Special case: if on index.html, ensure no action buttons are active
-    if (currentPage === 'index.html') {
-        if (studioBtn) studioBtn.classList.remove('active');
-        if (shopBtn) shopBtn.classList.remove('active');
+    if (currentPage === 'ai-studio' && studioBtn) {
+        studioBtn.classList.add('active');
     }
-    
-    // Log for debugging (remove in production)
-    console.log('Current page:', currentPage);
+
+    // Debugging (remove in production)
+    console.log('Active page set to:', currentPage);
 }
+
 
 // --- THEME TOGGLE (PERMANENT DARK MODE) ---
 function initThemeToggle() {

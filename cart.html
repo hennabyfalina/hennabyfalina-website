@@ -535,6 +535,184 @@
     }
 }
 
+
+/* WhatsApp Order Animation - Professional Subtle Style with Tick */
+.whatsapp-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.whatsapp-modal {
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 32px;
+    padding: 2.5rem 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.4s ease;
+}
+
+.animation-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.progress-ring {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-ring svg {
+    transform: rotate(-90deg);
+    width: 120px;
+    height: 120px;
+}
+
+.progress-ring__bg {
+    stroke: rgba(255, 255, 255, 0.1);
+}
+
+.progress-ring__progress {
+    stroke: #d4af37;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+}
+
+.checkmark-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: softPulse 2s ease infinite;
+}
+
+.checkmark-container i {
+    font-size: 2.2rem;
+    color: #d4af37;
+    font-weight: 600;
+    animation: none;
+}
+
+.whatsapp-message {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.01em;
+    animation: fadeInUp 0.5s ease 0.2s both;
+}
+
+.whatsapp-submessage {
+    color: #888;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+    animation: fadeInUp 0.5s ease 0.3s both;
+}
+
+@keyframes softPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        background: rgba(212, 175, 55, 0.1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        background: rgba(212, 175, 55, 0.15);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .whatsapp-modal {
+        padding: 2rem 1.5rem;
+        border-radius: 28px;
+    }
+    
+    .progress-ring {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .progress-ring svg {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .checkmark-container {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .checkmark-container i {
+        font-size: 1.8rem;
+    }
+    
+    .whatsapp-message {
+        font-size: 1.1rem;
+    }
+    
+    .whatsapp-submessage {
+        font-size: 0.9rem;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -559,6 +737,7 @@
                 <li><a href="about.html" class="nav__link">About</a></li>
                 <li><a href="collection.html" class="nav__link">Collection</a></li>
                 <li><a href="services.html" class="nav__link">Services</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
                 <li><a href="cart.html" class="nav__link" id="desktopCartLink">Cart</a></li>
             </ul>
             <div class="nav__actions">
@@ -724,6 +903,10 @@
             if (window.location.pathname.includes('cart.html')) {
                 CartSystem.renderCartPage();
             }
+
+            // Force active state for desktop navigation
+        setTimeout(setActiveNavLink, 50);
+        
         });
     </script>
 </body>

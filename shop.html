@@ -696,10 +696,11 @@
              <img src="images/logo.png" alt="HF" class="logo-img">
         </a>
         <ul class="nav__menu" id="navMenu">
-            <li><a href="index.html" class="nav__link">Home</a></li>
+            
             <li><a href="about.html" class="nav__link">About</a></li>
             <li><a href="collection.html" class="nav__link">Collection</a></li>
             <li><a href="services.html" class="nav__link">Services</a></li>
+            <li><a href="contact.html" class="nav__link">Contact</a></li>
             <li><a href="cart.html" class="nav__link" id="desktopCartLink">Cart</a></li>
         </ul>
         <div class="nav__actions">
@@ -1625,7 +1626,7 @@
             document.getElementById('quickModalCategory').textContent = quickCurrentProduct.category;
             document.getElementById('quickModalTitle').textContent = quickCurrentProduct.name;
             document.getElementById('quickModalPrice').textContent = `₹${quickCurrentProduct.price}`;
-            document.getElementById('quickModalOriginal').textContent = quickCurrentProduct.original ? `~~₹${quickCurrentProduct.original}~~` : '';
+            document.getElementById('quickModalOriginal').textContent = quickCurrentProduct.original ? `₹${quickCurrentProduct.original}` : '';
             document.getElementById('quickModalDesc').textContent = quickCurrentProduct.desc;
             document.getElementById('quickModalRating').innerHTML = generateHeartRatingHtml(quickCurrentProduct.rating);
             
@@ -1682,7 +1683,7 @@
             document.getElementById('fullModalCategory').textContent = fullCurrentProduct.category;
             document.getElementById('fullModalTitle').textContent = fullCurrentProduct.name;
             document.getElementById('fullModalPrice').textContent = `₹${fullCurrentProduct.price}`;
-            document.getElementById('fullModalOriginal').textContent = fullCurrentProduct.original ? `~~₹${fullCurrentProduct.original}~~` : '';
+            document.getElementById('fullModalOriginal').textContent = fullCurrentProduct.original ? `₹${fullCurrentProduct.original}` : '';
             document.getElementById('fullModalDesc').textContent = fullCurrentProduct.desc;
             document.getElementById('fullModalRating').innerHTML = generateHeartRatingHtml(fullCurrentProduct.rating);
             
@@ -1845,29 +1846,6 @@ document.getElementById('fullAddToCart').addEventListener('click', () => {
         document.getElementById('fullViewModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('fullViewModal')) closeFullView();
         });
-
-        // Set active class on navigation links based on current page
-(function setActiveNav() {
-    const path = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav__link, .mobile-nav-item');
-    
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (!href) return;
-        
-        // Extract page name from href (e.g., "shop.html", "index.html", "cart.html")
-        const page = href.split('/').pop().split('#')[0]; // handles both relative and absolute
-        
-        // Special case for home (index.html) – also match root path "/"
-        if (page === 'index.html' && (path === '/' || path.endsWith('index.html'))) {
-            link.classList.add('active');
-        } else if (path.includes(page) && page !== '') {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-})();
 
 
     </script>
