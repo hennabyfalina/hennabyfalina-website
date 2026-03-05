@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Henna By Falina</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <!-- AOS Animation -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Success Modal Styles */
+        .success-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .success-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .success-modal {
+            background: #111111;
+            border: 1px solid var(--accent-color);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+        
+        .success-modal-overlay.active .success-modal {
+            transform: scale(1);
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            color: var(--accent-color);
+            animation: pulse 1s ease;
+        }
+        
+        .success-modal h2 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .success-modal p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .success-modal .btn {
+            background: var(--accent-color);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        
+        .success-modal .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Form validation styles */
+        .form-input.error {
+            border-color: #ff4444;
+        }
+        
+        .error-message {
+            color: #ff4444;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                <img src="images/logo.png" alt="HF" class="logo-img">
+            </a>
+            
+            <ul class="nav__menu" id="navMenu">
+                <li><a href="index.html#home" class="nav__link">Home</a></li>
+                <li><a href="about.html" class="nav__link">About</a></li>
+                <li><a href="collection.html" class="nav__link">Collection</a></li>
+                <li><a href="index.html#services" class="nav__link">Services</a></li>
+                <li><a href="contact.html" class="nav__link active">Contact</a></li>
+            </ul>
+            
+            <div class="nav__actions">
+                <a href="ai-studio.html" class="btn btn-header-premium">
+                    <span>AI Studio</span>
+                    <i class="ri-sparkling-line"></i>
+                </a>
+                <a href="shop.html" class="btn btn-outline">
+                    <span>Shop</span>
+                    <i class="ri-shopping-bag-line"></i>
+                </a>
+            </div>
+            
+            <button type="button" class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="ri-menu-line"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Contact Page Content -->
+    <section class="section contact-page">
+        <div class="container">
+            <div class="section-header-center" data-aos="fade-up">
+                <span class="section-eyebrow">Get In Touch</span>
+                <h1 class="section-title-large">Contact Us</h1>
+                <p class="section-subtitle-large">
+                    Ready to create something beautiful? Reach out to us today.
+                </p>
+            </div>
+            
+            <div class="contact__grid">
+                <div class="contact-info">
+                    <!-- Contact items -->
+                    <div class="contact-item">
+                        <i class="ri-phone-line"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 73586 71248</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ri-mail-line"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hennabyfalina@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ri-map-pin-line"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Chennai, Tamil Nadu, India</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://wa.me/917358671248" target="_blank" rel="noopener noreferrer" title="Contact us on WhatsApp" class="social-link"><i class="ri-whatsapp-line"></i></a>
+                        <a href="https://www.instagram.com/henna_by_falina/" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram" class="social-link"><i class="ri-instagram-line"></i></a>
+                        <a href="https://www.facebook.com/henna.by.falina" target="_blank" rel="noopener noreferrer" title="Follow us on Facebook" class="social-link"><i class="ri-facebook-line"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form with Validation -->
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="name" placeholder="Your Full Name *" required>
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" class="form-input" id="email" placeholder="Your Email Address *" required>
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reason" class="form-label">Reason for Contact</label>
+                        <select class="form-input" id="reason" required>
+                            <option value="" disabled selected>Select Reason for Contact *</option>
+                            <option value="Bridal Henna Inquiry">Bridal Henna Inquiry</option>
+                            <option value="Event Booking">Event Booking</option>
+                            <option value="Workshop Registration">Workshop Registration</option>
+                            <option value="Product Purchase">Product Purchase</option>
+                            <option value="Custom Design Request">Custom Design Request</option>
+                            <option value="Collaboration">Collaboration</option>
+                            <option value="Bulk Order">Bulk Order</option>
+                            <option value="Feedback">Feedback</option>
+                            <option value="Career Opportunity">Career Opportunity</option>
+                            <option value="Other">  Other</option>
+                        </select>
+                        <div class="error-message" id="reasonError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea class="form-input" id="message" rows="5" placeholder="Your Message (minimum 10 characters) *" required></textarea>
+                        <div class="error-message" id="messageError"></div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-full" id="submitBtn">
+                        <i class="ri-whatsapp-line"></i>
+                        <span>Send via WhatsApp</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="index.html#home" class="mobile-nav-item">
+            <i class="ri-home-5-line"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item">
+            <i class="ri-shopping-bag-3-line"></i>
+            <span>Shop</span>
+        </a>
+        <a href="ai-studio.html" class="mobile-nav-item">
+            <div class="nav-icon-circle">
+                <i class="ri-sparkling-fill"></i>
+            </div>
+            <span>Studio</span>
+        </a>
+        <a href="collection.html" class="mobile-nav-item">
+            <i class="ri-gallery-line"></i>
+            <span>Collection</span>
+        </a>
+        
+        <button type="button" class="mobile-nav-item" id="mobileChatIcon">
+            <i class="ri-chat-3-line"></i>
+            <span>Chat</span>
+        </button>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal-overlay" id="successModal">
+        <div class="success-modal">
+            <div class="success-icon">
+                <i class="ri-check-line"></i>
+            </div>
+            <h2>Message Sent!</h2>
+            <p>Thank you for reaching out. Your message has been prepared for WhatsApp. You'll be redirected in a moment.</p>
+            <button class="btn" onclick="closeSuccessModal()">Continue</button>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp number
+        const WHATSAPP_NUMBER = '917358671248';
+        
+        // Validation functions
+        function validateName(name) {
+            if (!name || name.length < 3) {
+                return { valid: false, message: 'Name must be at least 3 characters' };
+            }
+            
+            // Only letters and spaces allowed
+            const nameRegex = /^[A-Za-z\s]+$/;
+            if (!nameRegex.test(name)) {
+                return { valid: false, message: 'Name can only contain letters and spaces' };
+            }
+            
+            return { valid: true, message: '' };
+        }
+        
+        function validateEmail(email) {
+            if (!email) {
+                return { valid: false, message: 'Email is required' };
+            }
+            
+            // Standard email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                return { valid: false, message: 'Please enter a valid email address' };
+            }
+            
+            return { valid: true, message: '' };
+        }
+        
+        function validateMessage(message) {
+            if (!message || message.length < 10) {
+                return { valid: false, message: 'Message must be at least 10 characters' };
+            }
+            
+            // Check for suspicious patterns (script tags, code, etc.)
+            const suspiciousPatterns = [
+                /<script/i,
+                /javascript:/i,
+                /onerror/i,
+                /onclick/i,
+                /eval\(/i,
+                /alert\(/i,
+                /document\./i,
+                /window\./i,
+                /SELECT.*FROM/i,
+                /DROP.*TABLE/i,
+                /UNION.*SELECT/i,
+                /exec\(/i,
+                /base64/i,
+                /atob\(/i,
+                /btoa\(/i,
+                /\${/,
+                /\$\(/
+            ];
+            
+            for (let pattern of suspiciousPatterns) {
+                if (pattern.test(message)) {
+                    return { valid: false, message: 'Message contains invalid content' };
+                }
+            }
+            
+            return { valid: true, message: '' };
+        }
+        
+        // Show success modal
+        function showSuccessModal() {
+            document.getElementById('successModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Close success modal
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Redirect to home page
+            window.location.href = 'index.html';
+        }
+        
+        // Clear all error messages
+        function clearErrors() {
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.classList.remove('error');
+            });
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.classList.remove('show');
+                msg.textContent = '';
+            });
+        }
+        
+        // Show error for specific field
+        function showError(fieldId, message) {
+            const input = document.getElementById(fieldId);
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            
+            if (input) input.classList.add('error');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.classList.add('show');
+            }
+        }
+        
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Clear previous errors
+            clearErrors();
+            
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const reason = document.getElementById('reason').value;
+            const message = document.getElementById('message').value.trim();
+            
+            let isValid = true;
+            
+            // Validate name
+            const nameValidation = validateName(name);
+            if (!nameValidation.valid) {
+                showError('name', nameValidation.message);
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailValidation = validateEmail(email);
+            if (!emailValidation.valid) {
+                showError('email', emailValidation.message);
+                isValid = false;
+            }
+            
+            // Validate reason
+            if (!reason) {
+                showError('reason', 'Please select a reason');
+                isValid = false;
+            }
+            
+            // Validate message
+            const messageValidation = validateMessage(message);
+            if (!messageValidation.valid) {
+                showError('message', messageValidation.message);
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+            
+            // Format WhatsApp message with reason as subject
+            const whatsappMessage = `*New Contact Form Submission*%0A%0A` +
+                                   `*Name:* ${name}%0A` +
+                                   `*Email:* ${email}%0A` +
+                                   `*Reason:* ${reason}%0A` +
+                                   `*Message:* ${message}`;
+            
+            // Create WhatsApp URL
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`;
+            
+            // Show success modal
+            showSuccessModal();
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappURL, '_blank');
+        });
+        
+        // Real-time validation feedback
+        document.getElementById('name').addEventListener('input', function() {
+            const validation = validateName(this.value);
+            if (!validation.valid) {
+                document.getElementById('nameError').textContent = validation.message;
+                document.getElementById('nameError').classList.add('show');
+                this.classList.add('error');
+            } else {
+                document.getElementById('nameError').classList.remove('show');
+                this.classList.remove('error');
+            }
+        });
+        
+        document.getElementById('email').addEventListener('input', function() {
+            const validation = validateEmail(this.value);
+            if (!validation.valid && this.value.length > 0) {
+                document.getElementById('emailError').textContent = validation.message;
+                document.getElementById('emailError').classList.add('show');
+                this.classList.add('error');
+            } else {
+                document.getElementById('emailError').classList.remove('show');
+                this.classList.remove('error');
+            }
+        });
+        
+        document.getElementById('message').addEventListener('input', function() {
+            const validation = validateMessage(this.value);
+            if (!validation.valid && this.value.length > 0) {
+                document.getElementById('messageError').textContent = validation.message;
+                document.getElementById('messageError').classList.add('show');
+                this.classList.add('error');
+            } else {
+                document.getElementById('messageError').classList.remove('show');
+                this.classList.remove('error');
+            }
+        });
+    </script>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henna Design Collection - Henna By Falina</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Collection Page Specific Styles */
+        .collection-page {
+            background: var(--bg-primary);
+            min-height: 100vh;
+        }
+        
+        .collection-hero {
+            padding: 10rem 0 3rem;
+            text-align: center;
+            background: var(--bg-primary);
+            border-bottom: none;
+        }
+        
+        .collection-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .collection-hero p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .collection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .collection-header h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .collection-filters {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+        }
+        
+        .filter-btn.active {
+            background: var(--accent-color);
+            color: #000000;
+            border-color: var(--accent-color);
+        }
+        
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 0 0 4rem 0;
+        }
+        
+        .design-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .design-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent-color);
+        }
+        
+        .design-image {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+        }
+        
+        .design-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .design-card:hover .design-image img {
+            transform: scale(1.05);
+        }
+        
+        .design-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            z-index: 2;
+        }
+        
+        .design-info {
+            padding: 1.2rem;
+        }
+        
+        .design-category {
+            color: var(--accent-color);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+        
+        .design-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        
+        .design-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        .design-likes {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .design-likes i {
+            color: #ff4d4d;
+            font-size: 0.9rem;
+        }
+        
+        /* No designs message */
+        .no-designs {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            border: 1px dashed var(--border-subtle);
+            border-radius: 12px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .collection-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .collection-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .collection-hero {
+                padding: 8rem 0 2rem;
+            }
+            
+            .collection-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .collection-header {
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 2rem 0 1.5rem;
+            }
+            
+            .collection-filters {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+                flex-wrap: nowrap;
+            }
+            
+            .filter-btn {
+                white-space: nowrap;
+                padding: 0.5rem 1.2rem;
+            }
+            
+            .collection-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="index.html" class="nav__logo">
+             <img src="images/logo.png" alt="HF" class="logo-img">
+        </a>
+            
+            <ul class="nav__menu" id="navMenu">
+                <li><a href="index.html#home" class="nav__link">Home</a></li>
+                <li><a href="about.html" class="nav__link">About</a></li>
+                <li><a href="collection.html" class="nav__link">Collection</a></li>
+                <li><a href="index.html#services" class="nav__link">Services</a></li>
+                <li><a href="contact.html" class="nav__link">Contact</a></li>
+            </ul>
+            
+            <div class="nav__actions">
+                <a href="ai-studio.html" class="btn btn-header-premium">
+                    <span>AI Studio</span>
+                    <i class="ri-sparkling-line"></i>
+                </a>
+                <a href="shop.html" class="btn btn-outline">
+                    <span>Shop</span>
+                    <i class="ri-shopping-bag-line"></i>
+                </a>
+            </div>
+            
+            <button type="button" class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="ri-menu-line"></i>
+            </button>
+        </nav>
+    </header>
+
+    <div class="collection-page">
+        <!-- Collection Hero -->
+        <section class="collection-hero">
+            <div class="container">
+                <h1 class="hero__title">Henna Design Collection</h1>
+                <p>Explore our curated collection of 24+ traditional and contemporary henna designs</p>
+            </div>
+        </section>
+
+        <!-- Collection Section -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+                <!-- Collection Header with Filters -->
+                <div class="collection-header">
+                    <h2>All Designs <span style="color: var(--text-tertiary); font-weight: 400;" id="designCount">(24 items)</span></h2>
+                    <div class="collection-filters" id="filterContainer">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="bridal">Bridal</button>
+                        <button class="filter-btn" data-filter="arabic">Arabic</button>
+                        <button class="filter-btn" data-filter="indian">Indian</button>
+                        <button class="filter-btn" data-filter="moroccan">Moroccan</button>
+                        <button class="filter-btn" data-filter="minimal">Minimal</button>
+                    </div>
+                </div>
+                
+                <!-- Design Grid -->
+                <div class="collection-grid" id="designGrid">
+                    <!-- Designs will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+<!-- Simple Contact Bar -->
+<section class="simple-contact">
+    <div class="container">
+        <div class="simple-contact-content">
+            <h3>Connect With Us</h3>
+            <div class="simple-contact-links">
+                <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20henna%20designs." 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="simple-contact-link">
+                    <i class="ri-whatsapp-line"></i>
+                    <span>WhatsApp</span>
+                </a>
+                <a href="https://instagram.com/henna_by_falina" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="simple-contact-link">
+                    <i class="ri-instagram-line"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://facebook.com/henna.by.falina" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="simple-contact-link">
+                    <i class="ri-facebook-line"></i>
+                    <span>Facebook</span>
+                </a>
+            </div>
+            <p class="simple-contact-note">For custom designs, bridal consultations, or any questions</p>
+        </div>
+    </div>
+</section>
+
+<style>
+.simple-contact {
+    background: var(--bg-primary);
+    padding: 3rem 0;
+    border-top: none;
+    margin-top: 3rem;
+}
+
+.simple-contact-content {
+    text-align: center;
+}
+
+.simple-contact-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.simple-contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.simple-contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 50px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.simple-contact-link i {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+.simple-contact-link:hover {
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.simple-contact-note {
+    color: var(--text-tertiary);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .simple-contact-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+    
+    .simple-contact-link {
+        width: 100%;
+        justify-content: center;
+    }
+}
+</style>
+
+<!-- Chatbot Widget -->
+<div class="chat-widget">
+    <div class="chat-icon" id="chatIcon">
+        <img src="images/chatbot-avatar.png" alt="HF" class="chat-icon-img">
+    </div>
+    
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h4>Henna Assistant</h4>
+            <button type="button" class="close-chat" id="closeChat" aria-label="Close chat">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message bot">
+                <div class="message-avatar">
+                    <img src="images/chatbot-avatar.png" alt="HF" class="avatar-img">
+                </div>
+                <div class="message-content">
+                    <p>Hi! I'm your Henna Assistant. Select a question below:</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-suggestions" id="chatSuggestions"></div>
+        
+        <div class="chat-footer">
+            <button class="new-suggestions-btn" id="newSuggestionsBtn">
+                <i class="ri-refresh-line"></i> Show Different Questions
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="mobile-bottom-nav">
+        <a href="index.html#home" class="mobile-nav-item">
+            <i class="ri-home-5-line"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item">
+            <i class="ri-shopping-bag-3-line"></i>
+            <span>Shop</span>
+        </a>
+        <a href="ai-studio.html" class="mobile-nav-item">
+            <div class="nav-icon-circle">
+                <i class="ri-sparkling-fill"></i>
+            </div>
+            <span>Studio</span>
+        </a>
+        <a href="collection.html" class="mobile-nav-item active">
+            <i class="ri-gallery-line"></i>
+            <span>Collection</span>
+        </a>
+        <button type="button" class="mobile-nav-item" id="mobileChatIcon">
+            <i class="ri-chat-3-line"></i>
+            <span>Chat</span>
+        </button>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    
+    <script>
+        // Design database - 24 designs
+        const designs = [
+            // Bridal (6 designs)
+            { id: 1, category: 'bridal', title: 'Traditional Bridal Set', description: 'Full hand design', likes: 234, badge: 'Popular', image: 'https://images.unsplash.com/photo-1596236569689-090527b79092?w=600&h=800&fit=crop' },
+            { id: 2, category: 'bridal', title: 'South Indian Style', description: 'Full hand & foot', likes: 312, badge: '', image: 'https://images.unsplash.com/photo-1596236569689-090527b79092?w=600&h=800&fit=crop' },
+            { id: 3, category: 'bridal', title: 'North Indian Bridal', description: 'Intricate patterns', likes: 198, badge: 'Trending', image: 'https://images.unsplash.com/photo-1596236569689-090527b79092?w=600&h=800&fit=crop' },
+            { id: 4, category: 'bridal', title: 'Contemporary Bridal', description: 'Modern fusion', likes: 156, badge: '', image: 'https://images.unsplash.com/photo-1596236569689-090527b79092?w=600&h=800&fit=crop' },
+            { id: 5, category: 'bridal', title: 'Traditional with Names', description: 'Hidden initials', likes: 178, badge: '', image: 'https://images.unsplash.com/photo-1596236569689-090527b79092?w=600&h=800&fit=crop' },
+            { id: 6, category: 'bridal', title: 'Full Coverage Bridal', description: 'Arm to fingers', likes: 267, badge: 'Popular', image: 'https://images.unsplash.com/photo-1596236569689-090527b79092?w=600&h=800&fit=crop' },
+            
+            // Arabic (4 designs)
+            { id: 7, category: 'arabic', title: 'Floral Arabic Pattern', description: 'Palm design', likes: 189, badge: '', image: 'https://images.unsplash.com/photo-1615637179018-7d8b5c1b8b9a?w=600&h=800&fit=crop' },
+            { id: 8, category: 'arabic', title: 'Modern Fusion', description: 'Hand design', likes: 267, badge: 'Trending', image: 'https://images.unsplash.com/photo-1615637179018-7d8b5c1b8b9a?w=600&h=800&fit=crop' },
+            { id: 9, category: 'arabic', title: 'Traditional Arabic', description: 'Bold florals', likes: 145, badge: '', image: 'https://images.unsplash.com/photo-1615637179018-7d8b5c1b8b9a?w=600&h=800&fit=crop' },
+            { id: 10, category: 'arabic', title: 'Delicate Arabic', description: 'Fine line work', likes: 134, badge: '', image: 'https://images.unsplash.com/photo-1615637179018-7d8b5c1b8b9a?w=600&h=800&fit=crop' },
+            
+            // Indian (4 designs)
+            { id: 11, category: 'indian', title: 'Rajasthani Motifs', description: 'Full hand', likes: 156, badge: 'New', image: 'https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=600&h=800&fit=crop' },
+            { id: 12, category: 'indian', title: 'Paisley Patterns', description: 'Traditional', likes: 143, badge: '', image: 'https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=600&h=800&fit=crop' },
+            { id: 13, category: 'indian', title: 'Peacock Motifs', description: 'Bridal special', likes: 198, badge: 'Popular', image: 'https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=600&h=800&fit=crop' },
+            { id: 14, category: 'indian', title: 'Mughal Inspired', description: 'Intricate details', likes: 167, badge: '', image: 'https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=600&h=800&fit=crop' },
+            
+            // Moroccan (4 designs)
+            { id: 15, category: 'moroccan', title: 'Geometric Patterns', description: 'Hand & wrist', likes: 98, badge: '', image: 'https://images.unsplash.com/photo-1610522108748-0d1c9bc700f9?w=600&h=800&fit=crop' },
+            { id: 16, category: 'moroccan', title: 'Traditional Berber', description: 'Hand & arm', likes: 76, badge: '', image: 'https://images.unsplash.com/photo-1610522108748-0d1c9bc700f9?w=600&h=800&fit=crop' },
+            { id: 17, category: 'moroccan', title: 'Modern Moroccan', description: 'Minimal geometry', likes: 89, badge: '', image: 'https://images.unsplash.com/photo-1610522108748-0d1c9bc700f9?w=600&h=800&fit=crop' },
+            { id: 18, category: 'moroccan', title: 'Bold Geometric', description: 'Statement design', likes: 112, badge: 'New', image: 'https://images.unsplash.com/photo-1610522108748-0d1c9bc700f9?w=600&h=800&fit=crop' },
+            
+            // Minimal (6 designs)
+            { id: 19, category: 'minimal', title: 'Modern Line Art', description: 'Wrist design', likes: 145, badge: '', image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=600&h=800&fit=crop' },
+            { id: 20, category: 'minimal', title: 'Single Line Design', description: 'Minimalist', likes: 123, badge: 'Trending', image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=600&h=800&fit=crop' },
+            { id: 21, category: 'minimal', title: 'Finger Details', description: 'Minimal accents', likes: 98, badge: '', image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=600&h=800&fit=crop' },
+            { id: 22, category: 'minimal', title: 'Dot Work', description: 'Contemporary', likes: 87, badge: '', image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=600&h=800&fit=crop' },
+            { id: 23, category: 'minimal', title: 'Geometric Minimal', description: 'Clean lines', likes: 134, badge: '', image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=600&h=800&fit=crop' },
+            { id: 24, category: 'minimal', title: 'Abstract Design', description: 'Modern art', likes: 156, badge: 'New', image: 'https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=600&h=800&fit=crop' }
+        ];
+
+        // Function to render designs
+        function renderDesigns(filteredDesigns) {
+            const grid = document.getElementById('designGrid');
+            const countSpan = document.getElementById('designCount');
+            
+            if (filteredDesigns.length === 0) {
+                grid.innerHTML = '<div class="no-designs">No designs found in this category</div>';
+                countSpan.textContent = '(0 items)';
+                return;
+            }
+            
+            let html = '';
+            filteredDesigns.forEach(design => {
+                const badgeHtml = design.badge ? `<span class="design-badge">${design.badge}</span>` : '';
+                
+                html += `
+                    <div class="design-card" onclick="openDesignDetail('${design.id}')">
+                        <div class="design-image">
+                            <img src="${design.image}" alt="${design.title}">
+                            ${badgeHtml}
+                        </div>
+                        <div class="design-info">
+                            <div class="design-category">${design.category.charAt(0).toUpperCase() + design.category.slice(1)}</div>
+                            <h3 class="design-title">${design.title}</h3>
+                            <div class="design-meta">
+                                <span>${design.description}</span>
+                                <span class="design-likes">
+                                    <i class="ri-heart-3-fill"></i> ${design.likes}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+            countSpan.textContent = `(${filteredDesigns.length} items)`;
+        }
+
+        // Filter function
+        function filterDesigns(category) {
+            if (category === 'all') {
+                return designs;
+            }
+            return designs.filter(design => design.category === category);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show all designs initially
+            renderDesigns(designs);
+            
+            // Setup filter buttons
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Filter designs
+                    const filtered = filterDesigns(filterValue);
+                    
+                    // Render filtered designs
+                    renderDesigns(filtered);
+                });
+            });
+        });
+
+        // Simple function for design detail (placeholder)
+        function openDesignDetail(designId) {
+            console.log('Opening design:', designId);
+            alert('Design detail view coming soon!');
+        }
+    </script>
+
+
+</body>
+</html>

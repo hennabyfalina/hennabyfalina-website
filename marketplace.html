@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Marketplace - Art Henna Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header scrolled" id="header">
+        <nav class="nav container">
+            <a href="/" class="nav__logo">Art Henna Studio</a>
+            <ul class="nav__menu">
+                <li><a href="/#home" class="nav__link">Home</a></li>
+                <li><a href="/marketplace" class="nav__link active">Artists</a></li>
+                <li><a href="/community" class="nav__link">Community</a></li>
+                <li><a href="/shop" class="nav__link">Shop</a></li>
+                <li><a href="/ai-studio" class="nav__link">AI Studio</a></li>
+            </ul>
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="ri-moon-line theme-icon"></i>
+                </button>
+                <a href="#become-artist" class="btn btn-primary">
+                    <i class="ri-user-add-line"></i>
+                    <span>Become an Artist</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Marketplace Hero -->
+    <section class="marketplace-hero">
+        <div class="container">
+            <div class="marketplace-hero-content" data-aos="fade-up">
+                <h1 class="hero-title-large">Find Your Perfect<br>Henna Artist</h1>
+                <p class="hero-subtitle-large">
+                    Connect with certified professional artists for custom commissions,<br>
+                    bridal packages, events, and personalized designs
+                </p>
+                
+                <!-- Quick Search -->
+                <div class="hero-search-bar">
+                    <div class="search-input-group">
+                        <i class="ri-search-line"></i>
+                        <input type="text" id="heroSearch" placeholder="Search by name, location, or style...">
+                    </div>
+                    <div class="search-input-group">
+                        <i class="ri-map-pin-line"></i>
+                        <select id="locationFilter" class="form-input">
+                            <option value="">All Locations</option>
+                            <option value="mumbai">Mumbai</option>
+                            <option value="delhi">Delhi NCR</option>
+                            <option value="bangalore">Bangalore</option>
+                            <option value="hyderabad">Hyderabad</option>
+                            <option value="chennai">Chennai</option>
+                            <option value="pune">Pune</option>
+                            <option value="ahmedabad">Ahmedabad</option>
+                            <option value="kolkata">Kolkata</option>
+                            <option value="online">Online Services</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary btn-large">
+                        <span>Search Artists</span>
+                        <i class="ri-arrow-right-line"></i>
+                    </button>
+                </div>
+                
+                <div class="hero-trust-badges">
+                    <div class="trust-badge">
+                        <i class="ri-shield-check-line"></i>
+                        <span>Verified Artists</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="ri-star-line"></i>
+                        <span>Top Rated</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="ri-money-rupee-circle-line"></i>
+                        <span>Secure Payments</span>
+                    </div>
+                    <div class="trust-badge">
+                        <i class="ri-calendar-check-line"></i>
+                        <span>Instant Booking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Categories -->
+    <section class="marketplace-filters-section">
+        <div class="container">
+            <div class="filters-header">
+                <h3>Browse Artists</h3>
+                <button class="btn btn-outline" id="toggleFiltersBtn">
+                    <i class="ri-filter-3-line"></i>
+                    <span>All Filters</span>
+                </button>
+            </div>
+            
+            <div class="category-pills">
+                <button class="category-pill active" data-category="all">
+                    <i class="ri-team-line"></i>
+                    <span>All Artists</span>
+                </button>
+                <button class="category-pill" data-category="bridal">
+                    <i class="ri-user-heart-line"></i>
+                    <span>Bridal Specialists</span>
+                </button>
+                <button class="category-pill" data-category="event">
+                    <i class="ri-calendar-event-line"></i>
+                    <span>Event Artists</span>
+                </button>
+                <button class="category-pill" data-category="online">
+                    <i class="ri-computer-line"></i>
+                    <span>Online Tutorials</span>
+                </button>
+                <button class="category-pill" data-category="premium">
+                    <i class="ri-vip-crown-line"></i>
+                    <span>Premium Artists</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Filters Panel -->
+    <div class="filters-panel" id="filtersPanel">
+        <div class="container">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Style Specialization</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" value="traditional"> Traditional</label>
+                        <label><input type="checkbox" value="arabic"> Arabic</label>
+                        <label><input type="checkbox" value="modern"> Modern</label>
+                        <label><input type="checkbox" value="minimal"> Minimal</label>
+                        <label><input type="checkbox" value="bridal"> Bridal</label>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Price Range (per session)</label>
+                    <select class="form-input">
+                        <option value="">Any Budget</option>
+                        <option value="0-2000">Under ₹2,000</option>
+                        <option value="2000-5000">₹2,000 - ₹5,000</option>
+                        <option value="5000-10000">₹5,000 - ₹10,000</option>
+                        <option value="10000-20000">₹10,000 - ₹20,000</option>
+                        <option value="20000+">Above ₹20,000</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Experience Level</label>
+                    <select class="form-input">
+                        <option value="">Any Experience</option>
+                        <option value="5+">5+ years</option>
+                        <option value="10+">10+ years</option>
+                        <option value="15+">15+ years</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Availability</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" value="weekdays"> Weekdays</label>
+                        <label><input type="checkbox" value="weekends"> Weekends</label>
+                        <label><input type="checkbox" value="immediate"> Available Now</label>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Rating</label>
+                    <select class="form-input">
+                        <option value="">Any Rating</option>
+                        <option value="4.5+">4.5+ Stars</option>
+                        <option value="4.0+">4.0+ Stars</option>
+                        <option value="3.5+">3.5+ Stars</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Services Offered</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" value="home-service"> Home Service</label>
+                        <label><input type="checkbox" value="studio"> Studio Visit</label>
+                        <label><input type="checkbox" value="destination"> Destination Events</label>
+                        <label><input type="checkbox" value="video-call"> Video Consultation</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-actions">
+                <button class="btn btn-outline" id="clearFiltersBtn">Clear All</button>
+                <button class="btn btn-primary" id="applyFiltersBtn">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Artist Cards Grid -->
+    <section class="section marketplace-artists-section">
+        <div class="container">
+            <div class="marketplace-header">
+                <div>
+                    <h3>Featured Artists</h3>
+                    <p style="color: var(--text-secondary);">Showing 48 artists</p>
+                </div>
+                <div class="sort-options">
+                    <label style="margin-right: 0.5rem; color: var(--text-secondary);">Sort by:</label>
+                    <select class="form-input" id="sortSelect" style="width: auto;">
+                        <option value="recommended">Recommended</option>
+                        <option value="rating">Highest Rated</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="experience">Most Experienced</option>
+                        <option value="recent">Recently Joined</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="artists-grid" id="artistsGrid">
+                <!-- Populated dynamically -->
+            </div>
+            
+            <div class="pagination">
+                <button class="btn btn-outline" disabled>
+                    <i class="ri-arrow-left-line"></i>
+                    <span>Previous</span>
+                </button>
+                <div class="pagination-numbers">
+                    <button class="page-number active">1</button>
+                    <button class="page-number">2</button>
+                    <button class="page-number">3</button>
+                    <button class="page-number">4</button>
+                    <span>...</span>
+                    <button class="page-number">12</button>
+                </div>
+                <button class="btn btn-outline">
+                    <span>Next</span>
+                    <i class="ri-arrow-right-line"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artist Profile Modal -->
+    <div class="modal-overlay" id="artistModal">
+        <div class="modal-container modal-artist-profile">
+            <button class="modal-close modal-close-absolute" onclick="closeArtistModal()">
+                <i class="ri-close-line"></i>
+            </button>
+            
+            <div class="artist-profile-layout">
+                <!-- Profile Header -->
+                <div class="artist-profile-header">
+                    <div class="artist-profile-cover"></div>
+                    <div class="artist-profile-main">
+                        <div class="artist-profile-avatar-large" id="profileAvatar">P</div>
+                        <div class="artist-profile-info">
+                            <div class="profile-name-badge">
+                                <h2 id="profileName">Artist Name</h2>
+                                <div class="verified-badge" title="Verified Professional">
+                                    <i class="ri-checkbox-circle-fill"></i>
+                                </div>
+                            </div>
+                            <p id="profileTagline">Professional Henna Artist</p>
+                            <div class="profile-meta">
+                                <span><i class="ri-map-pin-line"></i> <span id="profileLocation">Mumbai, India</span></span>
+                                <span><i class="ri-star-fill"></i> <span id="profileRating">4.9</span> (156 reviews)</span>
+                                <span><i class="ri-user-line"></i> <span id="profileExperience">10+ years</span></span>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-large" id="bookNowBtn">
+                            <i class="ri-calendar-check-line"></i>
+                            <span>Book Session</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Content -->
+                <div class="artist-profile-content">
+                    <div class="profile-sidebar">
+                        <div class="profile-card">
+                            <h4>Starting Price</h4>
+                            <div class="price-display">₹<span id="profilePrice">5,000</span></div>
+                            <p style="color: var(--text-secondary); font-size: 0.875rem;">per session</p>
+                        </div>
+
+                        <div class="profile-card">
+                            <h4>Specializations</h4>
+                            <div id="profileSpecializations" class="tags-list">
+                                <!-- Tags populated dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="profile-card">
+                            <h4>Languages</h4>
+                            <p id="profileLanguages">Hindi, English, Marathi</p>
+                        </div>
+
+                        <div class="profile-card">
+                            <h4>Services</h4>
+                            <ul class="services-list" id="profileServices">
+                                <!-- Populated dynamically -->
+                            </ul>
+                        </div>
+
+                        <div class="profile-card">
+                            <h4>Availability</h4>
+                            <div class="availability-calendar">
+                                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">
+                                    <i class="ri-calendar-line"></i> Next available: <strong>Nov 28, 2025</strong>
+                                </p>
+                                <button class="btn btn-outline" style="width: 100%;">View Full Calendar</button>
+                            </div>
+                        </div>
+
+                        <div class="profile-card">
+                            <h4>Response Time</h4>
+                            <p style="display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="ri-time-line" style="color: var(--accent-color);"></i>
+                                Usually within 2 hours
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="profile-main-content">
+                        <div class="profile-tabs">
+                            <button class="profile-tab active" data-tab="about">About</button>
+                            <button class="profile-tab" data-tab="portfolio">Portfolio</button>
+                            <button class="profile-tab" data-tab="reviews">Reviews</button>
+                            <button class="profile-tab" data-tab="packages">Packages</button>
+                        </div>
+
+                        <!-- About Tab -->
+                        <div class="tab-panel active" id="aboutTab">
+                            <div class="profile-section">
+                                <h3>About Me</h3>
+                                <p id="profileBio" style="color: var(--text-secondary); line-height: 1.7;">
+                                    <!-- Bio populated dynamically -->
+                                </p>
+                            </div>
+
+                            <div class="profile-section">
+                                <h3>Experience & Credentials</h3>
+                                <div class="credentials-list" id="profileCredentials">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+
+                            <div class="profile-section">
+                                <h3>Achievements</h3>
+                                <div class="achievements-grid" id="profileAchievements">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Tab -->
+                        <div class="tab-panel" id="portfolioTab">
+                            <div class="portfolio-gallery" id="profilePortfolio">
+                                <!-- Portfolio images populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Reviews Tab -->
+                        <div class="tab-panel" id="reviewsTab">
+                            <div class="reviews-summary">
+                                <div class="rating-overview">
+                                    <div class="rating-large">
+                                        <span class="rating-number">4.9</span>
+                                        <div class="rating-stars">★★★★★</div>
+                                        <p>Based on 156 reviews</p>
+                                    </div>
+                                    <div class="rating-breakdown">
+                                        <div class="rating-bar-item">
+                                            <span>5★</span>
+                                            <div class="rating-bar">
+                                                <div class="rating-bar-fill" style="width: 85%;"></div>
+                                            </div>
+                                            <span>85%</span>
+                                        </div>
+                                        <div class="rating-bar-item">
+                                            <span>4★</span>
+                                            <div class="rating-bar">
+                                                <div class="rating-bar-fill" style="width: 10%;"></div>
+                                            </div>
+                                            <span>10%</span>
+                                        </div>
+                                        <div class="rating-bar-item">
+                                            <span>3★</span>
+                                            <div class="rating-bar">
+                                                <div class="rating-bar-fill" style="width: 3%;"></div>
+                                            </div>
+                                            <span>3%</span>
+                                        </div>
+                                        <div class="rating-bar-item">
+                                            <span>2★</span>
+                                            <div class="rating-bar">
+                                                <div class="rating-bar-fill" style="width: 1%;"></div>
+                                            </div>
+                                            <span>1%</span>
+                                        </div>
+                                        <div class="rating-bar-item">
+                                            <span>1★</span>
+                                            <div class="rating-bar">
+                                                <div class="rating-bar-fill" style="width: 1%;"></div>
+                                            </div>
+                                            <span>1%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="reviews-list" id="profileReviews">
+                                <!-- Reviews populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Packages Tab -->
+                        <div class="tab-panel" id="packagesTab">
+                            <div class="packages-grid" id="profilePackages">
+                                <!-- Packages populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-container modal-large">
+            <div class="modal-header">
+                <h2>Book a Session</h2>
+                <button class="modal-close" onclick="closeBookingModal()">
+                    <i class="ri-close-line"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form id="bookingForm" class="booking-form">
+                    <div class="booking-summary-card">
+                        <div class="summary-artist">
+                            <div class="artist-avatar-small">P</div>
+                            <div>
+                                <h4 id="bookingArtistName">Artist Name</h4>
+                                <span id="bookingArtistLocation">Location</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Your Name *</label>
+                            <input type="text" class="form-input" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number *</label>
+                            <input type="tel" class="form-input" name="phone" placeholder="+91 XXXXX XXXXX" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address *</label>
+                        <input type="email" class="form-input" name="email" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Service Type *</label>
+                            <select class="form-input" name="serviceType" required>
+                                <option value="">Select service...</option>
+                                <option value="bridal">Bridal Henna</option>
+                                <option value="event">Event/Party</option>
+                                <option value="personal">Personal Session</option>
+                                <option value="consultation">Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Preferred Date *</label>
+                            <input type="date" class="form-input" name="date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Location/Venue</label>
+                        <input type="text" class="form-input" name="location" placeholder="Enter venue address">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Special Requirements</label>
+                        <textarea class="form-input" name="requirements" rows="4" placeholder="Any specific design requests, number of people, time constraints, etc."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Budget (Optional)</label>
+                        <input type="text" class="form-input" name="budget" placeholder="e.g., ₹10,000 - ₹15,000">
+                    </div>
+
+                    <div class="booking-notice">
+                        <i class="ri-information-line"></i>
+                        <p>The artist will contact you within 24 hours to confirm availability and finalize details. No payment required now.</p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeBookingModal()">Cancel</button>
+                <button class="btn btn-primary" id="submitBookingBtn">
+                    <span>Send Booking Request</span>
+                    <i class="ri-send-plane-line"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__col">
+                    <h3 class="footer__logo">Art Henna Studio</h3>
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">Connecting artists with clients worldwide</p>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 Art Henna Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="marketplace.js"></script>
+</body>
+</html>

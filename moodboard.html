@@ -1,0 +1,108 @@
+<!-- Create moodboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodboard Creator - Art Henna Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header scrolled">
+        <nav class="nav container">
+            <a href="/" class="nav__logo">Art Henna Studio</a>
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="ri-moon-line theme-icon"></i>
+                </button>
+                <a href="/ai-studio" class="btn btn-primary">Back to Studio</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="moodboard-workspace">
+        <div class="moodboard-sidebar">
+            <h2>Design Library</h2>
+            <input type="text" class="search-input" placeholder="Search designs...">
+            
+            <div class="design-categories">
+                <button class="category-tab active" data-category="all">All Designs</button>
+                <button class="category-tab" data-category="saved">My Saved</button>
+                <button class="category-tab" data-category="generated">AI Generated</button>
+                <button class="category-tab" data-category="uploaded">Uploaded</button>
+            </div>
+            
+            <div class="design-grid-sidebar" id="designLibrary">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+        
+        <div class="moodboard-canvas-area">
+            <div class="moodboard-toolbar">
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="undoBtn" title="Undo">
+                        <i class="ri-arrow-go-back-line"></i>
+                    </button>
+                    <button class="toolbar-btn" id="redoBtn" title="Redo">
+                        <i class="ri-arrow-go-forward-line"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="addTextBtn" title="Add Text">
+                        <i class="ri-text"></i>
+                    </button>
+                    <button class="toolbar-btn" id="addShapeBtn" title="Add Shape">
+                        <i class="ri-shape-line"></i>
+                    </button>
+                    <button class="toolbar-btn" id="uploadImageBtn" title="Upload Image">
+                        <i class="ri-image-add-line"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button class="toolbar-btn" id="gridBtn" title="Toggle Grid">
+                        <i class="ri-grid-line"></i>
+                    </button>
+                    <button class="toolbar-btn" id="snapBtn" title="Snap to Grid">
+                        <i class="ri-drag-move-2-line"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group" style="margin-left: auto;">
+                    <button class="btn btn-outline" id="clearBtn">
+                        <i class="ri-delete-bin-line"></i>
+                        <span>Clear All</span>
+                    </button>
+                    <button class="btn btn-primary" id="exportBtn">
+                        <i class="ri-download-line"></i>
+                        <span>Export Moodboard</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="moodboard-canvas" id="moodboardCanvas">
+                <div class="canvas-placeholder">
+                    <i class="ri-collage-line" style="font-size: 4rem; color: var(--text-tertiary); margin-bottom: 1rem;"></i>
+                    <h3>Create Your Henna Moodboard</h3>
+                    <p style="color: var(--text-secondary);">Drag designs from the library or upload your own inspiration</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="moodboard-properties">
+            <h3>Properties</h3>
+            <div id="propertiesPanel">
+                <p style="color: var(--text-secondary); text-align: center; padding: 2rem;">
+                    Select an element to edit
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.19/interact.min.js"></script>
+    <script src="moodboard.js"></script>
+</body>
+</html>

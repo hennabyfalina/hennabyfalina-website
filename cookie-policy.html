@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy - Art Henna Studio</title>
+    <meta name="description" content="Learn about how Art Henna Studio uses cookies and similar technologies to enhance your experience.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <style>
+        :root {
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F7;
+            --text-primary: #1D1D1F;
+            --text-secondary: #86868B;
+            --text-tertiary: #A1A1A6;
+            --accent-color: #000000;
+            --border-subtle: #E5E5EA;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #1C1C1E;
+            --text-primary: #F5F5F7;
+            --text-secondary: #86868B;
+            --text-tertiary: #6E6E73;
+            --accent-color: #FFFFFF;
+            --border-subtle: #2C2C2E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .policy-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .policy-header {
+            margin-bottom: 3rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9375rem;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        .last-updated {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 3rem 0 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+        }
+
+        p {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: underline;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .cookie-table th,
+        .cookie-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .cookie-table th {
+            background: var(--bg-primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+        }
+
+        .cookie-table td {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .cookie-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        ul {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 1.0625rem;
+        }
+
+        .info-box {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin: 2rem 0;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+        }
+
+        .theme-toggle-policy {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+
+        .theme-toggle-policy:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .policy-container {
+                padding: 4rem 1.5rem 3rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .cookie-table {
+                font-size: 0.875rem;
+            }
+
+            .cookie-table th,
+            .cookie-table td {
+                padding: 0.75rem;
+            }
+
+            .theme-toggle-policy {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-policy" id="themeTog" aria-label="Toggle theme">
+        <i class="ri-moon-line" style="font-size: 1.25rem;"></i>
+    </button>
+
+    <div class="policy-container">
+        <div class="policy-header">
+            <a href="/" class="back-link">
+                <i class="ri-arrow-left-line"></i>
+                <span>Back to home</span>
+            </a>
+            <p class="last-updated">Last updated: November 27, 2025</p>
+            <h1>Cookie Policy</h1>
+        </div>
+
+        <section>
+            <p>This Cookie Policy describes what kinds of cookies and similar technologies Art Henna Studio uses in connection with our Services, and how you can manage them. This Cookie Policy does not address how we process your personal information outside of our usage of cookies. To learn more about how we process your personal information, please read our <a href="/privacy-policy">Privacy Policy</a>.</p>
+        </section>
+
+        <section>
+            <h2>What Are Cookies?</h2>
+            <p>Cookies are small text files that may be placed on your device when you interact with online services. They can help websites remember details about your visit, such as your preferred language or when you logged in, which can enhance your experience on subsequent visits. Cookies can also be used for other purposes, such as troubleshooting errors, better understanding service usage, and supporting marketing efforts.</p>
+            
+            <p>Cookies set directly by us are called <strong>first-party cookies</strong>. We also use <strong>third-party cookies</strong>, which originate from a domain different from the one you are currently visiting. Similar technologies, such as pixels, web beacons, sharing of device IDs and other identifiers via APIs or local storage, can also be used for these purposes. For simplicity, we also refer to these technologies as "cookies" in this Cookie Policy.</p>
+        </section>
+
+        <section>
+            <h2>Types of Cookies We Use</h2>
+            
+            <h3>1. Essential Cookies</h3>
+            <p>These cookies are required to operate our Services. For example, they allow us to authenticate users, enable specific features within the Services, and ensure security. Essential cookies cannot be disabled as they are necessary for the website to function properly.</p>
+
+            <div class="info-box">
+                <p><strong>Examples:</strong> Authentication tokens, session management, security tokens, user preferences, and basic site functionality.</p>
+            </div>
+
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Duration</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>auth_session</td>
+                        <td>Session</td>
+                        <td>User authentication and login management</td>
+                    </tr>
+                    <tr>
+                        <td>user_preferences</td>
+                        <td>1 year</td>
+                        <td>Stores user settings and preferences</td>
+                    </tr>
+                    <tr>
+                        <td>security_token</td>
+                        <td>Session</td>
+                        <td>Security and CSRF protection</td>
+                    </tr>
+                    <tr>
+                        <td>cookieConsent</td>
+                        <td>6 months</td>
+                        <td>Stores your cookie consent preferences</td>
+                    </tr>
+                    <tr>
+                        <td>theme</td>
+                        <td>1 year</td>
+                        <td>Remembers light/dark theme preference</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. Analytics Cookies</h3>
+            <p>These cookies help us understand how our Services perform and are used, such as the number of users, and how they interact with our Services. This information helps us improve the user experience and identify areas for enhancement.</p>
+
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Cookie Name</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google Analytics</td>
+                        <td>_ga, _ga_*</td>
+                        <td>6 months</td>
+                    </tr>
+                    <tr>
+                        <td>Internal Analytics</td>
+                        <td>_analytics_id</td>
+                        <td>1 year</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3. Marketing & Performance Cookies</h3>
+            <p>These cookies help us support and understand the efficacy of our marketing efforts, such as measuring the performance of marketing campaigns to enhance the Services' visibility. They may also be used to deliver personalized advertisements.</p>
+
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Cookie Name</th>
+                        <th>Duration</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google Ads</td>
+                        <td>_gcl_au, _gcl_aw</td>
+                        <td>90 days</td>
+                    </tr>
+                    <tr>
+                        <td>Facebook Pixel</td>
+                        <td>_fbp, _fbc</td>
+                        <td>90 days</td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn</td>
+                        <td>li_fat_id, UserMatchHistory</td>
+                        <td>30 days</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>How We Use Cookies</h2>
+            <p>We use cookies for the following purposes:</p>
+            <ul>
+                <li><strong>Authentication:</strong> To recognize you when you visit our Services and remember your login status</li>
+                <li><strong>Security:</strong> To protect your account and detect fraudulent activity</li>
+                <li><strong>Preferences:</strong> To remember your settings, such as theme preference and language</li>
+                <li><strong>Performance:</strong> To analyze how our Services are used and identify areas for improvement</li>
+                <li><strong>Marketing:</strong> To deliver relevant advertisements and measure campaign effectiveness</li>
+                <li><strong>Customer Support:</strong> To provide better assistance through chat and support tools</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Third-Party Services</h2>
+            <p>We work with trusted third-party service providers who may set cookies when you use our Services. These providers help us with analytics, marketing, payment processing, and customer support. They include:</p>
+            <ul>
+                <li><strong>Google Analytics:</strong> Website analytics and user behavior tracking</li>
+                <li><strong>Facebook:</strong> Social media integration and advertising</li>
+                <li><strong>LinkedIn:</strong> Professional networking and business marketing</li>
+                <li><strong>Stripe:</strong> Secure payment processing</li>
+                <li><strong>Cloudflare:</strong> Security, performance, and DDoS protection</li>
+            </ul>
+            <p>These third parties have their own privacy policies governing their use of information.</p>
+        </section>
+
+        <section>
+            <h2>Managing Your Cookie Preferences</h2>
+            <p>You have control over which cookies are used when visiting our Services. You can manage your cookie preferences in several ways:</p>
+
+            <h3>Cookie Preference Center</h3>
+            <p>When you first visit our website, you'll see a cookie consent banner at the bottom of the page. You can choose to:</p>
+            <ul>
+                <li><strong>Accept All:</strong> Allow all cookies including analytics and marketing</li>
+                <li><strong>Reject Non-Essential:</strong> Only use essential cookies required for basic functionality</li>
+                <li><strong>Manage Preferences:</strong> Customize which categories of cookies you want to allow</li>
+            </ul>
+
+            <div class="info-box">
+                <p>You can update your cookie preferences at any time by clicking the "Manage Cookie Preferences" link in the footer of our website.</p>
+            </div>
+
+            <h3>Browser Settings</h3>
+            <p>Your web browser may also allow you to manage your cookie preferences, including to delete and disable cookies. You can take a look at the help section of your web browser or follow the links below:</p>
+            <ul>
+                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+                <li><a href="https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+                <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener">Firefox</a></li>
+                <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+                <li><a href="https://help.opera.com/en/latest/web-preferences/#cookies" target="_blank" rel="noopener">Opera</a></li>
+            </ul>
+
+            <p><strong>Important:</strong> Please note that changes you make to your cookie settings may affect the availability or functionality of the Services. Cookies listed as "Essential" are required for the Services to function and cannot be disabled.</p>
+
+            <p>Cookie settings are device- and browser-specific, so you will need to set cookie preferences for each device's browser you use to access our Services.</p>
+        </section>
+
+        <section>
+            <h2>Data Protection & Privacy</h2>
+            <p>We are committed to protecting your privacy and handling your personal information responsibly. The data collected through cookies is processed in accordance with applicable data protection laws, including GDPR and other relevant privacy regulations.</p>
+            
+            <p>For more information about how we collect, use, and protect your personal information, please review our <a href="/privacy-policy">Privacy Policy</a>.</p>
+        </section>
+
+        <section>
+            <h2>Additional Resources</h2>
+            <p>For additional information about cookies, including how to see what cookies have been set on your device and how to manage and delete them, please visit:</p>
+            <ul>
+                <li><a href="http://www.allaboutcookies.org" target="_blank" rel="noopener">www.allaboutcookies.org</a></li>
+                <li><a href="http://www.youronlinechoices.eu" target="_blank" rel="noopener">www.youronlinechoices.eu</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Updates to This Policy</h2>
+            <p>We may update this Cookie Policy from time to time to reflect changes in our practices, technologies, legal requirements, or other factors. We will notify you of any material changes by posting the updated policy on our website with a new "Last Updated" date.</p>
+        </section>
+
+        <section>
+            <h2>Contact Us</h2>
+            <p>If you have any questions about this Cookie Policy or our use of cookies, please contact us at:</p>
+            <ul style="list-style: none; padding: 0;">
+                <li><strong>Email:</strong> <a href="mailto:privacy@arthennastudio.com">privacy@arthennastudio.com</a></li>
+                <li><strong>Phone:</strong> +91 (555) 123-4567</li>
+                <li><strong>Address:</strong> Art Henna Studio, Chennai, India</li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeTog');
+        const icon = themeToggle.querySelector('i');
+        const body = document.body;
+
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            icon.className = 'ri-sun-line';
+        } else {
+            body.setAttribute('data-theme', 'light');
+            icon.className = 'ri-moon-line';
+        }
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                icon.className = 'ri-moon-line';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.className = 'ri-sun-line';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

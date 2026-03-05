@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Henna By Falina</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="index.html" class="nav__logo">
+             <img src="images/logo.png" alt="HF" class="logo-img">
+        </a>
+        
+        <ul class="nav__menu" id="navMenu">
+            <li><a href="index.html#home" class="nav__link active">Home</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="collection.html" class="nav__link">Collection</a></li>
+            <li><a href="index.html#services" class="nav__link">Services</a></li>
+            <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+        
+        <div class="nav__actions">
+            <a href="ai-studio.html" class="btn btn-header-premium">
+                <span>AI Studio</span>
+                <i class="ri-sparkling-line"></i>
+            </a>
+            <a href="shop.html" class="btn btn-outline">
+                <span>Shop</span>
+                <i class="ri-shopping-bag-line"></i>
+            </a>
+        </div>
+        
+        <!-- Mobile menu toggle (hamburger icon) - This automatically changes to X when menu is open -->
+        <button type="button" class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <i class="ri-menu-line"></i>
+        </button>
+    </nav>
+</header>
+
+    <!-- Shop Header -->
+    <section class="shop-header">
+        <div class="container">
+            <h1>Shop Essentials</h1>
+            <p>Premium quality organic henna and professional supplies</p>
+        </div>
+    </section>
+
+    <!-- Shop Navigation -->
+    <section style="padding: 2rem 0; background: var(--bg-primary);">
+        <div class="container">
+            <div class="shop-nav">
+                <button class="shop-nav-btn active" data-category="all">All Products</button>
+                <button class="shop-nav-btn" data-category="Cones">Henna Cones</button>
+                <button class="shop-nav-btn" data-category="Kits">Kits</button>
+                <button class="shop-nav-btn" data-category="Aftercare">Aftercare</button>
+                <button class="shop-nav-btn" data-category="Stencils">Stencils</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section style="padding: 3rem 0 8rem; background: var(--bg-primary); min-height: 60vh;">
+        <div class="container">
+            <div class="product-grid" id="productGrid">
+                <!-- Organic Henna Cone -->
+                <div class="product-card-shop">
+                    <div class="product-image-shop">
+                        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600" alt="Organic Henna Cone">
+                    </div>
+                    <div class="product-info-shop">
+                        <p class="product-category-shop">Cones</p>
+                        <h3 class="product-name-shop">Organic Henna Cone</h3>
+                        <div class="product-price-shop">₹50</div>
+                        <div class="product-rating-shop">
+                            <span class="stars">★★★★☆</span>
+                            <span>(156)</span>
+                        </div>
+                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Organic%20Henna%20Cone" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="ri-whatsapp-line"></i>
+                            <span>Order on WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bridal Henna Kit -->
+                <div class="product-card-shop">
+                    <div class="product-image-shop">
+                        <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600" alt="Bridal Henna Kit">
+                    </div>
+                    <div class="product-info-shop">
+                        <p class="product-category-shop">Kits</p>
+                        <h3 class="product-name-shop">Bridal Henna Kit</h3>
+                        <div class="product-price-shop">₹2,499</div>
+                        <div class="product-rating-shop">
+                            <span class="stars">★★★★★</span>
+                            <span>(89)</span>
+                        </div>
+                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Bridal%20Henna%20Kit" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="ri-whatsapp-line"></i>
+                            <span>Order on WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Aftercare Oil -->
+                <div class="product-card-shop">
+                    <div class="product-image-shop">
+                        <img src="https://images.unsplash.com/photo-1571781418606-70265f7e38e3?w=600" alt="Aftercare Oil">
+                    </div>
+                    <div class="product-info-shop">
+                        <p class="product-category-shop">Aftercare</p>
+                        <h3 class="product-name-shop">Aftercare Oil</h3>
+                        <div class="product-price-shop">₹1,200</div>
+                        <div class="product-rating-shop">
+                            <span class="stars">★★★★☆</span>
+                            <span>(234)</span>
+                        </div>
+                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Aftercare%20Oil" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="ri-whatsapp-line"></i>
+                            <span>Order on WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stencil Set -->
+                <div class="product-card-shop">
+                    <div class="product-image-shop">
+                        <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=600" alt="Stencil Set">
+                    </div>
+                    <div class="product-info-shop">
+                        <p class="product-category-shop">Stencils</p>
+                        <h3 class="product-name-shop">Stencil Set (12pc)</h3>
+                        <div class="product-price-shop">₹300</div>
+                        <div class="product-rating-shop">
+                            <span class="stars">★★★★☆</span>
+                            <span>(67)</span>
+                        </div>
+                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Stencil%20Set" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                            <i class="ri-whatsapp-line"></i>
+                            <span>Order on WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Mobile Bottom Navigation (ALWAYS VISIBLE) -->
+    <div class="mobile-bottom-nav">
+        <a href="index.html#home" class="mobile-nav-item">
+            <i class="ri-home-5-line"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item active">
+            <i class="ri-shopping-bag-3-line"></i>
+            <span>Shop</span>
+        </a>
+        <a href="ai-studio.html" class="mobile-nav-item">
+            <div class="nav-icon-circle">
+                <i class="ri-sparkling-fill"></i>
+            </div>
+            <span>Studio</span>
+        </a>
+<a href="collection.html" class="mobile-nav-item">
+            <i class="ri-gallery-line"></i>
+            <span>Collection</span>
+        </a>
+        <button type="button" class="mobile-nav-item" id="mobileChatIcon">
+            <i class="ri-chat-3-line"></i>
+            <span>Chat</span>
+        </button>
+    </div>
+
+    <!-- Back to Top -->
+    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="ri-arrow-up-line"></i>
+    </button>
+
+    <!-- Chatbot Widget -->
+<div class="chat-widget">
+    <div class="chat-icon" id="chatIcon">
+        <img src="images/chatbot-avatar.png" alt="HF" class="chat-icon-img">
+    </div>
+    
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h4>Henna Assistant</h4>
+            <button type="button" class="close-chat" id="closeChat" aria-label="Close chat">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+        
+        <div class="chat-body" id="chatBody">
+            <div class="chat-message bot">
+                <div class="message-avatar">
+                    <img src="images/chatbot-avatar.png" alt="HF" class="avatar-img">
+                </div>
+                <div class="message-content">
+                    <p>Hi! I'm your Henna Assistant. Select a question below:</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chat-suggestions" id="chatSuggestions"></div>
+        
+        <div class="chat-footer">
+            <button class="new-suggestions-btn" id="newSuggestionsBtn">
+                <i class="ri-refresh-line"></i> Show Different Questions
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Simple category filter script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.shop-nav-btn');
+            const products = document.querySelectorAll('.product-card-shop');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const category = btn.getAttribute('data-category');
+                    
+                    products.forEach(product => {
+                        const productCategory = product.querySelector('.product-category-shop').textContent;
+                        
+                        if (category === 'all' || productCategory === category) {
+                            product.style.display = 'flex';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

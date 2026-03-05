@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festival Intelligence & Planning - Art Henna Studio</title>
+    <meta name="description" content="Expert henna artistry meets intelligent festival planning. Book professional services and explore our AI-powered celebration calendar.">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* =========================================
+           EXPLORE PAGE - SCOPED STYLES
+           Clean, minimal, professional
+           ======================================== */
+        
+        /* Container & Layout */
+        .explore-wrapper {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .explore-section {
+            padding: 6rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .explore-section--hero {
+            padding: 10rem 0 8rem;
+            text-align: center;
+        }
+
+        .explore-section--dark {
+            background: var(--bg-secondary);
+        }
+
+        /* Typography */
+        .explore-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .explore-subtitle {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subheading {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 650px;
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-tertiary);
+            margin-bottom: 1rem;
+        }
+
+        /* Hero Section */
+        .hero-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-meta-item i {
+            color: var(--accent-color);
+        }
+
+        /* Artist Profile Card */
+        .artist-profile {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 2.5rem;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        [data-theme="dark"] .profile-avatar {
+            background: linear-gradient(135deg, #FFF 0%, #DDD 100%);
+            color: #000;
+        }
+
+        .profile-info h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .profile-location {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profile-tagline {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+        .profile-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 2rem;
+        }
+
+        .profile-stat {
+            text-align: center;
+        }
+
+        .profile-stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .profile-achievements {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+
+        .achievement-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            color: var(--accent-contrast);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .achievement-content h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--text-primary);
+        }
+
+        .achievement-content p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Festival Calendar Grid */
+        .festival-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .festival-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .festival-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .festival-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.25rem;
+        }
+
+        .festival-icon {
+            font-size: 2.5rem;
+        }
+
+        .festival-date {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .festival-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .festival-description {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        .festival-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            font-size: 0.875rem;
+        }
+
+        .festival-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .festival-meta-item i {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        .festival-meta-item strong {
+            color: var(--text-primary);
+        }
+
+/* Color each festival name */
+.festival-name {
+    font-weight: 600;
+}
+
+/* Holi */
+.festival-card .festival-name:contains("Holi") {
+    color: #ff5ea5; /* pink-holi vibe */
+}
+
+/* Eid */
+.festival-card .festival-name:contains("Eid ul-Fitr") {
+    color: #2fd80d; /* blue elegant Arabic vibe */
+}
+
+/* Karwa Chauth */
+.festival-card .festival-name:contains("Karwa Chauth") {
+    color: #f97316; /* orange traditional */
+}
+
+/* Diwali */
+.festival-card .festival-name:contains("Diwali") {
+    color: #ffd700; /* golden-diya glow */
+}
+
+/* Navratri */
+.festival-card .festival-name:contains("Navratri") {
+    color: #d946ef; /* purple festive */
+}
+
+/* Wedding Season */
+.festival-card .festival-name:contains("Wedding Season") {
+    color: #ec4899; /* bridal pink */
+}
+
+/* Base style */
+.festival-name {
+    font-weight: 600;
+}
+
+/* Holi – playful pink */
+.festival-name[data-festival="holi"] {
+    color: #ff5ea5;
+}
+
+/* Eid – elegant blue */
+.festival-name[data-festival="eid"] {
+    color: #0af906;
+}
+
+/* Karwa Chauth – traditional orange */
+.festival-name[data-festival="karwa"] {
+    color: #f97316;
+}
+
+/* Diwali – golden glow */
+.festival-name[data-festival="diwali"] {
+    color: #ffd700;
+}
+
+/* Navratri – royal purple */
+.festival-name[data-festival="navratri"] {
+    color: #d946ef;
+}
+
+/* Wedding Season – bridal rose */
+.festival-name[data-festival="wedding"] {
+    color: #ec4899;
+}
+
+       /* ------------------------------
+   COMING SOON CARD (BASE STYLE)
+--------------------------------*/
+.coming-soon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.coming-soon-card {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid var(--border-subtle);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.coming-soon-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ICON FIX — keep real colors and proper size */
+.coming-soon-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+    font-size: 2rem;
+}
+
+/* Individual icon colors */
+.cs-blue   { color: #3b82f6; background: rgba(59,130,246,0.15); }
+.cs-pink   { color: #ec4899; background: rgba(236,72,153,0.15); }
+.cs-amber  { color: #f59e0b; background: rgba(245,158,11,0.15); }
+
+/* Titles */
+.coming-soon-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+/* Descriptions */
+.coming-soon-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Badge */
+.coming-soon-badge {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 12px;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+
+
+        /* Artists Grid */
+        .artists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .artist-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .artist-avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 auto 1.25rem;
+        }
+
+        .artist-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.375rem;
+            color: var(--text-primary);
+        }
+
+        .artist-location {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.375rem;
+        }
+
+        .artist-specialty {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .artist-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .artist-tag {
+            padding: 0.375rem 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 50px;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+
+        /* Bundles Grid */
+        .bundles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .bundle-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .bundle-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .bundle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.25rem;
+        }
+
+        .bundle-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .bundle-tag {
+            padding: 0.375rem 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .bundle-items {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .bundle-items li {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .bundle-items li i {
+            color: var(--accent-color);
+            font-size: 1.125rem;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .bundle-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        /* AI Insights Box */
+        .ai-insights-box {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 3rem;
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .ai-insights-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            color: var(--accent-contrast);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .ai-insights-box h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .ai-insights-box p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* 2026 Predictions */
+        .predictions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .prediction-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.2s ease;
+        }
+
+        .prediction-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .prediction-month {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .prediction-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .prediction-description {
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .explore-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .explore-section--hero {
+                padding: 8rem 1.5rem 6rem;
+            }
+
+            .profile-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-avatar {
+                margin: 0 auto;
+            }
+
+            .profile-location {
+                justify-content: center;
+            }
+
+            .profile-tagline {
+                margin: 0 auto;
+            }
+
+            .profile-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .festival-grid,
+            .artists-grid,
+            .bundles-grid,
+            .predictions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ================================
+   FOOTER – FIXED CENTER ALIGNMENT
+   ================================ */
+.footer {
+    width: 100%;
+    background: var(--bg-primary);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;  /* centers content horizontally */
+    align-items: center;      /* centers vertically */
+    text-align: center;
+    border-top: 1px solid var(--border-light);
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;       /* ensures text stays centered */
+}
+
+.footer-container p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Coming Soon Icons */
+.coming-soon-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-subtle);
+}
+
+
+
+
+    </style>
+</head>
+
+<body class="explore-wrapper">
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">Henna Studio</a>
+            
+
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="ri-moon-line theme-icon"></i>
+                </button>
+                <a href="login.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-small">
+                    <span>AI Studio</span>
+                    <i class="ri-sparkling-line"></i>
+                </a>
+                <a href="shop.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-small">
+                    <span>Shop</span>
+                    <i class="ri-shopping-bag-line"></i>
+                </a>
+            </div>
+
+            <button class="nav__toggle" id="navToggle">
+                <i class="ri-menu-line"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="explore-section explore-section--hero">
+        <span class="section-label">Festival Intelligence & Planning</span>
+        <h1 class="explore-title">Plan your celebrations with precision</h1>
+        <p class="explore-subtitle">Expert henna artistry meets intelligent festival planning. Navigate India's celebration calendar with confidence and book professional services ahead of peak seasons.</p>
+        
+        <div class="hero-meta">
+            <div class="hero-meta-item">
+                <i class="ri-calendar-event-line"></i>
+                <span>2025–2026 Calendar</span>
+            </div>
+            <div class="hero-meta-item">
+                <i class="ri-user-star-line"></i>
+                <span>Verified Artists</span>
+            </div>
+            <div class="hero-meta-item">
+                <i class="ri-sparkling-line"></i>
+                <span>AI-Powered Insights</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Artist Profile -->
+    <section class="explore-section explore-section--dark">
+        <span class="section-label">Featured Artist</span>
+        <h2 class="section-heading">Leading the tradition</h2>
+        <p class="section-subheading">Specializing in traditional and contemporary henna artistry with a focus on precision, cultural authenticity, and client satisfaction.</p>
+
+        <div class="artist-profile">
+            <div class="profile-header">
+                <div class="profile-avatar">A</div>
+                <div class="profile-info">
+                    <h2>Aravind Kumar</h2>
+                    <p class="profile-location">
+                        <i class="ri-map-pin-line"></i>
+                        Chennai, Tamil Nadu, India
+                    </p>
+                    <p class="profile-tagline">Certified henna artist with 8+ years of experience across South India. Known for intricate bridal designs and large-scale cultural events. Trained in traditional Rajasthani and Arabic techniques.</p>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="profile-stat">
+                    <span class="profile-stat-value">8+</span>
+                    <span class="profile-stat-label">Years Experience</span>
+                </div>
+                <div class="profile-stat">
+                    <span class="profile-stat-value">500+</span>
+                    <span class="profile-stat-label">Weddings</span>
+                </div>
+                <div class="profile-stat">
+                    <span class="profile-stat-value">1,200+</span>
+                    <span class="profile-stat-label">Clients</span>
+                </div>
+                <div class="profile-stat">
+                    <span class="profile-stat-value">15+</span>
+                    <span class="profile-stat-label">Cities</span>
+                </div>
+                <div class="profile-stat">
+                    <span class="profile-stat-value">25+</span>
+                    <span class="profile-stat-label">Festivals</span>
+                </div>
+            </div>
+
+            <div class="profile-achievements">
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="ri-award-line"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h4>Best Bridal Henna Artist - South India 2024</h4>
+                        <p>Recognized at the Chennai Wedding Expo for excellence in traditional South Indian bridal mehndi designs.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="ri-trophy-line"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h4>Featured at Diwali Festival 2023 - Mumbai</h4>
+                        <p>Lead artist for corporate Diwali celebrations at Fortune 500 companies across Mumbai and Pune.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="ri-gallery-line"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h4>Exhibition: "Heritage & Innovation" - Bangalore 2024</h4>
+                        <p>Showcased fusion henna designs combining traditional motifs with contemporary minimalism at Artisan's Gallery.</p>
+                    </div>
+                </div>
+
+                <div class="achievement-item">
+                    <div class="achievement-icon">
+                        <i class="ri-team-line"></i>
+                    </div>
+                    <div class="achievement-content">
+                        <h4>Notable Clients: Celebrities, Influencers, Luxury Weddings</h4>
+                        <p>Worked with prominent South Indian celebrities and destination wedding planners across India and Southeast Asia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html#contact" class="btn btn-primary">
+                    <span>Book a Consultation</span>
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2025 Festival Calendar -->
+    <section class="explore-section">
+        <span class="section-label">2025 Festival Calendar</span>
+        <h2 class="section-heading">Major celebrations ahead</h2>
+        <p class="section-subheading">Strategic booking windows and design trends for India's most celebrated festivals. Plan ahead to secure premium artists and prepare inventory.</p>
+
+        <div class="festival-grid">
+            <!-- Holi 2025 -->
+            <div class="festival-card">
+                <div class="festival-card-header">
+                    <span class="festival-date">Mar 14, 2025</span>
+                </div>
+                <h3 class="festival-name" data-festival="holi">Holi</h3>
+                <p class="festival-description">Festival of Colors. Minimalist henna designs are popular as traditional applications may fade during color celebrations.</p>
+                <div class="festival-meta">
+                    <div class="festival-meta-item">
+                        <i class="ri-time-line"></i>
+                        <span><strong>Book by:</strong> Feb 25</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-palette-line"></i>
+                        <span><strong>Trend:</strong> Minimal, Floral</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-stock-line"></i>
+                        <span><strong>Demand:</strong> Moderate</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Eid ul-Fitr 2025 -->
+            <div class="festival-card">
+                <div class="festival-card-header">
+                    <span class="festival-date">Mar 30–31, 2025</span>
+                </div>
+                <h3 class="festival-name" data-festival="eid">Eid ul-Fitr</h3>
+                <p class="festival-description">End of Ramadan. Arabic and Gulf-style patterns are highly requested. Peak season for professional artists.</p>
+                <div class="festival-meta">
+                    <div class="festival-meta-item">
+                        <i class="ri-time-line"></i>
+                        <span><strong>Book by:</strong> Mar 10</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-palette-line"></i>
+                        <span><strong>Trend:</strong> Arabic, Intricate</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-stock-line"></i>
+                        <span><strong>Demand:</strong> Very High</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Karwa Chauth 2025 -->
+            <div class="festival-card">
+                <div class="festival-card-header">
+                    <span class="festival-date">Oct 9, 2025</span>
+                </div>
+                <h3 class="festival-name" data-festival="karwa">Karwa Chauth</h3>
+                <p class="festival-description">Sacred fasting ritual. Traditional full-hand and forearm designs are standard. High demand in North India.</p>
+                <div class="festival-meta">
+                    <div class="festival-meta-item">
+                        <i class="ri-time-line"></i>
+                        <span><strong>Book by:</strong> Sep 25</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-palette-line"></i>
+                        <span><strong>Trend:</strong> Traditional, Symmetrical</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-stock-line"></i>
+                        <span><strong>Demand:</strong> High</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diwali 2025 -->
+            <div class="festival-card">
+                <div class="festival-card-header">
+                    <span class="festival-date">Nov 1, 2025</span>
+                </div>
+                <h3 class="festival-name" data-festival="diwali">Diwali</h3>
+                <p class="festival-description">Festival of Lights. Highest demand season. Peacock, diya, and floral motifs dominate. Corporate bookings spike.</p>
+                <div class="festival-meta">
+                    <div class="festival-meta-item">
+                        <i class="ri-time-line"></i>
+                        <span><strong>Book by:</strong> Oct 10</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-palette-line"></i>
+                        <span><strong>Trend:</strong> Traditional, Ornate</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-stock-line"></i>
+                        <span><strong>Demand:</strong> Peak</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navratri 2025 -->
+            <div class="festival-card">
+                <div class="festival-card-header">
+                    <span class="festival-date">Sep 22 – Oct 1, 2025</span>
+                </div>
+                <h3 class="festival-name" data-festival="navratri">Navratri</h3>
+                <p class="festival-description">Nine nights of dance and devotion. Vibrant, festive designs for dandiya and garba celebrations. High volume in Gujarat and Maharashtra.</p>
+                <div class="festival-meta">
+                    <div class="festival-meta-item">
+                        <i class="ri-time-line"></i>
+                        <span><strong>Book by:</strong> Sep 5</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-palette-line"></i>
+                        <span><strong>Trend:</strong> Bold, Festive</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-stock-line"></i>
+                        <span><strong>Demand:</strong> High</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wedding Season -->
+            <div class="festival-card">
+                <div class="festival-card-header">
+                    <span class="festival-date">Nov – Feb (Peak)</span>
+                </div>
+                <h3 class="festival-name" data-festival="wedding">Wedding Season</h3>
+                <p class="festival-description">Bridal henna demand peaks post-monsoon. Traditional full-arm bridal mehndi and multi-day bookings are standard.</p>
+                <div class="festival-meta">
+                    <div class="festival-meta-item">
+                        <i class="ri-time-line"></i>
+                        <span><strong>Book by:</strong> 2–4 weeks prior</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-palette-line"></i>
+                        <span><strong>Trend:</strong> Bridal, Customized</span>
+                    </div>
+                    <div class="festival-meta-item">
+                        <i class="ri-stock-line"></i>
+                        <span><strong>Demand:</strong> Very High</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon Features -->
+<section class="explore-section explore-section--dark">
+    <span class="section-label">Coming Soon</span>
+    <h2 class="section-heading">Seasonal modes in development</h2>
+    <p class="section-subheading">
+        We're building intelligent tools to help you prepare for specific seasons and event types throughout the year.
+    </p>
+
+    <div class="coming-soon-grid">
+
+    <div class="coming-soon-card">
+        <div class="coming-soon-icon cs-blue">
+            <i class="ri-cloudy-fill"></i>
+        </div>
+        <h3 class="coming-soon-title">Monsoon Mehndi Mode</h3>
+        <p class="coming-soon-description">
+            Curated designs optimized for humid weather. Fast-drying formulations and smudge-resistant patterns.
+        </p>
+        <span class="coming-soon-badge">Q1 2026</span>
+    </div>
+
+    <div class="coming-soon-card">
+        <div class="coming-soon-icon cs-pink">
+            <i class="ri-flower-fill"></i>
+        </div>
+        <h3 class="coming-soon-title">Wedding Season Planner</h3>
+        <p class="coming-soon-description">
+            Multi-day bridal planning, crew scheduling, workflow automation, and design previews.
+        </p>
+        <span class="coming-soon-badge">Q2 2026</span>
+    </div>
+
+    <div class="coming-soon-card">
+        <div class="coming-soon-icon cs-amber">
+            <i class="ri-building-4-fill"></i>
+        </div>
+        <h3 class="coming-soon-title">Corporate Event Suite</h3>
+        <p class="coming-soon-description">
+            Bulk booking tools for Diwali events, cultural shows, team-building days, and celebrations.
+        </p>
+        <span class="coming-soon-badge">Q3 2026</span>
+    </div>
+
+</div>
+
+</section>
+
+
+
+    <!-- Other Top Artists -->
+    <section class="explore-section">
+        <span class="section-label">Curated Network</span>
+        <h2 class="section-heading">Other verified artists</h2>
+        <p class="section-subheading">A carefully selected network of professional henna artists across India, each specializing in distinct regional styles and event types.</p>
+
+        <div class="artists-grid">
+            <div class="artist-card">
+                <div class="artist-avatar">P</div>
+                <h3 class="artist-name">Priya Sharma</h3>
+                <p class="artist-location">
+                    <i class="ri-map-pin-line"></i>
+                    Mumbai, Maharashtra
+                </p>
+                <p class="artist-specialty">Bridal specialist with expertise in Rajasthani and Marwari wedding traditions. Known for intricate full-arm designs.</p>
+                <div class="artist-tags">
+                    <span class="artist-tag">Weddings</span>
+                    <span class="artist-tag">Traditional</span>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-avatar">M</div>
+                <h3 class="artist-name">Meera Patel</h3>
+                <p class="artist-location">
+                    <i class="ri-map-pin-line"></i>
+                    Ahmedabad, Gujarat
+                </p>
+                <p class="artist-specialty">Arabic and Moroccan designs. Specializes in modern fusion patterns for contemporary celebrations and photoshoots.</p>
+                <div class="artist-tags">
+                    <span class="artist-tag">Arabic Style</span>
+                    <span class="artist-tag">Contemporary</span>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-avatar">L</div>
+                <h3 class="artist-name">Lakshmi Iyer</h3>
+                <p class="artist-location">
+                    <i class="ri-map-pin-line"></i>
+                    Bangalore, Karnataka
+                </p>
+                <p class="artist-specialty">South Indian traditional styles. Temple motifs and classical dance-inspired designs for cultural events.</p>
+                <div class="artist-tags">
+                    <span class="artist-tag">South Indian</span>
+                    <span class="artist-tag">Classical</span>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-avatar">A</div>
+                <h3 class="artist-name">Aisha Khan</h3>
+                <p class="artist-location">
+                    <i class="ri-map-pin-line"></i>
+                    Hyderabad, Telangana
+                </p>
+                <p class="artist-specialty">Contemporary minimalist designs. Perfect for corporate events, fashion shows, and modern brides.</p>
+                <div class="artist-tags">
+                    <span class="artist-tag">Minimalist</span>
+                    <span class="artist-tag">Corporate</span>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-avatar">S</div>
+                <h3 class="artist-name">Sneha Reddy</h3>
+                <p class="artist-location">
+                    <i class="ri-map-pin-line"></i>
+                    Vizag, Andhra Pradesh
+                </p>
+                <p class="artist-specialty">Intricate bridal artistry with Telugu wedding traditions. Specializes in overnight bridal sessions.</p>
+                <div class="artist-tags">
+                    <span class="artist-tag">Bridal</span>
+                    <span class="artist-tag">Telugu Style</span>
+                </div>
+            </div>
+
+            <div class="artist-card">
+                <div class="artist-avatar">K</div>
+                <h3 class="artist-name">Kavya Nair</h3>
+                <p class="artist-location">
+                    <i class="ri-map-pin-line"></i>
+                    Kochi, Kerala
+                </p>
+                <p class="artist-specialty">Kerala traditional designs with floral and peacock motifs. Festival celebrations and Onam specialties.</p>
+                <div class="artist-tags">
+                    <span class="artist-tag">Kerala Style</span>
+                    <span class="artist-tag">Festivals</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festival Bundles -->
+    <section class="explore-section explore-section--dark">
+        <span class="section-label">Product Bundles</span>
+        <h2 class="section-heading">Festival-specific kits</h2>
+        <p class="section-subheading">Complete packages curated for specific celebrations. All-in-one solutions with premium organic henna and essential accessories.</p>
+
+        <div class="bundles-grid">
+            <div class="bundle-card">
+                <div class="bundle-header">
+                    <h3 class="bundle-title">Diwali Deluxe</h3>
+                    <span class="bundle-tag">Families</span>
+                </div>
+                <ul class="bundle-items">
+                    <li><i class="ri-check-line"></i>10 premium organic henna cones</li>
+                    <li><i class="ri-check-line"></i>3 Diwali-themed design stencils</li>
+                    <li><i class="ri-check-line"></i>Aftercare oil (50ml)</li>
+                    <li><i class="ri-check-line"></i>Application guide with step-by-step photos</li>
+                    <li><i class="ri-check-line"></i>LED decorative string lights</li>
+                </ul>
+                <div class="bundle-price">₹2,499</div>
+                <a href="shop.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                    <span>View in Shop</span>
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-header">
+                    <h3 class="bundle-title">Bridal Luxury</h3>
+                    <span class="bundle-tag">Brides</span>
+                </div>
+                <ul class="bundle-items">
+                    <li><i class="ri-check-line"></i>15 premium cones (mixed shades)</li>
+                    <li><i class="ri-check-line"></i>Professional bridal design book</li>
+                    <li><i class="ri-check-line"></i>Pro aftercare kit with serum</li>
+                    <li><i class="ri-check-line"></i>1-hour artist consultation (video)</li>
+                    <li><i class="ri-check-line"></i>Touch-up cones for day-of events</li>
+                </ul>
+                <div class="bundle-price">₹4,999</div>
+                <a href="shop.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                    <span>View in Shop</span>
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-header">
+                    <h3 class="bundle-title">Eid Elegant</h3>
+                    <span class="bundle-tag">Celebrations</span>
+                </div>
+                <ul class="bundle-items">
+                    <li><i class="ri-check-line"></i>12 organic henna cones</li>
+                    <li><i class="ri-check-line"></i>Arabic pattern stencil set</li>
+                    <li><i class="ri-check-line"></i>Aftercare oil with rose essence</li>
+                    <li><i class="ri-check-line"></i>Decorative gift packaging</li>
+                    <li><i class="ri-check-line"></i>Festival greeting cards (set of 5)</li>
+                </ul>
+                <div class="bundle-price">₹2,999</div>
+                <a href="shop.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                    <span>View in Shop</span>
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+
+            <div class="bundle-card">
+                <div class="bundle-header">
+                    <h3 class="bundle-title">Salon Pro Kit</h3>
+                    <span class="bundle-tag">Salons</span>
+                </div>
+                <ul class="bundle-items">
+                    <li><i class="ri-check-line"></i>30 professional-grade cones</li>
+                    <li><i class="ri-check-line"></i>10 stencils (mixed styles)</li>
+                    <li><i class="ri-check-line"></i>Bulk aftercare oil (250ml)</li>
+                    <li><i class="ri-check-line"></i>Disposable applicator tips (50 pcs)</li>
+                    <li><i class="ri-check-line"></i>Client consultation guide</li>
+                </ul>
+                <div class="bundle-price">₹7,999</div>
+                <a href="shop.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
+                    <span>View in Shop</span>
+                    <i class="ri-arrow-right-line"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Festival Insights -->
+    <section class="explore-section">
+        <span class="section-label">Intelligent Planning</span>
+        <h2 class="section-heading">AI-powered festival insights</h2>
+        <p class="section-subheading">Use artificial intelligence to predict demand, optimize inventory, and identify design trends before they peak.</p>
+
+        <div class="ai-insights-box">
+            <div class="ai-insights-icon">
+                <i class="ri-sparkling-line"></i>
+            </div>
+            <h3>How AI improves festival planning</h3>
+            <p>Our AI models analyze historical booking data, regional preferences, social media trends, and weather patterns to predict which festivals will see the highest demand in your area. This helps artists prepare inventory, block calendars, and recommend the right design styles to clients.</p>
+            <p>For product sellers, the system forecasts stock requirements by festival type and suggests optimal pricing windows. For customers, it personalizes design recommendations based on occasion, skin tone, and past preferences.</p>
+            <a href="login.html" class="btn btn-primary">
+                <span>Open Festival Planner in AI Studio</span>
+                <i class="ri-arrow-right-line"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 2026 Predictions -->
+    <section class="explore-section explore-section--dark">
+        <span class="section-label">Looking Ahead to 2026</span>
+        <h2 class="section-heading">Projected trends & peak seasons</h2>
+        <p class="section-subheading">Predictive insights to help you prepare for 2026. These are planning estimates, not confirmed dates or guarantees.</p>
+
+        <div class="predictions-grid">
+            <div class="prediction-card">
+                <p class="prediction-month">Jan – Feb 2026</p>
+                <h3 class="prediction-title">Wedding Season Spike</h3>
+                <p class="prediction-description">Post-monsoon wedding demand expected to remain strong. Bridal bookings may increase 20–30% compared to 2025. Consider expanding artist network and prepping bridal portfolios.</p>
+            </div>
+
+            <div class="prediction-card">
+                <p class="prediction-month">Mar 2026</p>
+                <h3 class="prediction-title">Holi & Spring Festivals</h3>
+                <p class="prediction-description">Holi 2026 likely falls in mid-March. Expect lighter, minimal designs as traditional intricate patterns may fade during color play. Stock waterproof aftercare products.</p>
+            </div>
+
+            <div class="prediction-card">
+                <p class="prediction-month">Jun – Jul 2026</p>
+                <h3 class="prediction-title">Eid & Summer Celebrations</h3>
+                <p class="prediction-description">Eid ul-Adha projected for mid-June. Arabic and Gulf-style patterns will dominate. Regional festivals in South India (like Kerala Onam prep) may overlap. Plan accordingly.</p>
+            </div>
+
+            <div class="prediction-card">
+                <p class="prediction-month">Oct – Nov 2026</p>
+                <h3 class="prediction-title">Diwali Peak Season</h3>
+                <p class="prediction-description">Diwali 2026 expected late October. This is historically the highest demand period. Corporate bookings, family events, and private parties will peak. Book early or risk missing slots.</p>
+            </div>
+
+            <div class="prediction-card">
+                <p class="prediction-month">Long Weekends 2026</p>
+                <h3 class="prediction-title">Extended Holiday Bookings</h3>
+                <p class="prediction-description">Multiple long weekends in 2026 may lead to destination weddings and extended family gatherings. Track government holiday calendars for opportunistic booking windows.</p>
+            </div>
+
+            <div class="prediction-card">
+                <p class="prediction-month">Regional Events 2026</p>
+                <h3 class="prediction-title">State-Specific Festivals</h3>
+                <p class="prediction-description">Pongal (Tamil Nadu), Baisakhi (Punjab), Onam (Kerala), Durga Puja (Bengal) will see localized spikes. Artists in these regions should prepare region-specific designs and bulk inventory.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+    <div class="footer-container">
+        <p>&copy; 2025 Henna Studio. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    <!-- Embedded JavaScript -->
+    <script>
+        // =========================================
+        // EXPLORE PAGE - FUNCTIONALITY
+        // =========================================
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeTheme();
+            initializeNavigation();
+            initializeScrollEffects();
+        });
+
+        // Theme Management
+        function initializeTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            // Apply saved theme
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeIcon(savedTheme);
+
+            // Theme toggle click handler
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateThemeIcon(newTheme);
+                });
+            }
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.querySelector('.theme-icon');
+            if (icon) {
+                icon.className = theme === 'light' ? 'ri-moon-line theme-icon' : 'ri-sun-line theme-icon';
+            }
+        }
+
+        // Navigation
+        function initializeNavigation() {
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const header = document.getElementById('header');
+
+            // Mobile menu toggle
+            if (navToggle) {
+                navToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    const icon = navToggle.querySelector('i');
+                    icon.className = navMenu.classList.contains('active') 
+                        ? 'ri-close-line' 
+                        : 'ri-menu-line';
+                });
+            }
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (navMenu && !navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) icon.className = 'ri-menu-line';
+                }
+            });
+
+            // Close menu when clicking nav links
+            document.querySelectorAll('.nav__link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    const icon = navToggle.querySelector('i');
+                    if (icon) icon.className = 'ri-menu-line';
+                });
+            });
+
+            // Header scroll effect
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        }
+
+        // Scroll Effects
+        function initializeScrollEffects() {
+            // Simple fade-in on scroll for cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards
+            const cards = document.querySelectorAll('.festival-card, .artist-card, .bundle-card, .prediction-card, .coming-soon-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

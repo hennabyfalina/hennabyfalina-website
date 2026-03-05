@@ -1,0 +1,33 @@
+HENNA-WEB-TEST
+│
+├── assets/
+├── node_modules/
+├── AI_DESIGN_STUDIO_GUIDE.md
+├── ai-studio-auth.js
+├── ai-studio.html
+├── ai-studio.js
+├── community.html
+├── community.js
+├── cookie-policy.html
+├── explore.html
+├── explore.js
+├── health-checker.html
+├── health-checker.js
+├── IMPLEMENTATION_PLAN.md
+├── index.html
+├── login.html
+├── marketplace.html
+├── marketplace.js
+├── moodboard.html
+├── moodboard.js
+├── package.json
+├── package-lock.json
+├── script.js
+├── server.js
+├── shop.html
+├── shop.js
+├── style.css
+├── workshops.html
+
+// QR code url
+https://api.qrserver.com/v1/create-qr-code/?size=1000x1000&color=d4af37&bgcolor=000000&data=https://hennabyfalina.com/product-care?source=qr

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Studio · Experimental Lab</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="studio-lab-wrapper">
+        <!-- Header -->
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="index.html" class="nav__logo">
+             <img src="images/logo.png" alt="HF" class="logo-img">
+        </a>
+        
+        <ul class="nav__menu" id="navMenu">
+            <li><a href="index.html#home" class="nav__link active">Home</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="collection.html" class="nav__link">Collection</a></li>
+            <li><a href="index.html#services" class="nav__link">Services</a></li>
+            <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+        
+        <div class="nav__actions">
+            <a href="ai-studio.html" class="btn btn-header-premium active">
+                <span>AI Studio</span>
+                <i class="ri-sparkling-line"></i>
+            </a>
+            <a href="shop.html" class="btn btn-outline">
+                <span>Shop</span>
+                <i class="ri-shopping-bag-line"></i>
+            </a>
+        </div>
+        
+        <!-- Mobile menu toggle (hamburger icon) - This automatically changes to X when menu is open -->
+        <button type="button" class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <i class="ri-menu-line"></i>
+        </button>
+    </nav>
+</header>
+
+        <!-- Hero -->
+        <section class="lab-hero">
+            <div class="hero-back-container">
+                
+            </div>
+            
+            <span class="lab-eyebrow"></span>
+            <h1 class="lab-title">Design the<br>Future of Henna<br>with AI</h1>
+            <p class="lab-subtitle">
+                Experience cutting-edge artificial intelligence that transforms your creative vision into stunning henna art.
+            </p>
+        </section>
+
+        <!-- Feature Grid -->
+        <section class="lab-grid-section">
+            <div class="lab-grid">
+                <!-- AR Try-On -->
+                <div class="lab-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="ri-camera-line"></i>
+                        </div>
+                        <span class="card-status status-soon">Coming Soon</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>AR Try‑On</h3>
+                        <p>Preview henna designs on your hand in real‑time using augmented reality. See how patterns look before you apply.</p>
+                    </div>
+                </div>
+
+                <!-- HennaGPT -->
+                <div class="lab-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="ri-chat-3-line"></i>
+                        </div>
+                        <span class="card-status status-beta">Testing Phase</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>HennaGPT</h3>
+                        <p>Your AI design assistant. Describe your vision and get unique henna patterns inspired by your words.</p>
+                    </div>
+                </div>
+
+                <!-- Style Transfer -->
+                <div class="lab-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="ri-image-edit-line"></i>
+                        </div>
+                        <span class="card-status status-beta">Beta</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>AI Style Transfer</h3>
+                        <p>Transform any photo into a henna‑style artwork. Merge traditional patterns with modern imagery.</p>
+                    </div>
+                </div>
+
+                <!-- Smart Generator -->
+                <div class="lab-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="ri-sparkling-line"></i>
+                        </div>
+                        <span class="card-status status-soon">Live Soon</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Smart Generator</h3>
+                        <p>Generate infinite unique patterns with AI. Choose from bridal, Arabic, Indo‑Persian, and contemporary styles.</p>
+                    </div>
+                </div>
+
+                <!-- Bridal Simulator -->
+                <div class="lab-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="ri-user-heart-line"></i>
+                        </div>
+                        <span class="card-status status-soon">In Development</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Bridal Simulator</h3>
+                        <p>Visualize complete bridal sets with AI. Design full‑hand patterns with traditional motifs and personalization.</p>
+                    </div>
+                </div>
+
+                <!-- Export Studio -->
+                <div class="lab-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="ri-download-line"></i>
+                        </div>
+                        <span class="card-status status-soon">Coming Soon</span>
+                    </div>
+                    <div class="card-body">
+                        <h3>Export Studio</h3>
+                        <p>Download high‑resolution designs, create stencils, and print pattern guides for application.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roadmap -->
+        <section class="lab-roadmap">
+            <div class="roadmap-container">
+                <div class="section-header-center">
+                    <span class="section-eyebrow">What's Next</span>
+                    <h2 class="section-title-large">Product Roadmap</h2>
+                </div>
+                <div class="roadmap-list">
+                    <div class="roadmap-item active">
+                        <div class="roadmap-quarter">Q1 2026</div>
+                        <div class="roadmap-content">
+                            <h4>AR Try‑On Launch</h4>
+                            <p>Real‑time hand tracking and design projection. First public beta release.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-quarter">Q2 2026</div>
+                        <div class="roadmap-content">
+                            <h4>AI Bridal Simulator</h4>
+                            <p>Complete bridal design generation with customization and motif libraries.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-quarter">Q3 2026</div>
+                        <div class="roadmap-content">
+                            <h4>Marketplace Integration</h4>
+                            <p>Direct connection to henna artists and product suppliers.</p>
+                        </div>
+                    </div>
+                    <div class="roadmap-item">
+                        <div class="roadmap-quarter">Q4 2026</div>
+                        <div class="roadmap-content">
+                            <h4>API for Artists</h4>
+                            <p>Open API for henna professionals to integrate AI into their workflow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Early Access -->
+        <section class="lab-early-access">
+            <div class="early-access-container">
+                <h2 class="early-title">Be the First to Experience</h2>
+                <p class="early-subtitle">Join our early access program and shape the future of henna design.</p>
+                
+                <!-- Three Image Cards -->
+                <div class="preview-frames">
+                    <div class="preview-frame">
+                        <img src="https://images.unsplash.com/photo-1596236569689-090527b79092?w=400&h=500&fit=crop" alt="Henna Design Preview">
+                        <div class="frame-overlay">
+                            <span>AR Try-On</span>
+                        </div>
+                    </div>
+                    <div class="preview-frame">
+                        <img src="https://images.unsplash.com/photo-1615637179018-7d8b5c1b8b9a?w=400&h=500&fit=crop" alt="Henna Pattern Preview">
+                        <div class="frame-overlay">
+                            <span>AI Generator</span>
+                        </div>
+                    </div>
+                    <div class="preview-frame">
+                        <img src="https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=400&h=500&fit=crop" alt="Bridal Design Preview">
+                        <div class="frame-overlay">
+                            <span>Bridal Studio</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Email Form -->
+                <div class="early-form">
+                    <input type="email" placeholder="Enter your email" id="earlyEmail" class="early-input">
+                    <button class="early-btn" onclick="subscribeEarlyAccess()">Join Early Access</button>
+                </div>
+                <p class="early-note">No spam, unsubscribe anytime.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Mobile Bottom Navigation (ADD THIS SECTION) -->
+    <div class="mobile-bottom-nav">
+        <a href="index.html#home" class="mobile-nav-item">
+            <i class="ri-home-5-line"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item">
+            <i class="ri-shopping-bag-3-line"></i>
+            <span>Shop</span>
+        </a>
+        <a href="ai-studio.html" class="mobile-nav-item highlight">
+            <div class="nav-icon-circle">
+                <i class="ri-sparkling-fill"></i>
+            </div>
+            <span>Studio</span>
+        </a>
+        <a href="collection.html" class="mobile-nav-item">
+            <i class="ri-gallery-line"></i>
+            <span>Collection</span>
+        </a>
+        <button type="button" class="mobile-nav-item" id="mobileChatIcon">
+            <i class="ri-chat-3-line"></i>
+            <span>Chat</span>
+        </button>
+    </div>
+
+    <script>
+        // Simple email validation
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Show success message and redirect to home
+        function showSuccessAndRedirect(email) {
+            // Create success message element
+            const successMsg = document.createElement('div');
+            successMsg.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #111111;
+                border: 1px solid #d4af37;
+                border-radius: 16px;
+                padding: 2rem;
+                text-align: center;
+                z-index: 10000;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+                max-width: 400px;
+                width: 90%;
+            `;
+            
+            successMsg.innerHTML = `
+                <div style="font-size: 4rem; color: #d4af37; margin-bottom: 1rem;">✓</div>
+                <h3 style="color: #d4af37; margin-bottom: 1rem; font-size: 1.8rem;">Success!</h3>
+                <p style="color: #e0e0e0; margin-bottom: 1.5rem; line-height: 1.6;">
+                    Thank you for joining!<br>
+                    <span style="color: #d4af37; font-weight: 600;">${email}</span><br>
+                    You're #${Math.floor(Math.random() * 400) + 100} on the waitlist.
+                </p>
+                <p style="color: #888888; font-size: 0.9rem;">Redirecting to home page...</p>
+            `;
+            
+            document.body.appendChild(successMsg);
+            
+            // Redirect to home after 3 seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 3000);
+        }
+
+        // Early Access form submission
+        function subscribeEarlyAccess() {
+            const email = document.getElementById('earlyEmail').value.trim();
+            
+            if (!email) {
+                alert('Please enter your email address.');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Store in localStorage (optional)
+            let subscribers = JSON.parse(localStorage.getItem('earlyAccessEmails') || '[]');
+            if (!subscribers.includes(email)) {
+                subscribers.push(email);
+                localStorage.setItem('earlyAccessEmails', JSON.stringify(subscribers));
+            }
+            
+            // Clear input
+            document.getElementById('earlyEmail').value = '';
+            
+            // Show success message and redirect
+            showSuccessAndRedirect(email);
+        }
+
+        // Enter key support
+        document.getElementById('earlyEmail').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                subscribeEarlyAccess();
+            }
+        });
+    </script>
+</body>
+</html>

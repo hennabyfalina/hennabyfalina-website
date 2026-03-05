@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Care Guide · Henna By Falina</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+    <!-- html2canvas for image download -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MXXFGENV97"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MXXFGENV97');
+    </script>
+
+    <!-- Main Stylesheet (shared) -->
+    <link rel="stylesheet" href="style.css">
+    
+    
+    <style>
+    
+    /* ===== PAGE SPECIFIC ===== */
+    body {
+        background: #000000;
+    }
+    
+/* remove any border lines from sections */
+.care-hero,
+.rewards-section {
+    border: none;
+    border-top: none;
+    border-bottom: none;
+}
+
+/* ===== DOWNLOAD BUTTONS ===== */
+.download-section {
+    background: #000000;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.download-section h3 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.download-section p {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.download-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: var(--accent-color);
+    color: #000000;
+    border: none;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.btn-download:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-download-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid #333;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.btn-download-outline:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Mobile responsive for buttons */
+@media (max-width: 768px) {
+    .download-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .btn-download,
+    .btn-download-outline {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+    
+    .care-hero {
+        padding: 8rem 0 3rem;
+        text-align: center;
+        background: #000000;
+    }
+    
+    .care-hero h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--accent-color) 0%, #fff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+    }
+    
+    .care-hero p {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    /* welcome badge */
+    .welcome-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .welcome-badge i {
+        color: var(--accent-color);
+    }
+    
+    /* accordion cards grid */
+    .care-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 900px;
+        margin: 3rem auto;
+    }
+    
+    .care-card {
+        background: #0a0a0a;
+        border: 1px solid #222222;
+        border-radius: 24px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .care-card:hover {
+        border-color: var(--accent-color);
+        box-shadow: 0 10px 20px -10px rgba(212, 175, 55, 0.2);
+    }
+    
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.2rem 1.8rem;
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+    
+    .title-group {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .title-group i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        width: 32px;
+    }
+    
+    .title-group h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+    }
+    
+    .toggle-btn {
+        background: transparent;
+        border: none;
+        color: var(--accent-color);
+        font-size: 1.3rem;
+        cursor: pointer;
+        transition: transform 0.3s;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .toggle-btn:hover {
+        background: rgba(212, 175, 55, 0.1);
+    }
+    
+    .care-card.expanded .toggle-btn i {
+        transform: rotate(180deg);
+    }
+    
+    .card-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 0 1.8rem;
+        background: #0a0a0a;
+    }
+    
+    .care-card.expanded .card-content {
+        max-height: 500px; /* plenty for content */
+        padding-bottom: 1.5rem;
+    }
+    
+    .instruction-list {
+        list-style: none;
+        margin: 0;
+    }
+    
+    .instruction-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        margin-bottom: 0.8rem;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .instruction-list li i {
+        color: var(--accent-color);
+        font-size: 1rem;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+    
+    .highlight {
+        color: var(--accent-color);
+        font-weight: 600;
+        background: rgba(212, 175, 55, 0.1);
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+    }
+    
+    .note-badge {
+        display: inline-block;
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50px;
+        padding: 0.3rem 1rem;
+        font-size: 0.8rem;
+        color: var(--accent-color);
+        margin-top: 1rem;
+    }
+    
+    /* ===== REWARDS SECTION - MOBILE OPTIMIZED ===== */
+    .rewards-section {
+        background: #000000;
+        padding: 3rem 0;
+    }
+    
+    .rewards-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .rewards-header h2 {
+        font-size: 2rem;
+        color: var(--text-primary);
+        margin-bottom: 0.3rem;
+    }
+    
+    .rewards-header p {
+        color: var(--text-secondary);
+        font-size: 1rem;
+    }
+    
+    .rewards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .reward-card {
+        background: #0a0a0a;
+        border: 1px solid #222;
+        border-radius: 20px;
+        padding: 1.8rem 1rem;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+    
+    .reward-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+    }
+    
+    .reward-icon {
+        width: 70px;
+        height: 70px;
+        background: rgba(212, 175, 55, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 2rem;
+        color: var(--accent-color);
+    }
+    
+    .reward-card h4 {
+        font-size: 1.3rem;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+    
+    .reward-points {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        line-height: 1.2;
+        margin-bottom: 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.2rem;
+    }
+    
+    .percent-sign {
+        font-size: 1.5rem;
+        margin-right: 0.1rem;
+    }
+    
+    .off-text, .credit-text {
+        font-size: 0.9rem;
+        color: var(--text-tertiary);
+        font-weight: 400;
+        margin-left: 0.2rem;
+    }
+    
+    .reward-condition {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+    
+    .points-display {
+        text-align: center;
+        margin: 2rem auto 0;
+        background: #0a0a0a;
+        padding: 1rem;
+        border-radius: 60px;
+        max-width: 400px;
+        border: 1px solid #222;
+    }
+    
+    .points-label {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+    
+    .points-value {
+        color: var(--accent-color);
+        font-weight: 700;
+        margin-left: 0.5rem;
+        font-size: 1.1rem;
+    }
+    
+    /* ===== CONTACT SECTION - WITH TITLE ===== */
+    .contact-section {
+        background: #000000;
+        padding: 3rem 0 5rem;
+    }
+    
+    .contact-title {
+        text-align: center;
+        color: var(--text-primary);
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+    }
+    
+    .contact-grid {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.6rem 1.5rem;
+        border-radius: 60px;
+        border: 1px solid #222;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+    }
+    
+    .contact-item i {
+        font-size: 1.3rem;
+    }
+    
+    .contact-item:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+        background: rgba(212, 175, 55, 0.05);
+    }
+    
+    .whatsapp:hover i { color: #25D366; }
+    .instagram:hover i { color: #E4405F; }
+    .facebook:hover i { color: #1877F2; }
+    
+    /* ===== MOBILE SPECIFIC FIXES ===== */
+    @media (max-width: 768px) {
+        .rewards-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding: 0 1rem;
+        }
+        
+        .reward-card {
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .reward-icon {
+            width: 60px;
+            height: 60px;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .reward-card h4 {
+            font-size: 1.2rem;
+        }
+        
+        .reward-points {
+            font-size: 1.8rem;
+        }
+        
+        .contact-grid {
+            flex-direction: column;
+            gap: 0.8rem;
+            padding: 0 1.5rem;
+        }
+        
+        .contact-item {
+            width: 100%;
+            justify-content: center;
+            padding: 0.8rem 1rem;
+        }
+        
+        .points-display {
+            margin-left: 1rem;
+            margin-right: 1rem;
+            width: auto;
+        }
+    }
+    
+    /* Extra small devices */
+    @media (max-width: 480px) {
+        .rewards-header h2 {
+            font-size: 1.8rem;
+        }
+        
+        .reward-points {
+            font-size: 1.6rem;
+        }
+        
+        .contact-title {
+            font-size: 1.1rem;
+        }
+    }
+    
+    /* mobile bottom navigation - custom for care */
+    .mobile-bottom-nav {
+        display: none;
+    }
+    
+    @media (max-width: 768px) {
+        .mobile-bottom-nav {
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #000000;
+            border-top: 1px solid #222;
+            padding: 0.5rem 1rem calc(0.5rem + env(safe-area-inset-bottom));
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #888;
+            font-size: 0.65rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .mobile-nav-item i {
+            font-size: 1.4rem;
+        }
+        
+        .mobile-nav-item.active,
+        .mobile-nav-item:hover {
+            color: var(--accent-color);
+        }
+        
+        /* center care button (like studio) */
+        .mobile-nav-item.care-center {
+            position: relative;
+            top: -15px;
+        }
+        
+        .nav-icon-circle {
+            width: 52px;
+            height: 52px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+        
+        .nav-icon-circle i {
+            font-size: 1.6rem;
+            color: #000;
+        }
+    }
+    
+    /* remove any lingering footer */
+    .footer {
+        display: none;
+    }
+</style>
+
+
+</head>
+<body>
+    <!-- Header -->
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="index.html" class="nav__logo">
+             <img src="images/logo.png" alt="HF" class="logo-img">
+        </a>
+        
+        <ul class="nav__menu" id="navMenu">
+            <li><a href="index.html#home" class="nav__link active">Home</a></li>
+            <li><a href="about.html" class="nav__link">About</a></li>
+            <li><a href="collection.html" class="nav__link">Collection</a></li>
+            <li><a href="index.html#services" class="nav__link">Services</a></li>
+            <li><a href="contact.html" class="nav__link">Contact</a></li>
+        </ul>
+        
+        <div class="nav__actions">
+            <a href="ai-studio.html" class="btn btn-header-premium">
+                <span>AI Studio</span>
+                <i class="ri-sparkling-line"></i>
+            </a>
+            <a href="shop.html" class="btn btn-outline">
+                <span>Shop</span>
+                <i class="ri-shopping-bag-line"></i>
+            </a>
+        </div>
+        
+        <!-- Mobile menu toggle (hamburger icon) - This automatically changes to X when menu is open -->
+        <button type="button" class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+            <i class="ri-menu-line"></i>
+        </button>
+    </nav>
+</header>
+
+    <main>
+        <!-- Hero -->
+        <section class="care-hero">
+            <div class="container">
+                <div class="welcome-badge">
+                    <i class="ri-heart-3-fill"></i>
+                    <span>Thank You for Choosing Us</span>
+                </div>
+                <h1>Product Care Guide</h1>
+                <p>Tap any card to reveal detailed instructions</p>
+            </div>
+        </section>
+
+        <!-- Accordion Cards -->
+        <section class="container">
+            <div class="care-grid" id="careGuideContent">
+                <!-- Card 1: Henna Cone Storage -->
+                <div class="care-card">
+                    <div class="card-header" onclick="gtag('event','care_storage_open'); toggleCard(this)">
+                        <div class="title-group">
+                            <i class="ri-fridge-line"></i>
+                            <h3>Henna Cone Storage</h3>
+                        </div>
+                        <div class="toggle-btn"><i class="ri-arrow-down-s-line"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="instruction-list">
+                            <li><i class="ri-checkbox-circle-line"></i> Store henna cones in the freezer</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Keep tightly sealed to maintain freshness</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Thaw at room temperature before use</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Do not refreeze repeatedly</li>
+                        </ul>
+                        <div class="note-badge">
+                            <i class="ri-information-line"></i> Fresh storage = Darker stain 🤎
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Card 2: Henna Aftercare -->
+                <div class="care-card">
+                    <div class="card-header" onclick="gtag('event','care_aftercare_open'); toggleCard(this)">
+                        <div class="title-group">
+                            <i class="ri-heart-pulse-line"></i>
+                            <h3>Henna Aftercare</h3>
+                        </div>
+                        <div class="toggle-btn"><i class="ri-arrow-down-s-line"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="instruction-list">
+                            <li><i class="ri-checkbox-circle-line"></i> Leave paste on for <span class="highlight">6–8 hours</span> (longer = darker stain)</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Avoid water for <span class="highlight">8–12 hours</span> after removal</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Gently scrape off dried henna — do not wash immediately</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Keep hands warm for deeper color</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Stain darkens fully in <span class="highlight">24–48 hours</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Card 3: Oil & Balm Use -->
+                <div class="care-card">
+                    <div class="card-header" onclick="gtag('event','care_oil_open'); toggleCard(this)">
+                        <div class="title-group">
+                            <i class="ri-oil-line"></i>
+                            <h3>Oil & Balm Use</h3>
+                        </div>
+                        <div class="toggle-btn"><i class="ri-arrow-down-s-line"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="instruction-list">
+                            <li><i class="ri-checkbox-circle-line"></i> Apply oil, leave 5 mins, then scrape for easier removal</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Apply aftercare balm after removing paste</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Reapply balm before washing hands to protect stain</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Helps deepen and prolong color</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Card 4: Instant Henna Nail Polish -->
+                <div class="care-card">
+                    <div class="card-header" onclick="gtag('event','care_nail_polish_open'); toggleCard(this)">
+                        <div class="title-group">
+                            <i class="ri-paint-brush-line"></i>
+                            <h3>Instant Henna Nail Polish</h3>
+                        </div>
+                        <div class="toggle-btn"><i class="ri-arrow-down-s-line"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="instruction-list">
+                            <li><i class="ri-checkbox-circle-line"></i> Apply on clean, dry nails</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Let dry completely</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Apply second coat for deeper shade</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Avoid water for <span class="highlight">1–2 hours</span></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Card 5: Black Henna Powder (Nails) -->
+                <div class="care-card">
+                    <div class="card-header" onclick="gtag('event','care_black_powder_open'); toggleCard(this)">
+                        <div class="title-group">
+                            <i class="ri-flask-line"></i>
+                            <h3>Black Henna Powder (Nails)</h3>
+                        </div>
+                        <div class="toggle-btn"><i class="ri-arrow-down-s-line"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="instruction-list">
+                            <li><i class="ri-checkbox-circle-line"></i> Mix powder with few drops of water</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Apply evenly on nails</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Leave <span class="highlight">30–45 minutes</span></li>
+                            <li><i class="ri-checkbox-circle-line"></i> Wash off gently</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Color darkens over time</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Card 6: Quick Tips -->
+                <div class="care-card">
+                    <div class="card-header" onclick="gtag('event','care_quick_tips_open'); toggleCard(this)">
+                        <div class="title-group">
+                            <i class="ri-star-line"></i>
+                            <h3>Quick Tips</h3>
+                        </div>
+                        <div class="toggle-btn"><i class="ri-arrow-down-s-line"></i></div>
+                    </div>
+                    <div class="card-content">
+                        <ul class="instruction-list">
+                            <li><i class="ri-checkbox-circle-line"></i> Always do a patch test 24 hours before use</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Store products in cool, dry place</li>
+                            <li><i class="ri-checkbox-circle-line"></i> Check expiry date before use</li>
+                            <li><i class="ri-checkbox-circle-line"></i> For external use only</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<!-- Loyalty Rewards - FIXED FOR MOBILE -->
+<section class="rewards-section">
+    <div class="container">
+        <div class="rewards-header">
+            <h2>Loyalty Rewards</h2>
+            <p>Earn points with every purchase</p>
+        </div>
+        
+        <div class="rewards-grid">
+            <!-- Gold Card -->
+            <div class="reward-card">
+                <div class="reward-icon"><i class="ri-vip-crown-line"></i></div>
+                <h4>Gold</h4>
+                <div class="reward-points">15<span class="percent-sign">%</span> <span class="off-text">off</span></div>
+                <p class="reward-condition">5+ purchases</p>
+            </div>
+            
+            <!-- Platinum Card -->
+            <div class="reward-card">
+                <div class="reward-icon"><i class="ri-vip-diamond-line"></i></div>
+                <h4>Platinum</h4>
+                <div class="reward-points">20<span class="percent-sign">%</span> <span class="off-text">off</span></div>
+                <p class="reward-condition">10+ purchases</p>
+            </div>
+            
+            <!-- Referral Card -->
+            <div class="reward-card">
+                <div class="reward-icon"><i class="ri-gift-line"></i></div>
+                <h4>Referral</h4>
+                <div class="reward-points">₹100 <span class="credit-text">credit</span></div>
+                <p class="reward-condition">per friend</p>
+            </div>
+        </div>
+        
+        <!-- Points Display -->
+        <div class="points-display">
+            <span class="points-label">Your points:</span>
+            <span class="points-value">250 pts</span>
+        </div>
+    </div>
+</section>
+
+   <!-- Download Section (no print) -->
+        <section class="download-section">
+            <div class="container">
+                <h3>Save This Guide</h3>
+                <p>Download full guide as image or PDF (all cards will be expanded automatically)</p>
+                <div class="download-buttons">
+                    <button class="btn-download" onclick="gtag('event','image_download',{event_category:'product_care'}); downloadAsImage();">
+                        <i class="ri-image-line"></i> Save as Image
+                    </button>
+                    <button class="btn-download-outline" onclick="gtag('event','pdf_download',{event_category:'product_care'}); downloadAsPDF();">
+                        <i class="ri-file-pdf-line"></i> Save as PDF
+                    </button>
+                </div>
+                <p style="margin-top: 1.5rem; color: var(--text-tertiary); font-size: 0.85rem;">
+                    
+                </p>
+            </div>
+        </section>
+
+
+<!-- Social Contact - WITH TITLE -->
+<section class="contact-section">
+    <div class="container">
+        <h3 class="contact-title">Feel free to reach out</h3>
+        <div class="contact-grid">
+            <a href="https://wa.me/917358671248" onclick="gtag('event','whatsapp_click',{event_category:'contact'});" target="_blank" rel="noopener noreferrer" class="contact-item whatsapp">
+                <i class="ri-whatsapp-line"></i>
+                <span>WhatsApp</span>
+            </a>
+            <a href="https://instagram.com/hennabyfalina" onclick="gtag('event','instagram_click',{event_category:'contact'});" target="_blank" rel="noopener noreferrer" class="contact-item instagram">
+                <i class="ri-instagram-line"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="https://facebook.com/hennabyfalina" onclick="gtag('event','facebook_click',{event_category:'contact'});" target="_blank" rel="noopener noreferrer" class="contact-item facebook">
+                <i class="ri-facebook-line"></i>
+                <span>Facebook</span>
+            </a>
+            
+        </div>
+    </div>
+</section>
+
+
+
+    </main>
+
+    <!-- Mobile Bottom Navigation (custom for Care) -->
+    <div class="mobile-bottom-nav">
+        <a href="index.html#home" class="mobile-nav-item">
+            <i class="ri-home-5-line"></i>
+            <span>Home</span>
+        </a>
+        <a href="shop.html" class="mobile-nav-item">
+            <i class="ri-shopping-bag-3-line"></i>
+            <span>Shop</span>
+        </a>
+        <a href="product-care.html" class="mobile-nav-item care-center active">
+            <div class="nav-icon-circle">
+                <i class="ri-heart-pulse-line"></i>
+            </div>
+            <span>Care</span>
+        </a>
+        <a href="collection.html" class="mobile-nav-item">
+            <i class="ri-gallery-line"></i>
+            <span>Collection</span>
+        </a>
+        <button type="button" class="mobile-nav-item" id="mobileChatIcon">
+            <i class="ri-chat-3-line"></i>
+            <span>Chat</span>
+        </button>
+    </div>
+
+    <script>
+        // Toggle card expansion
+        function toggleCard(header) {
+            const card = header.closest('.care-card');
+            card.classList.toggle('expanded');
+        }
+
+        // Expand all cards for capture
+        function expandAllCards() {
+            document.querySelectorAll('.care-card').forEach(card => {
+                card.classList.add('expanded');
+            });
+        }
+
+        // Collapse all cards (optional)
+        function collapseAllCards() {
+            document.querySelectorAll('.care-card').forEach(card => {
+                card.classList.remove('expanded');
+            });
+        }
+
+        // Download as Image (expands all first)
+        function downloadAsImage() {
+            const element = document.getElementById('careGuideContent');
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+            
+            // remember which cards were expanded
+            const expandedState = [];
+            document.querySelectorAll('.care-card').forEach((card, index) => {
+                expandedState[index] = card.classList.contains('expanded');
+            });
+            
+            // expand all
+            expandAllCards();
+            
+            btn.innerHTML = '<i class="ri-loader-4-line"></i> Generating...';
+            btn.disabled = true;
+            
+            // slight delay for rendering
+            setTimeout(() => {
+                html2canvas(element, {
+                    scale: 2,
+                    backgroundColor: '#000000',
+                    logging: false,
+                    allowTaint: false,
+                    useCORS: true
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'henna-care-guide.png';
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                    
+                    // restore original expanded states
+                    document.querySelectorAll('.care-card').forEach((card, index) => {
+                        if (!expandedState[index]) {
+                            card.classList.remove('expanded');
+                        }
+                    });
+                    
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }).catch(error => {
+                    console.error(error);
+                    alert('Image generation failed. Please try PDF instead.');
+                    // restore states
+                    document.querySelectorAll('.care-card').forEach((card, index) => {
+                        if (!expandedState[index]) {
+                            card.classList.remove('expanded');
+                        }
+                    });
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+            }, 200);
+        }
+
+        // Download as PDF (opens print dialog with all expanded)
+        function downloadAsPDF() {
+            // remember states
+            const expandedState = [];
+            document.querySelectorAll('.care-card').forEach((card, index) => {
+                expandedState[index] = card.classList.contains('expanded');
+            });
+            
+            expandAllCards();
+            
+            // Build printable content
+            const content = document.getElementById('careGuideContent').innerHTML;
+            
+            // restore states after a short delay (to allow render)
+            setTimeout(() => {
+                document.querySelectorAll('.care-card').forEach((card, index) => {
+                    if (!expandedState[index]) {
+                        card.classList.remove('expanded');
+                    }
+                });
+            }, 500);
+            
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Henna Care Guide</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+                    <style>
+                        body { font-family: 'Inter', sans-serif; background: #000; color: #fff; padding: 2rem; }
+                        .care-card { background: #111; border: 1px solid #333; border-radius: 24px; margin-bottom: 1rem; padding: 1.5rem; }
+                        .title-group { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+                        .title-group i { color: #d4af37; font-size: 1.5rem; }
+                        h3 { color: #d4af37; margin: 0; }
+                        .instruction-list { list-style: none; padding: 0; }
+                        .instruction-list li { display: flex; gap: 0.8rem; margin-bottom: 0.5rem; color: #ddd; }
+                        .instruction-list li i { color: #d4af37; }
+                        .highlight { background: rgba(212,175,55,0.1); color: #d4af37; padding: 0.1rem 0.4rem; border-radius: 4px; }
+                        .note-badge { display: inline-block; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 50px; padding: 0.3rem 1rem; color: #d4af37; margin-top: 1rem; }
+                    </style>
+                </head>
+                <body>
+                    <h1 style="color: #d4af37;">Henna By Falina - Product Care Guide</h1>
+                    ${content}
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+        }
+    </script>
+
+    <!-- Scripts (shared) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

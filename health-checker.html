@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Henna Health Checker - Art Henna Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header scrolled">
+        <nav class="nav container">
+            <a href="/" class="nav__logo">Art Henna Studio</a>
+            <div class="nav__actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="ri-moon-line theme-icon"></i>
+                </button>
+                <a href="/" class="btn btn-outline">Back to Home</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="health-checker-container">
+        <div class="health-checker-hero">
+            <div class="container">
+                <div class="hero-content-centered">
+                    <div class="hero-icon"></div>
+                    <h1>AI Henna Health Checker</h1>
+                    <p style="color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto;">
+                        Analyze henna ingredients instantly using AI to ensure safety, quality, and authenticity
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="checker-layout">
+                <!-- Input Section -->
+                <div class="checker-input-card">
+                    <h2>Check Your Henna</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        Upload a product image or enter ingredients manually
+                    </p>
+
+                    <div class="input-tabs">
+                        <button class="input-tab active" data-tab="image">
+                            <i class="ri-image-line"></i>
+                            <span>Scan Product</span>
+                        </button>
+                        <button class="input-tab" data-tab="text">
+                            <i class="ri-text"></i>
+                            <span>Enter Ingredients</span>
+                        </button>
+                    </div>
+
+                    <!-- Image Upload Tab -->
+                    <div class="tab-content active" id="imageTab">
+                        <div class="upload-zone" id="healthUploadZone">
+                            <input type="file" id="healthFileInput" accept="image/*" style="display: none;">
+                            <i class="ri-camera-line" style="font-size: 3rem; color: var(--text-tertiary); margin-bottom: 1rem;"></i>
+                            <h3>Upload Product Image</h3>
+                            <p style="color: var(--text-secondary);">Take a photo of the ingredient list</p>
+                            <button class="btn btn-primary" style="margin-top: 1rem;">
+                                <i class="ri-upload-cloud-line"></i>
+                                <span>Choose Image</span>
+                            </button>
+                        </div>
+
+                        <div id="imagePreviewHealth" style="display: none;">
+                            <img id="previewImgHealth" style="max-width: 100%; border-radius: var(--radius-md); margin-bottom: 1rem;">
+                            <button class="btn btn-primary" id="analyzeImageBtn" style="width: 100%;">
+                                <i class="ri-flashlight-line"></i>
+                                <span>Analyze Ingredients</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Text Input Tab -->
+                    <div class="tab-content" id="textTab">
+                        <div class="form-group">
+                            <label class="form-label">Product Name (Optional)</label>
+                            <input type="text" class="form-input" id="productName" placeholder="e.g., Natural Henna Cone">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Ingredients List *</label>
+                            <textarea class="form-input" id="ingredientsList" rows="6" placeholder="Enter ingredients separated by commas or line breaks
+Example:
+Lawsonia inermis (Henna powder)
+Eucalyptus oil
+Lemon juice
+Sugar
+Tea decoction" required></textarea>
+                        </div>
+
+                        <button class="btn btn-primary" id="analyzeTextBtn" style="width: 100%;">
+                            <i class="ri-flashlight-line"></i>
+                            <span>Analyze Ingredients</span>
+                        </button>
+                    </div>
+
+                    <!-- Quick Scan Info -->
+                    <div class="quick-scan-info">
+                        <h4><i class="ri-information-line"></i> What We Check:</h4>
+                        <ul>
+                            <li>✓ Harmful chemicals (PPD, Ammonia, Lead)</li>
+                            <li>✓ Allergen detection</li>
+                            <li>✓ Organic authenticity verification</li>
+                            <li>✓ Shelf life & storage recommendations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="checker-results-card" id="resultsCard">
+                    <div class="results-placeholder">
+                        <i class="ri-flask-line" style="font-size: 4rem; color: var(--text-tertiary); margin-bottom: 1rem;"></i>
+                        <h3>No Analysis Yet</h3>
+                        <p style="color: var(--text-secondary);">
+                            Upload an image or enter ingredients to get started
+                        </p>
+                    </div>
+
+                    <div id="analysisResults" style="display: none;">
+                        <!-- Safety Score -->
+                        <div class="safety-score">
+                            <div class="score-circle" id="scoreCircle">
+                                <svg width="150" height="150" viewBox="0 0 150 150">
+                                    ircle cx="75" cy="75" r="65" fill="none" stroke="var(--bg-secondary)" stroke-width="12"/>
+                                    ircle id="scoreProgress" cx="75" cy="75" r="65" fill="none" stroke-width="12" 
+                                            stroke-linecap="round" transform="rotate(-90 75 75)"
+                                            stroke-dasharray="408" stroke-dashoffset="408"/>
+                                </svg>
+                                <div class="score-text">
+                                    <span id="scoreValue">0</span>
+                                    <span>/ 100</span>
+                                </div>
+                            </div>
+                            <h3 id="safetyLabel">Analyzing...</h3>
+                        </div>
+
+                        <!-- Ingredient Breakdown -->
+                        <div class="ingredient-breakdown">
+                            <h4>Ingredient Analysis</h4>
+                            <div id="ingredientList">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Warnings & Recommendations -->
+                        <div class="warnings-section" id="warningsSection">
+                            <!-- Populated dynamically -->
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="results-actions">
+                            <button class="btn btn-outline" onclick="window.print()">
+                                <i class="ri-printer-line"></i>
+                                <span>Print Report</span>
+                            </button>
+                            <button class="btn btn-outline" id="shareResultsBtn">
+                                <i class="ri-share-line"></i>
+                                <span>Share</span>
+                            </button>
+                            <button class="btn btn-primary" onclick="healthChecker.reset()">
+                                <i class="ri-refresh-line"></i>
+                                <span>Check Another Product</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common Harmful Ingredients Reference -->
+            <div class="harmful-ingredients-reference">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Common Harmful Ingredients to Avoid</h2>
+                <div class="harmful-grid">
+                    <div class="harmful-card danger">
+                        <div class="harmful-icon"></div>
+                        <h4>PPD (Para-phenylenediamine)</h4>
+                        <p>Causes severe allergic reactions, chemical burns, and long-term skin damage.</p>
+                        <span class="danger-level">HIGHLY DANGEROUS</span>
+                    </div>
+
+                    <div class="harmful-card danger">
+                        <div class="harmful-icon"></div>
+                        <h4>Lead & Heavy Metals</h4>
+                        <p>Toxic metals that can cause serious health issues including neurological damage.</p>
+                        <span class="danger-level">TOXIC</span>
+                    </div>
+
+                    <div class="harmful-card warning">
+                        <div class="harmful-icon"></div>
+                        <h4>Ammonia</h4>
+                        <p>Harsh chemical that can irritate skin and cause allergic reactions.</p>
+                        <span class="danger-level">CAUTION</span>
+                    </div>
+
+                    <div class="harmful-card warning">
+                        <div class="harmful-icon"></div>
+                        <h4>Synthetic Dyes</h4>
+                        <p>Artificial colorants that may cause skin irritation and allergies.</p>
+                        <span class="danger-level">AVOID</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__bottom">
+                <p>&copy; 2025 Art Henna Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="health-checker.js"></script>
+</body>
+</html>
