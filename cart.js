@@ -31,7 +31,7 @@ const CartSystem = {
 
         // Only redirect if explicitly requested (false by default)
         if (redirect) {
-            window.location.href = '/cart.html';
+            window.location.href = 'cart.html';
         } else {
             this.showToast(`Added ${product.name} to cart`);
         }
