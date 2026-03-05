@@ -12,9 +12,7 @@ const CartSystem = {
         if (oldCart) {
             try {
                 const parsed = JSON.parse(oldCart);
-                // Check if it's using the old format (from shop.js)
                 if (parsed.length > 0 && (parsed[0].image || !parsed[0].img)) {
-                    // Convert to new format
                     const newCart = parsed.map(item => ({
                         id: item.id || item.name,
                         name: item.name,
@@ -33,7 +31,7 @@ const CartSystem = {
     },
 
     getCart() {
-        this.migrateCartData(); // Migrate old data if exists
+        this.migrateCartData();
         const stored = localStorage.getItem(this.key);
         return stored ? JSON.parse(stored) : [];
     },
@@ -73,7 +71,8 @@ const CartSystem = {
             this.showToast(`Removed ${removedItem.name} from cart`);
         }
         
-        if (window.location.pathname.includes('cart.html')) {
+        // Always try to render cart page if container exists (works with clean URLs)
+        if (document.getElementById('cartPageContent')) {
             this.renderCartPage();
         }
     },
@@ -89,7 +88,7 @@ const CartSystem = {
                 return;
             }
             this.saveCart(cart);
-            if (window.location.pathname.includes('cart.html')) {
+            if (document.getElementById('cartPageContent')) {
                 this.renderCartPage();
             }
         }
@@ -98,7 +97,7 @@ const CartSystem = {
     clearCart() {
         localStorage.removeItem(this.key);
         this.updateNavigation();
-        if (window.location.pathname.includes('cart.html')) {
+        if (document.getElementById('cartPageContent')) {
             this.renderCartPage();
         }
     },
@@ -107,24 +106,15 @@ const CartSystem = {
     updateNavigation() {
         const cart = this.getCart();
         const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-        console.log('Navigation count:', count);
 
-        // 1. Desktop Navigation
+        // Desktop Navigation
         const desktopCartLink = document.getElementById('desktopCartLink');
         if (desktopCartLink) {
-            if (count > 0) {
-                desktopCartLink.innerHTML = `Cart (${count}) ♥`;
-            } else {
-                desktopCartLink.innerHTML = `Cart ♥`;
-            }
-            if (window.location.pathname.includes('cart.html')) {
-                desktopCartLink.classList.add('active');
-            } else {
-                desktopCartLink.classList.remove('active');
-            }
+            desktopCartLink.innerHTML = count > 0 ? `Cart (${count}) ♥` : `Cart ♥`;
+            // Active state is handled separately in a global script (see below)
         }
 
-        // 2. Mobile Navigation
+        // Mobile Navigation
         const mobileNav = document.querySelector('.mobile-bottom-nav');
         if (mobileNav) {
             let cartItem = mobileNav.querySelector('#mobileCartIcon');
@@ -135,38 +125,50 @@ const CartSystem = {
                 cartItem.id = 'mobileCartIcon';
                 mobileNav.appendChild(cartItem);
             }
-            if (count > 0) {
-                cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart (${count}) ♥</span>`;
-            } else {
-                cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart ♥</span>`;
-            }
-            if (window.location.pathname.includes('cart.html')) {
+            cartItem.innerHTML = count > 0 
+                ? `<i class="ri-shopping-cart-2-line"></i><span>Cart (${count}) ♥</span>`
+                : `<i class="ri-shopping-cart-2-line"></i><span>Cart ♥</span>`;
+            if (window.location.pathname.includes('cart')) {
                 cartItem.classList.add('active');
             }
         }
     },
 
-    // --- WhatsApp Checkout ---
+    // --- WhatsApp Checkout (with modal and auto-clear) ---
     checkoutWhatsApp() {
         const cart = this.getCart();
         if (cart.length === 0) return;
 
-        this.showPreparingModal();
+        // Show modal
+        const modal = document.createElement('div');
+        modal.className = 'preparing-modal';
+        modal.innerHTML = `
+            <div class="preparing-content">
+                <div class="spinner"></div>
+                <p>Thank you for choosing us.<br>Preparing your order details and redirecting to WhatsApp...</p>
+            </div>
+        `;
+        document.body.appendChild(modal);
 
+        // Prepare message
         let message = "Hi, I want to order:%0A%0A";
         let total = 0;
-
         cart.forEach(item => {
             const itemTotal = item.price * item.quantity;
             total += itemTotal;
             message += `${item.name} ×${item.quantity} – ₹${itemTotal}%0A`;
         });
-
         message += `%0A*Total ₹${total}*`;
 
+        // Clear cart and redirect after delay
         setTimeout(() => {
+            // Clear cart
+            this.clearCart(); // This also updates navigation and re-renders if on cart page
+            // Redirect to WhatsApp
             window.open(`https://wa.me/917358671248?text=${message}`, '_blank');
-        }, 1500);
+            // Remove modal
+            modal.remove();
+        }, 2000);
     },
 
     // --- Page Rendering (Cart Page) ---
@@ -175,8 +177,6 @@ const CartSystem = {
         if (!container) return;
 
         const cart = this.getCart();
-        console.log('Rendering cart page with data:', cart);
-        
         const headerTitle = document.getElementById('cartHeaderTitle');
 
         if (cart.length === 0) {
@@ -188,16 +188,11 @@ const CartSystem = {
                 </div>
             `;
             document.getElementById('cartSummary').style.display = 'none';
-            container.style.gridColumn = '1 / -1';
-            if (headerTitle) {
-                headerTitle.textContent = 'Your Cart';
-            }
+            if (headerTitle) headerTitle.textContent = 'Your Cart';
             return;
         }
 
         document.getElementById('cartSummary').style.display = 'block';
-        container.style.gridColumn = 'auto';
-        
         if (headerTitle) {
             headerTitle.textContent = `Your Cart (${cart.reduce((sum, item) => sum + item.quantity, 0)} items)`;
         }
@@ -233,7 +228,6 @@ const CartSystem = {
         html += '</div>';
 
         container.innerHTML = html;
-
         document.getElementById('summaryCount').textContent = `${count} items`;
         document.getElementById('summaryTotal').textContent = `₹${total}`;
     },
@@ -249,7 +243,6 @@ const CartSystem = {
         document.body.appendChild(toast);
         
         setTimeout(() => toast.classList.add('show'), 100);
-        
         setTimeout(() => {
             toast.classList.remove('show');
             setTimeout(() => toast.remove(), 300);
@@ -257,6 +250,7 @@ const CartSystem = {
     },
 
     showPreparingModal() {
+        // Kept for backward compatibility, but we now use custom modal in checkout
         const modal = document.createElement('div');
         modal.className = 'preparing-modal';
         modal.innerHTML = `
@@ -270,10 +264,9 @@ const CartSystem = {
     }
 };
 
-// Initialize on load – use element check instead of URL
+// Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
     CartSystem.updateNavigation();
-    // If the cart page container exists, render the cart
     if (document.getElementById('cartPageContent')) {
         CartSystem.renderCartPage();
     }

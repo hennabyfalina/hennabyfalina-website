@@ -1845,6 +1845,31 @@ document.getElementById('fullAddToCart').addEventListener('click', () => {
         document.getElementById('fullViewModal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('fullViewModal')) closeFullView();
         });
+
+        // Set active class on navigation links based on current page
+(function setActiveNav() {
+    const path = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav__link, .mobile-nav-item');
+    
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        
+        // Extract page name from href (e.g., "shop.html", "index.html", "cart.html")
+        const page = href.split('/').pop().split('#')[0]; // handles both relative and absolute
+        
+        // Special case for home (index.html) – also match root path "/"
+        if (page === 'index.html' && (path === '/' || path.endsWith('index.html'))) {
+            link.classList.add('active');
+        } else if (path.includes(page) && page !== '') {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+})();
+
+
     </script>
 </body>
 </html>
