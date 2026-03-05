@@ -2401,145 +2401,6 @@ p {
 }
 
 /* =========================================
-   27. SHOP PAGE STYLES
-   ======================================== */
-
-.shop-header {
-    padding: 8rem 0 3rem;
-    text-align: center;
-    background: var(--bg-primary);
-}
-
-.shop-header h1 {
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-}
-
-.shop-header p {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.shop-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    padding: 1rem 0;
-}
-
-.shop-nav-btn {
-    padding: 0.75rem 1.5rem;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-full);
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.shop-nav-btn:hover,
-.shop-nav-btn.active {
-    background: var(--accent-color);
-    color: var(--accent-contrast);
-    border-color: var(--accent-color);
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
-}
-
-.product-card-shop {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.product-card-shop:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--accent-color);
-}
-
-.product-image-shop {
-    position: relative;
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: var(--bg-tertiary);
-}
-
-.product-image-shop img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.product-card-shop:hover .product-image-shop img {
-    transform: scale(1.05);
-}
-
-.product-info-shop {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.product-category-shop {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-tertiary);
-    margin-bottom: 0.5rem;
-}
-
-.product-name-shop {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-}
-
-.product-price-shop {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-.product-rating-shop {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-}
-
-.product-rating-shop .stars {
-    color: #FFB800;
-}
-
-.product-info-shop .btn {
-    margin-top: auto;
-    width: 100%;
-}
-
-/* =========================================
    28. AI STUDIO LAB STYLES
    ======================================== */
 
@@ -3683,6 +3544,140 @@ p {
     background: #059669 !important;
 }
 
+/* 35. ===== PAGE LOADER ANIMATION ===== */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    animation: float 2s ease-in-out infinite;
+}
+
+.loader-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 2rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(212, 175, 55, 0.2);
+    border-top: 3px solid #d4af37;
+    border-right: 3px solid #d4af37;
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin 1s linear infinite;
+}
+
+/* Alternative Spinner Styles (choose one) */
+
+/* Style 2: Dots */
+.loader-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.loader-dots span {
+    width: 12px;
+    height: 12px;
+    background: #d4af37;
+    border-radius: 50%;
+    animation: bounce 0.5s ease-in-out infinite;
+}
+.loader-dots span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.loader-dots span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+/* Style 3: Gold Bar */
+.loader-bar {
+    width: 150px;
+    height: 3px;
+    background: rgba(212, 175, 55, 0.2);
+    border-radius: 3px;
+    margin: 1.5rem auto 0;
+    overflow: hidden;
+    position: relative;
+}
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #d4af37;
+    animation: load 1.5s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes load {
+    0% { left: -50%; }
+    100% { left: 100%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .loader-logo {
+        width: 100px;
+    }
+    .loader-spinner {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .loader-logo {
+        width: 80px;
+    }
+    .loader-bar {
+        width: 120px;
+    }
+}
 
 /* Additional background images for festival cards */
 .bg-diwali { background-image: url('https://images.unsplash.com/photo-1605738985007-37a9b970f6e0?w=800&h=600&fit=crop'); }
@@ -3690,6 +3685,7 @@ p {
 .bg-wedding { background-image: url('https://images.unsplash.com/photo-1596236569689-090527b79092?w=800&h=600&fit=crop'); }
 .bg-navratri { background-image: url('https://images.unsplash.com/photo-1614283233556-f35b0c801ef1?w=800&h=600&fit=crop'); }
 .bg-karwa { background-image: url('https://images.unsplash.com/photo-1610522108748-0d1c9bc700f9?w=800&h=600&fit=crop'); }
+
 
 /* =========================================
    END OF CSS

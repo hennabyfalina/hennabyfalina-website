@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Henna By Falina</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+    
+   <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Services Page Styles */
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Page Header */
+        .services-header {
+            padding: 8rem 0 3rem;
+            text-align: center;
+            background: #000000;
+        }
+        .services-header h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .services-header p {
+            color: #d1d1d1;
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-main {
+            padding: 2rem 0 6rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Service Card */
+        .service-card {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .service-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+        .service-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .service-content {
+            padding: 2rem;
+            position: relative;
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: #000;
+            font-size: 1.8rem;
+            border: 2px solid #d4af37;
+            transition: all 0.3s;
+        }
+        .service-card:hover .service-icon {
+            background: transparent;
+            color: #d4af37;
+        }
+
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+        }
+        .service-title span {
+            color: #d4af37;
+        }
+
+        .service-description {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+        }
+        .service-features li {
+            color: #aaa;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .service-features li i {
+            color: #d4af37;
+            font-size: 1.1rem;
+        }
+
+        .service-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #222;
+        }
+        .service-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4af37;
+        }
+        .service-price small {
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: normal;
+        }
+        .btn-service {
+            background: transparent;
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-service:hover {
+            background: #d4af37;
+            color: #000;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            margin-top: 5rem;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+            border-radius: 30px;
+            border: 1px solid #222;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #d4af37;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            border: 1px solid #222;
+            transition: all 0.3s;
+        }
+        .feature-item:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: #000;
+            font-size: 2rem;
+        }
+        .feature-item h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        .feature-item p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* ===== PROCESS SECTION - UPDATED WITH PERFECT YELLOW LAYOUT ===== */
+        .process-section {
+            margin-top: 5rem;
+            padding: 2rem 0;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            transition: all 0.3s ease;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .process-step:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        /* Arrow connector for desktop - ONLY visible on desktop */
+        .process-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d4af37;
+            font-size: 2.5rem;
+            font-weight: 300;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            background: #000;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #d4af37;
+        }
+
+        .step-number {
+    width: 70px;
+    height: 70px;
+    background: #f5e6b3;  /* Light gold background */
+    color: #b38f2c;  /* Dark gold text */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+    border: 2px solid #b38f2c;
+}
+
+        .process-step h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .process-step p {
+            color: #aaa;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 0.5rem;
+        }
+
+        /* Tablet - 992px and below */
+        @media (max-width: 992px) {
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            /* Remove arrows on tablet */
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .process-step {
+                min-height: 220px;
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Mobile - 768px and below - MINIMAL CLEAN DESIGN */
+        @media (max-width: 768px) {
+            .process-section {
+                margin-top: 3rem;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+                margin-top: 2rem;
+            }
+            
+            .process-step {
+                min-height: auto;
+                padding: 1.5rem;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+                gap: 1rem;
+                border-radius: 16px;
+            }
+            
+            .step-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+                margin: 0;
+                flex-shrink: 0;
+                box-shadow: 0 3px 10px rgba(212, 175, 55, 0.3);
+            }
+            
+            .process-step h3 {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+                color: #d4af37;
+            }
+            
+            .process-step p {
+                font-size: 0.85rem;
+                line-height: 1.4;
+                padding: 0;
+                color: #aaa;
+            }
+            
+            /* Remove arrows completely on mobile */
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        /* Small Mobile - 480px and below */
+        @media (max-width: 480px) {
+            .process-step {
+                padding: 1.2rem;
+                gap: 0.8rem;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .process-step h3 {
+                font-size: 0.95rem;
+            }
+            
+            .process-step p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-top: 5rem;
+        }
+        .faq-grid {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+        .faq-item {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .faq-question:hover {
+            background: #111;
+        }
+        .faq-question h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .faq-question i {
+            color: #d4af37;
+            transition: transform 0.3s;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: #aaa;
+            line-height: 1.6;
+            display: none;
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            margin-top: 5rem;
+            padding: 4rem;
+            background: linear-gradient(135deg, #d4af37 0%, #b38f2c 100%);
+            border-radius: 30px;
+            text-align: center;
+        }
+        .cta-section h2 {
+            color: #000;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .cta-section p {
+            color: rgba(0,0,0,0.8);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn-cta {
+            background: #000;
+            color: #d4af37;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .btn-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive for other sections */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+            
+            .cta-section {
+                padding: 3rem 1.5rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+            
+            .cta-section p {
+                font-size: 1rem;
+            }
+            
+            .btn-cta {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card {
+                margin: 0;
+            }
+            
+            .service-content {
+                padding: 1.5rem;
+            }
+            
+            .service-title {
+                font-size: 1.5rem;
+            }
+            
+            .service-price {
+                font-size: 1.5rem;
+            }
+            
+            .btn-service {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .feature-item {
+                padding: 1.5rem;
+            }
+            
+            .faq-question {
+                padding: 1.2rem;
+            }
+            
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+            
+            .faq-answer {
+                padding: 0 1.2rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+    <!-- Remove spinner, keep only logo with pulse animation -->
+<div class="loader-content">
+    <img src="images/logo.png" alt="Henna By Falina" class="loader-logo" style="animation: pulse 1.5s ease-in-out infinite;">
+</div>
+</div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="index.html" class="nav__logo">
+                 <img src="images/logo.png" alt="HF" class="logo-img">
+            </a>
+            <ul class="nav__menu" id="navMenu">
+                <li><a href="index.html" class="nav__link">Home</a></li>
+                <li><a href="about.html" class="nav__link">About</a></li>
+                <li><a href="services.html" class="nav__link active">Services</a></li>
+                <li><a href="collection.html" class="nav__link">Collection</a></li>
+            </ul>
+            <div class="nav__actions">
+                <a href="shop.html" class="btn btn-outline">
+                    <span>Shop</span>
+                    <i class="ri-shopping-bag-line"></i>
+                </a>
+                <a href="ai-studio.html" class="btn btn-header-premium">
+                    <span>AI Studio</span>
+                    <i class="ri-sparkling-line"></i>
+                </a>
+            </div>
+            <button type="button" class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="ri-menu-line"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="services-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <p>Professional henna artistry for every special moment</p>
+        </div>
+    </section>
+
+    <!-- Services Main -->
+    <main class="services-main">
+        <div class="container">
+            <!-- Services Grid -->
+            <div class="services-grid">
+                <!-- Bridal Service -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/assets/services/bridal-henna.jpg" alt="Bridal Henna">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-heart-3-line"></i>
+                        </div>
+                        <h2 class="service-title">Bridal <span>Henna</span></h2>
+                        <p class="service-description">
+                            Complete bridal henna package for your special day. Intricate designs that tell your unique love story.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="ri-check-line"></i> Full hands and feet coverage</li>
+                            <li><i class="ri-check-line"></i> Custom design consultation</li>
+                            <li><i class="ri-check-line"></i> Darkest stain guarantee</li>
+                            <li><i class="ri-check-line"></i> Touch-up session included</li>
+                            <li><i class="ri-check-line"></i> Aftercare kit with instructions</li>
+                        </ul>
+                        <div class="service-footer">
+                            <div class="service-price">₹8,499 <small>+ travel</small></div>
+                            <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20Bridal%20Henna%20services" class="btn-service" target="_blank" rel="noopener noreferrer">
+                                Book Now <i class="ri-whatsapp-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Party/Event Service -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/assets/services/party-henna.jpg" alt="Party Henna">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-star-smile-line"></i>
+                        </div>
+                        <h2 class="service-title">Party & <span>Events</span></h2>
+                        <p class="service-description">
+                            Perfect for birthdays, engagements, baby showers, and festive celebrations. Quick and beautiful designs.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="ri-check-line"></i> Group booking discounts</li>
+                            <li><i class="ri-check-line"></i> Multiple artists available</li>
+                            <li><i class="ri-check-line"></i> Custom event themes</li>
+                            <li><i class="ri-check-line"></i> Quick application (15-30 min)</li>
+                            <li><i class="ri-check-line"></i> Travel within city included</li>
+                        </ul>
+                        <div class="service-footer">
+                            <div class="service-price">₹2,499 <small>per person</small></div>
+                            <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20Party%20Henna%20services" class="btn-service" target="_blank" rel="noopener noreferrer">
+                                Inquire <i class="ri-whatsapp-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Baby Shower Service -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/assets/services/baby-shower.jpg" alt="Baby Shower">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-baby-line"></i>
+                        </div>
+                        <h2 class="service-title">Baby <span>Shower</span></h2>
+                        <p class="service-description">
+                            Celebrate the upcoming arrival with delicate, meaningful henna designs for mom-to-be and guests.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="ri-check-line"></i> Special belly henna designs</li>
+                            <li><i class="ri-check-line"></i> Mom-to-be complimentary design</li>
+                            <li><i class="ri-check-line"></i> Group packages available</li>
+                            <li><i class="ri-check-line"></i> Gentle, pregnancy-safe paste</li>
+                            <li><i class="ri-check-line"></i> Photo-worthy designs</li>
+                        </ul>
+                        <div class="service-footer">
+                            <div class="service-price">₹3,999 <small>+ guests</small></div>
+                            <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20Baby%20Shower%20Henna%20services" class="btn-service" target="_blank" rel="noopener noreferrer">
+                                Book Now <i class="ri-whatsapp-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Festival Special -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/assets/services/festival.jpg" alt="Festival Special">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-fire-line"></i>
+                        </div>
+                        <h2 class="service-title">Festival <span>Special</span></h2>
+                        <p class="service-description">
+                            Diwali, Eid, Karva Chauth, Teej, and more. Traditional designs that capture the festive spirit.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="ri-check-line"></i> Traditional and contemporary styles</li>
+                            <li><i class="ri-check-line"></i> Festival package discounts</li>
+                            <li><i class="ri-check-line"></i> Group bookings for families</li>
+                            <li><i class="ri-check-line"></i> Express designs available</li>
+                            <li><i class="ri-check-line"></i> Free aftercare sample</li>
+                        </ul>
+                        <div class="service-footer">
+                            <div class="service-price">₹1,999 <small>per person</small></div>
+                            <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20Festival%20Henna%20services" class="btn-service" target="_blank" rel="noopener noreferrer">
+                                Book Now <i class="ri-whatsapp-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corporate Events -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/assets/services/corporate.jpg" alt="Corporate Events">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-building-line"></i>
+                        </div>
+                        <h2 class="service-title">Corporate <span>Events</span></h2>
+                        <p class="service-description">
+                            Employee appreciation, client entertainment, team building, and product launch activations.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="ri-check-line"></i> Multiple artists for large groups</li>
+                            <li><i class="ri-check-line"></i> Corporate invoicing available</li>
+                            <li><i class="ri-check-line"></i> Custom branding integration</li>
+                            <li><i class="ri-check-line"></i> Flexible time slots</li>
+                            <li><i class="ri-check-line"></i> Professional and hygienic setup</li>
+                        </ul>
+                        <div class="service-footer">
+                            <div class="service-price">Custom <small>quote</small></div>
+                            <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20Corporate%20Henna%20services" class="btn-service" target="_blank" rel="noopener noreferrer">
+                                Get Quote <i class="ri-whatsapp-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Private Workshop -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="/assets/services/workshop.jpg" alt="Workshop">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">
+                            <i class="ri-graduation-cap-line"></i>
+                        </div>
+                        <h2 class="service-title">Private <span>Workshops</span></h2>
+                        <p class="service-description">
+                            Learn the art of henna in small group settings. Perfect for friends, bachelorette parties, or beginners.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="ri-check-line"></i> 2-hour hands-on session</li>
+                            <li><i class="ri-check-line"></i> All materials provided</li>
+                            <li><i class="ri-check-line"></i> Take-home practice kit</li>
+                            <li><i class="ri-check-line"></i> Small groups (4-8 people)</li>
+                            <li><i class="ri-check-line"></i> Certificate of participation</li>
+                        </ul>
+                        <div class="service-footer">
+                            <div class="service-price">₹1,499 <small>per person</small></div>
+                            <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20Henna%20Workshops" class="btn-service" target="_blank" rel="noopener noreferrer">
+                                Register <i class="ri-whatsapp-line"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Choose Us -->
+            <div class="why-choose">
+                <h2 class="section-title">Why Choose Us</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="ri-leaf-line"></i>
+                        </div>
+                        <h3>100% Natural</h3>
+                        <p>Premium organic henna with no chemicals or additives. Safe for everyone including pregnant women.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="ri-palette-line"></i>
+                        </div>
+                        <h3>Custom Designs</h3>
+                        <p>Every design is unique and personalized to tell your story. We work with you to create something special.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="ri-time-line"></i>
+                        </div>
+                        <h3>Long Lasting</h3>
+                        <p>Our techniques ensure the darkest stain and longest lasting results. Proper aftercare guidance included.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="ri-star-line"></i>
+                        </div>
+                        <h3>5+ Years Experience</h3>
+                        <p>Hundreds of happy clients and countless events. Professional, hygienic, and reliable service guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="process-section">
+                <h2 class="section-title">How It Works</h2>
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Inquire & Consult</h3>
+                        <p>Contact us via WhatsApp to discuss your event, date, and design preferences.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Custom Quote</h3>
+                        <p>Receive a detailed quote based on your requirements and group size.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Confirm Booking</h3>
+                        <p>Secure your date with a small advance payment (refundable).</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Enjoy Your Event</h3>
+                        <p>Relax and enjoy beautiful henna designs at your special occasion.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-grid">
+                    <div class="faq-item active">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How far in advance should I book?</h3>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            We recommend booking at least 2-4 weeks in advance for bridal services, and 1-2 weeks for parties and events. During peak wedding season (Oct-Feb), book 1-2 months ahead.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Do you travel for events?</h3>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, we travel throughout the city and surrounding areas. Travel charges may apply for locations outside city limits. Contact us for specific location pricing.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Is your henna safe for pregnant women?</h3>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely! We use 100% natural, chemical-free henna that's safe for everyone, including pregnant women. Our paste contains only natural ingredients: henna powder, essential oils, and sugar.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How long does the henna last?</h3>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            With proper aftercare, our henna typically lasts 1-3 weeks. The color deepens over 24-48 hours and gradually fades. We provide complete aftercare instructions with every service.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What is your cancellation policy?</h3>
+                            <i class="ri-arrow-down-s-line"></i>
+                        </div>
+                        <div class="faq-answer">
+                            Cancellations made 7+ days before the event receive full refund. 3-6 days: 50% refund. Within 48 hours: non-refundable but can be rescheduled based on availability.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h2>Ready for Beautiful Henna?</h2>
+                <p>Book your service today and let's create something memorable together</p>
+                <a href="https://wa.me/917358671248?text=Hi%2C%20I'd%20like%20to%20inquire%20about%20henna%20services" class="btn-cta" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-whatsapp-line"></i> Book via WhatsApp
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile Bottom Nav -->
+    <div class="mobile-bottom-nav">
+        <a href="index.html" class="mobile-nav-item"><i class="ri-home-5-line"></i><span>Home</span></a>
+        <a href="shop.html" class="mobile-nav-item"><i class="ri-shopping-bag-3-line"></i><span>Shop</span></a>
+        <a href="services.html" class="mobile-nav-item active"><i class="ri-service-line"></i><span>Services</span></a>
+        <a href="collection.html" class="mobile-nav-item"><i class="ri-gallery-line"></i><span>Collection</span></a>
+        <a href="cart.html" class="mobile-nav-item"><i class="ri-shopping-cart-2-line"></i><span>Cart</span></a>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const faqItem = element.closest('.faq-item');
+            faqItem.classList.toggle('active');
+        }
+
+        // Initialize AOS if available
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                once: true
+            });
+        }
+    </script>
+</body>
+</html>

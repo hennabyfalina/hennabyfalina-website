@@ -904,6 +904,64 @@ function createSuccessModal() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
+
+// Page Loader Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const loader = document.getElementById('pageLoader');
+    
+    // Wait for everything to load
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            loader.classList.add('fade-out');
+            
+            // Remove loader from DOM after animation
+            setTimeout(function() {
+                if (loader && loader.parentNode) {
+                    loader.style.display = 'none';
+                }
+            }, 200);
+        }, 500); // Show loader for at least 800ms for smooth effect
+    });
+    
+    // Fallback: If page loads very fast, still show loader briefly
+    setTimeout(function() {
+        if (loader && !loader.classList.contains('fade-out')) {
+            loader.classList.add('fade-out');
+            setTimeout(function() {
+                if (loader && loader.parentNode) {
+                    loader.style.display = 'none';
+                }
+            }, 200);
+        }
+    }, 0.15); // Max 1.5 seconds
+});
+
+// Optional: Show loader on page transitions
+document.addEventListener('click', function(e) {
+    // Check if clicked element is a link (excluding external links)
+    const link = e.target.closest('a');
+    if (link && link.href && link.href.indexOf(window.location.origin) === 0) {
+        // Don't show loader for hash links
+        if (link.hash && link.href.replace(link.hash, '') === window.location.href.replace(/#.*$/, '')) {
+            return;
+        }
+        
+        // Don't show loader for links that open in new tab
+        if (link.target === '_blank') {
+            return;
+        }
+        
+        // Show loader
+        const loader = document.getElementById('pageLoader');
+        if (loader) {
+            loader.style.display = 'flex';
+            loader.classList.remove('fade-out');
+        }
+    }
+});
+
+
+
 // Override existing quote form handler (if needed)
 // Make sure the original initQuoteForm doesn't conflict.
 // We'll keep the original but our onsubmit will take precedence.
