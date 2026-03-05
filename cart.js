@@ -80,65 +80,46 @@ const CartSystem = {
 
     // --- Navigation Logic with Heart Icon ---
     updateNavigation() {
-        const cart = this.getCart();
-        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cart = this.getCart();
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-        // 1. Desktop Navigation
-        const navMenu = document.getElementById('navMenu');
-        if (navMenu) {
-            let cartLink = navMenu.querySelector('.nav-cart-link');
-            
-            // Fix: Check for existing static link first to avoid duplicates
-            if (!cartLink) {
-                cartLink = navMenu.querySelector('a[href="cart.html"]');
-                if (cartLink) {
-                    cartLink.classList.add('nav-cart-link');
-                } else {
-                    // Create if doesn't exist
-                    const li = document.createElement('li');
-                    cartLink = document.createElement('a');
-                    cartLink.className = 'nav__link nav-cart-link';
-                    cartLink.href = 'cart.html';
-                    li.appendChild(cartLink);
-                    navMenu.appendChild(li);
-                }
-            }
-            
-            // Format: "Cart ♥" or "Cart (2) ♥"
-            if (count > 0) {
-                cartLink.innerHTML = `Cart (${count}) ♥`;
-            } else {
-                cartLink.innerHTML = `Cart ♥`;
-            }
-            if (window.location.pathname.includes('cart.html')) {
-                cartLink.classList.add('active');
-            }
+    // 1. Desktop Navigation – use the static link with ID
+    const desktopCartLink = document.getElementById('desktopCartLink');
+    if (desktopCartLink) {
+        if (count > 0) {
+            desktopCartLink.innerHTML = `Cart (${count}) ♥`;
+        } else {
+            desktopCartLink.innerHTML = `Cart ♥`;
         }
+        // Add active class if on cart page
+        if (window.location.pathname.includes('cart.html')) {
+            desktopCartLink.classList.add('active');
+        } else {
+            desktopCartLink.classList.remove('active');
+        }
+    }
 
-        // 2. Mobile Navigation (Bottom)
-        const mobileNav = document.querySelector('.mobile-bottom-nav');
-        if (mobileNav) {
-            // Find or create cart item
-            let cartItem = mobileNav.querySelector('#mobileCartIcon');
-            if (!cartItem) {
-                // Should exist in HTML, but fallback
-                cartItem = document.createElement('a');
-                cartItem.href = 'cart.html';
-                cartItem.className = 'mobile-nav-item';
-                cartItem.id = 'mobileCartIcon';
-                mobileNav.appendChild(cartItem);
-            }
-            
-            if (count > 0) {
-                cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart (${count}) ♥</span>`;
-            } else {
-                cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart ♥</span>`;
-            }
-            if (window.location.pathname.includes('cart.html')) {
-                cartItem.classList.add('active');
-            }
+    // 2. Mobile Navigation (Bottom) – keep as is, but ensure it uses the same logic
+    const mobileNav = document.querySelector('.mobile-bottom-nav');
+    if (mobileNav) {
+        let cartItem = mobileNav.querySelector('#mobileCartIcon');
+        if (!cartItem) {
+            cartItem = document.createElement('a');
+            cartItem.href = 'cart.html';
+            cartItem.className = 'mobile-nav-item';
+            cartItem.id = 'mobileCartIcon';
+            mobileNav.appendChild(cartItem);
         }
-    },
+        if (count > 0) {
+            cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart (${count}) ♥</span>`;
+        } else {
+            cartItem.innerHTML = `<i class="ri-shopping-cart-2-line"></i><span>Cart ♥</span>`;
+        }
+        if (window.location.pathname.includes('cart.html')) {
+            cartItem.classList.add('active');
+        }
+    }
+},
 
     // --- WhatsApp Checkout ---
     checkoutWhatsApp() {
