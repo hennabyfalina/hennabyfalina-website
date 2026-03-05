@@ -11,6 +11,670 @@
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Page-specific styles for the shop */
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+        }
+
+        .shop-header {
+            padding: 8rem 0 3rem;
+            text-align: center;
+            background: #000000;
+        }
+        .shop-header h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: #d4af37; /* Gold */
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .shop-header p {
+            color: #d1d1d1;
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sticky Search & Filter Bar */
+        .shop-controls {
+            position: sticky;
+            top: 70px; /* Adjust based on your fixed header height */
+            z-index: 90;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid #222;
+            margin-bottom: 2rem;
+        }
+
+        .controls-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .shop-search {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .shop-search:focus {
+            border-color: #d4af37;
+        }
+
+        .filter-scroll {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none; /* Firefox */
+        }
+        .filter-scroll::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.2rem;
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 50px;
+            color: #ccc;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: #d4af37;
+            color: #000;
+            border-color: #d4af37;
+            font-weight: 600;
+        }
+
+        /* Product Grid */
+        .shop-main {
+            padding: 0 0 6rem;
+        }
+
+        .product-grid-new {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Product Card */
+        .product-card-new {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            border-color: #d4af37;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background-color: #111;
+            overflow: hidden;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card-new:hover .product-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        /* Quick View Button (Overlay) */
+        .btn-quick-view {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .product-card-new:hover .btn-quick-view {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .product-info-new {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-category-label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .product-name-new {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price-new {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 1rem;
+        }
+
+        .btn-whatsapp-order {
+            margin-top: auto;
+            width: 100%;
+            background: transparent;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 0.7rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-whatsapp-order:hover {
+            background: #25D366;
+            border-color: #25D366;
+            color: #fff;
+        }
+
+        /* New style for product card ratings in main grid */
+        .product-rating-new {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #ff4d4d; /* Red color for hearts */
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-rating-new span {
+            color: #ccc; /* For the number */
+            font-size: 0.85rem;
+        }
+
+        /* Section Headers */
+        .category-section {
+            margin-bottom: 4rem;
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #222;
+            padding-bottom: 1rem;
+        }
+        .category-title {
+            font-size: 1.8rem;
+            color: #d4af37;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        /* Sale Badge & Pricing */
+        .sale-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #d4af37;
+            color: #000;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            border-radius: 4px;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .price-wrapper {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 400;
+        }
+        
+        /* Bulk Order Section */
+        .bulk-order-section {
+            background: linear-gradient(135deg, #111 0%, #0a0a0a 100%);
+            border: 1px solid #333;
+            border-left: 4px solid #d4af37;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bulk-title {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        
+        .bulk-text {
+            color: #ccc;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .bulk-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* Modal Improvements */
+        .modal-tabs {
+            display: flex;
+            gap: 1.5rem;
+            border-bottom: 1px solid #333;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-tab {
+            padding-bottom: 0.8rem;
+            color: #888;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .modal-tab.active {
+            color: #d4af37;
+            border-color: #d4af37;
+        }
+        
+        .tab-content-item {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-content-item.active {
+            display: block;
+        }
+        
+        .modal-benefits-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .modal-benefits-list li {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        
+        .modal-benefits-list li i {
+            color: #d4af37;
+            margin-top: 0.2rem;
+        }
+        
+        .modal-thumbnails {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        .modal-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.6;
+            transition: all 0.2s;
+        }
+        
+        .modal-thumb.active {
+            border-color: #d4af37;
+            opacity: 1;
+        }
+        
+        /* Related Products in Modal */
+        .related-products-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+        }
+        
+        .related-title {
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .related-card {
+            background: #111;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: 1px solid #222;
+        }
+        
+        .related-card:hover {
+            background: #1a1a1a;
+            border-color: #d4af37;
+        }
+        
+        .related-img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .related-name {
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .related-price {
+            font-size: 0.9rem;
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modal Styles */
+        .shop-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .shop-modal-overlay.active {
+            display: flex;
+        }
+
+        .shop-modal {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: modalUp 0.3s ease;
+            max-height: 90vh; /* Limit height */
+        }
+
+        @keyframes modalUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .modal-image {
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto; /* Allow scrolling */
+        }
+
+        .modal-category {
+            color: #d4af37;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .modal-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: #ff4d4d; /* Red color for hearts */
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .modal-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-actions {
+            margin-top: auto;
+        }
+
+        .btn-modal-whatsapp {
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            padding: 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-modal-whatsapp:hover {
+            background: #1ebc57;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .product-grid-new {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+                gap: 1rem;
+            }
+
+            .product-card-new:hover .btn-quick-view {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+                bottom: 3rem; /* Move up slightly */
+            }
+            
+            /* Always show quick view icon on mobile or make it accessible */
+            .btn-quick-view {
+                opacity: 1;
+                transform: none;
+                bottom: 0.5rem;
+                right: 0.5rem;
+                left: auto;
+                width: 36px;
+                height: 36px;
+                padding: 0;
+                justify-content: center;
+                border-radius: 50%;
+            }
+            
+            .btn-quick-view span {
+                display: none; /* Hide text on mobile */
+            }
+
+            .shop-modal {
+                grid-template-columns: 1fr;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            .modal-image {
+                height: 250px;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+
+            .controls-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .shop-header {
+                padding-top: 7rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-grid-new {
+                grid-template-columns: 1fr; /* 1 column on very small screens */
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -21,7 +685,7 @@
         </a>
         
         <ul class="nav__menu" id="navMenu">
-            <li><a href="index.html#home" class="nav__link active">Home</a></li>
+            <li><a href="index.html#home" class="nav__link">Home</a></li>
             <li><a href="about.html" class="nav__link">About</a></li>
             <li><a href="collection.html" class="nav__link">Collection</a></li>
             <li><a href="index.html#services" class="nav__link">Services</a></li>
@@ -33,13 +697,13 @@
                 <span>AI Studio</span>
                 <i class="ri-sparkling-line"></i>
             </a>
-            <a href="shop.html" class="btn btn-outline btn-header">
+            <a href="shop.html" class="btn btn-outline active">
                 <span>Shop</span>
                 <i class="ri-shopping-bag-line"></i>
             </a>
         </div>
         
-        <!-- Mobile menu toggle (hamburger icon) - This automatically changes to X when menu is open -->
+        <!-- Mobile menu toggle -->
         <button type="button" class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
             <i class="ri-menu-line"></i>
         </button>
@@ -49,110 +713,627 @@
     <!-- Shop Header -->
     <section class="shop-header">
         <div class="container">
-            <h1>Shop Essentials</h1>
-            <p>Premium quality organic henna and professional supplies</p>
+            <h1>Our Products</h1>
+            <p>Handcrafted, organic henna products for artists and enthusiasts.</p>
         </div>
     </section>
 
-    <!-- Shop Navigation -->
-    <section style="padding: 2rem 0; background: var(--bg-primary);">
-        <div class="container">
-            <div class="shop-nav">
-                <button class="shop-nav-btn active" data-category="all">All Products</button>
-                <button class="shop-nav-btn" data-category="Cones">Henna Cones</button>
-                <button class="shop-nav-btn" data-category="Kits">Kits</button>
-                <button class="shop-nav-btn" data-category="Aftercare">Aftercare</button>
-                <button class="shop-nav-btn" data-category="Stencils">Stencils</button>
+    <!-- Sticky Search & Filters -->
+    <div class="shop-controls">
+        <div class="controls-container">
+            <div class="search-wrapper">
+                <i class="ri-search-line"></i>
+                <input type="text" class="shop-search" id="shopSearch" placeholder="Search for cones, oils, kits...">
+            </div>
+            <div class="filter-scroll" id="filterContainer">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="cones">Henna Cones</button>
+                <button class="filter-btn" data-filter="dips">Dips</button>
+                <button class="filter-btn" data-filter="nail">Nail Products</button>
+                <button class="filter-btn" data-filter="aftercare">Aftercare</button>
+                <button class="filter-btn" data-filter="combos">Combos</button>
+                <button class="filter-btn" data-filter="stencils">Stencils</button>
+                <button class="filter-btn" data-filter="kits">Kits</button>
+                <button class="filter-btn" data-filter="packaging">Packaging</button>
+                <button class="filter-btn" data-filter="oils">Oils</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Products Grid -->
-    <section style="padding: 3rem 0 8rem; background: var(--bg-primary); min-height: 60vh;">
+    <!-- Main Shop Content -->
+    <main class="shop-main">
         <div class="container">
-            <div class="product-grid" id="productGrid">
-                <!-- Organic Henna Cone -->
-                <div class="product-card-shop">
-                    <div class="product-image-shop">
-                        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=600" alt="Organic Henna Cone">
-                    </div>
-                    <div class="product-info-shop">
-                        <p class="product-category-shop">Cones</p>
-                        <h3 class="product-name-shop">Organic Henna Cone</h3>
-                        <div class="product-price-shop">₹50</div>
-                        <div class="product-rating-shop">
-                            <span class="stars">★★★★☆</span>
-                            <span>(156)</span>
+            <!-- Henna Cones -->
+            <section class="category-section" id="cones-section">
+                <div class="category-header">
+                    <h2 class="category-title">Henna Cones</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="cones" data-name="Bridal Cone" data-price="30" data-img="/assets/products/bridal-cone.jpg" data-desc="Premium triple-sifted henna paste for intricate bridal designs. Darkest stain guaranteed." data-rating="4.7" data-benefits="Triple-sifted, Darkest Stain, Smooth Flow" data-usage="Clean skin, apply design, keep for 6-8 hours, scrape off.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/bridal-cone.jpg" alt="Bridal Cone" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
                         </div>
-                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Organic%20Henna%20Cone" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                            <i class="ri-whatsapp-line"></i>
-                            <span>Order on WhatsApp</span>
-                        </a>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Henna Cones</span>
+                            <h3 class="product-name-new">Bridal Cone</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹30</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Bridal Cone')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="cones" data-name="Henna Cone" data-price="25" data-img="/assets/products/henna-cone.jpg" data-desc="Standard organic henna cone for practice and party designs. Smooth flow." data-rating="4.5" data-benefits="Organic, Smooth Flow, Natural Color" data-usage="Apply on clean skin, let dry, keep for 4-6 hours.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/henna-cone.jpg" alt="Henna Cone" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Henna Cones</span>
+                            <h3 class="product-name-new">Henna Cone</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹25</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Henna Cone')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="cones" data-name="Instant Cone" data-price="20" data-img="/assets/products/instant-cone.jpg" data-desc="Fast-staining henna cone for quick color. Perfect for fun events." data-rating="4.6" data-benefits="Fast Color, Easy Application, Fun" data-usage="Apply, let dry for 30 mins, wash off.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/instant-cone.jpg" alt="Instant Cone" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Henna Cones</span>
+                            <h3 class="product-name-new">Instant Cone</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹20</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Instant Cone')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="cones" data-name="Nail Araq" data-price="25" data-img="/assets/products/nail-araq.jpg" data-desc="Traditional nail stain for a natural reddish-orange tint." data-rating="4.5" data-benefits="Natural Tint, Long Lasting, Traditional" data-usage="Apply on nails, leave overnight for best results.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/nail-araq.jpg" alt="Nail Araq" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Henna Cones</span>
+                            <h3 class="product-name-new">Nail Araq</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹25</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Nail Araq')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Bridal Henna Kit -->
-                <div class="product-card-shop">
-                    <div class="product-image-shop">
-                        <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?w=600" alt="Bridal Henna Kit">
-                    </div>
-                    <div class="product-info-shop">
-                        <p class="product-category-shop">Kits</p>
-                        <h3 class="product-name-shop">Bridal Henna Kit</h3>
-                        <div class="product-price-shop">₹2,499</div>
-                        <div class="product-rating-shop">
-                            <span class="stars">★★★★★</span>
-                            <span>(89)</span>
+            <!-- Dips -->
+            <section class="category-section" id="dips-section">
+                <div class="category-header">
+                    <h2 class="category-title">Dips</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="dips" data-name="Instant Dip" data-price="50" data-img="/assets/products/instant-dip.jpg" data-desc="Quick color dip for fingertips. Instant results." data-rating="4.6" data-benefits="Instant Color, Easy Use, No Mess" data-usage="Dip fingertips, wait 5 mins, wash.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/instant-dip.jpg" alt="Instant Dip" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
                         </div>
-                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Bridal%20Henna%20Kit" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                            <i class="ri-whatsapp-line"></i>
-                            <span>Order on WhatsApp</span>
-                        </a>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Dips</span>
+                            <h3 class="product-name-new">Instant Dip</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹50</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Instant Dip')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="dips" data-name="Henna Dip" data-price="50" data-img="/assets/products/henna-dip.jpg" data-desc="Natural henna dip for traditional fingertip staining." data-rating="4.7" data-benefits="Natural Stain, Cooling, Traditional" data-usage="Dip fingers, let dry, keep overnight.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/henna-dip.jpg" alt="Henna Dip" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Dips</span>
+                            <h3 class="product-name-new">Henna Dip</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹50</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Henna Dip')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Aftercare Oil -->
-                <div class="product-card-shop">
-                    <div class="product-image-shop">
-                        <img src="https://images.unsplash.com/photo-1571781418606-70265f7e38e3?w=600" alt="Aftercare Oil">
-                    </div>
-                    <div class="product-info-shop">
-                        <p class="product-category-shop">Aftercare</p>
-                        <h3 class="product-name-shop">Aftercare Oil</h3>
-                        <div class="product-price-shop">₹1,200</div>
-                        <div class="product-rating-shop">
-                            <span class="stars">★★★★☆</span>
-                            <span>(234)</span>
+            <!-- Nail Products -->
+            <section class="category-section" id="nail-section">
+                <div class="category-header">
+                    <h2 class="category-title">Nail Products</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="nail" data-name="Henna Nail Polish" data-price="120" data-img="/assets/products/henna-nail-polish.jpg" data-desc="Organic henna-infused nail polish. Breathable and halal friendly." data-rating="4.8" data-benefits="Breathable, Halal Friendly, Organic" data-usage="Apply like regular polish, let dry.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/henna-nail-polish.jpg" alt="Henna Nail Polish" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
                         </div>
-                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Aftercare%20Oil" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                            <i class="ri-whatsapp-line"></i>
-                            <span>Order on WhatsApp</span>
-                        </a>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Nail Products</span>
+                            <h3 class="product-name-new">Henna Nail Polish</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹120</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Henna Nail Polish')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="nail" data-name="Black Nail Powder" data-price="30" data-img="/assets/products/black-nail-powder.jpg" data-desc="Traditional black powder for nail staining. Long lasting color." data-rating="4.5" data-benefits="Long Lasting, Deep Black, Traditional" data-usage="Mix with water, apply on nails, leave for 30 mins.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/black-nail-powder.jpg" alt="Black Nail Powder" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Nail Products</span>
+                            <h3 class="product-name-new">Black Nail Powder</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹30</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Black Nail Powder')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Stencil Set -->
-                <div class="product-card-shop">
-                    <div class="product-image-shop">
-                        <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=600" alt="Stencil Set">
-                    </div>
-                    <div class="product-info-shop">
-                        <p class="product-category-shop">Stencils</p>
-                        <h3 class="product-name-shop">Stencil Set (12pc)</h3>
-                        <div class="product-price-shop">₹300</div>
-                        <div class="product-rating-shop">
-                            <span class="stars">★★★★☆</span>
-                            <span>(67)</span>
+            <!-- Aftercare -->
+            <section class="category-section" id="aftercare-section">
+                <div class="category-header">
+                    <h2 class="category-title">Aftercare</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="aftercare" data-name="Sealant Spray" data-price="35" data-img="/assets/products/sealant-spray.jpg" data-desc="Lemon-sugar spray to keep henna moist and sticking to skin." data-rating="4.8" data-benefits="Keeps Henna Moist, Sticks to Skin, Darker Stain" data-usage="Spray lightly over dried henna design.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/sealant-spray.jpg" alt="Sealant Spray" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
                         </div>
-                        <a href="https://wa.me/917358671248?text=I'm%20interested%20in%20ordering%20Stencil%20Set" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                            <i class="ri-whatsapp-line"></i>
-                            <span>Order on WhatsApp</span>
-                        </a>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Aftercare</span>
+                            <h3 class="product-name-new">Sealant Spray</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹35</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Sealant Spray')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
                     </div>
+                    <div class="product-card-new" data-category="aftercare" data-name="Aftercare Oil" data-price="30" data-img="/assets/products/aftercare-oil.jpg" data-desc="Special blend of oils to darken and protect your henna stain." data-rating="4.9" data-benefits="Darkens Stain, Protects Design, Moisturizes" data-usage="Apply after scraping off henna paste.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/aftercare-oil.jpg" alt="Aftercare Oil" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Aftercare</span>
+                            <h3 class="product-name-new">Aftercare Oil</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹30</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Aftercare Oil')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="aftercare" data-name="Aftercare Balm" data-price="25" data-img="/assets/products/aftercare-balm.jpg" data-desc="Soothing balm to protect and moisturize your henna stain." data-rating="4.6" data-benefits="Soothing, Protective Layer, Enhances Color" data-usage="Apply before water contact to protect stain.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/aftercare-balm.jpg" alt="Aftercare Balm" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Aftercare</span>
+                            <h3 class="product-name-new">Aftercare Balm</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹25</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Aftercare Balm')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Combos -->
+            <section class="category-section" id="combos-section">
+                <div class="category-header">
+                    <h2 class="category-title">Combos</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="combos" data-name="Henna Classic Combo" data-price="249" data-original-price="299" data-img="/assets/products/henna-classic-combo.jpg" data-desc="Includes 5 cones, 1 oil, and 1 sealant spray. Great starter pack." data-rating="4.8" data-benefits="Complete Set, Value for Money, Essentials Included" data-usage="Use cones for design, spray sealant, apply oil after removal.">
+                        <div class="sale-badge">OFFER</div>
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/henna-classic-combo.jpg" alt="Henna Classic Combo" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Combos</span>
+                            <h3 class="product-name-new">Henna Classic Combo</h3>
+                            <div class="product-rating-new"></div>
+                            <div class="price-wrapper">
+                                <span class="original-price">₹299</span>
+                                <p class="product-price-new" style="margin-bottom: 0;">₹249</p>
+                            </div>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Henna Classic Combo')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="combos" data-name="Signature Henna Combo" data-price="399" data-original-price="499" data-img="/assets/products/signature-henna-combo.jpg" data-desc="Premium combo with cones, oil, balm, and stencils." data-rating="4.9" data-benefits="Premium Items, Full Care Kit, Stencils Included" data-usage="Complete kit for professional results at home.">
+                        <div class="sale-badge">SALE</div>
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/signature-henna-combo.jpg" alt="Signature Henna Combo" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Combos</span>
+                            <h3 class="product-name-new">Signature Henna Combo</h3>
+                            <div class="product-rating-new"></div>
+                            <div class="price-wrapper">
+                                <span class="original-price">₹499</span>
+                                <p class="product-price-new" style="margin-bottom: 0;">₹399</p>
+                            </div>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Signature Henna Combo')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stencils -->
+            <section class="category-section" id="stencils-section">
+                <div class="category-header">
+                    <h2 class="category-title">Stencils</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="stencils" data-name="Bridal Stencil" data-price="199" data-img="/assets/products/bridal-stencil.jpg" data-desc="Reusable full-hand stencil for intricate bridal designs." data-rating="4.6" data-benefits="Reusable, Intricate Design, Easy Application" data-usage="Stick on hand, fill with henna, peel off when dry.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/bridal-stencil.jpg" alt="Bridal Stencil" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Stencils</span>
+                            <h3 class="product-name-new">Bridal Stencil</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹199</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Bridal Stencil')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="stencils" data-name="Large Stencil" data-price="80" data-img="/assets/products/large-stencil.jpg" data-desc="Large reusable stencil for arm or leg designs." data-rating="4.5" data-benefits="Reusable, Large Coverage, Clear Patterns" data-usage="Apply to skin, fill gaps with henna paste.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/large-stencil.jpg" alt="Large Stencil" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Stencils</span>
+                            <h3 class="product-name-new">Large Stencil</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹80</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Large Stencil')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="stencils" data-name="Medium Stencil" data-price="50" data-img="/assets/products/medium-stencil.jpg" data-desc="Medium reusable stencil for hand designs." data-rating="4.6" data-benefits="Reusable, Perfect Size, Variety" data-usage="Stick, fill, peel.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/medium-stencil.jpg" alt="Medium Stencil" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Stencils</span>
+                            <h3 class="product-name-new">Medium Stencil</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹50</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Medium Stencil')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="stencils" data-name="Kids Stencil" data-price="30" data-img="/assets/products/kids-stencil.jpg" data-desc="Small, fun designs perfect for kids." data-rating="4.7" data-benefits="Kid Friendly, Small Size, Fun Shapes" data-usage="Easy application for small hands.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/kids-stencil.jpg" alt="Kids Stencil" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Stencils</span>
+                            <h3 class="product-name-new">Kids Stencil</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹30</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Kids Stencil')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Kits -->
+            <section class="category-section" id="kits-section">
+                <div class="category-header">
+                    <h2 class="category-title">Kits</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="kits" data-name="Starter Kit" data-price="99" data-img="/assets/products/starter-kit.jpg" data-desc="Everything you need to start: 2 cones, oil sample, and practice sheet." data-rating="4.8" data-benefits="Beginner Friendly, All Essentials, Practice Sheet" data-usage="Use practice sheet before applying on skin.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/starter-kit.jpg" alt="Starter Kit" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Kits</span>
+                            <h3 class="product-name-new">Starter Kit</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹99</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Starter Kit')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="kits" data-name="Student Kit" data-price="249" data-img="/assets/products/student-kit.jpg" data-desc="Comprehensive kit for learning henna art." data-rating="4.8" data-benefits="Learning Focused, Multiple Cones, Guidebook" data-usage="Follow the included guidebook for learning.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/student-kit.jpg" alt="Student Kit" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Kits</span>
+                            <h3 class="product-name-new">Student Kit</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹249</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Student Kit')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="kits" data-name="Artist Kit" data-price="499" data-img="/assets/products/artist-kit.jpg" data-desc="Professional kit for henna artists." data-rating="4.9" data-benefits="Pro Quality, Bulk Supplies, Advanced Tools" data-usage="For professional application.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/artist-kit.jpg" alt="Artist Kit" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Kits</span>
+                            <h3 class="product-name-new">Artist Kit</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹499</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Artist Kit')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="kits" data-name="Aftercare Oil Kit" data-price="120" data-img="/assets/products/aftercare-oil-kit.jpg" data-desc="Kit containing aftercare oil and application supplies." data-rating="4.8" data-benefits="Complete Aftercare, Easy Application" data-usage="Use for best stain results.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/aftercare-oil-kit.jpg" alt="Aftercare Oil Kit" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Kits</span>
+                            <h3 class="product-name-new">Aftercare Oil Kit</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹120</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Aftercare Oil Kit')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="kits" data-name="Aftercare Balm Kit" data-price="120" data-img="/assets/products/aftercare-balm-kit.jpg" data-desc="Kit containing aftercare balm and application supplies." data-rating="4.7" data-benefits="Moisturizing, Protective, Complete Set" data-usage="Apply balm regularly.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/aftercare-balm-kit.jpg" alt="Aftercare Balm Kit" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Kits</span>
+                            <h3 class="product-name-new">Aftercare Balm Kit</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹120</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Aftercare Balm Kit')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Packaging -->
+            <section class="category-section" id="packaging-section">
+                <div class="category-header">
+                    <h2 class="category-title">Packaging</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="packaging" data-name="Henna Dip Box (Pack of 5)" data-price="20" data-img="/assets/products/henna-dip-box.jpg" data-desc="Empty boxes for henna dips." data-rating="4.5" data-benefits="Sturdy, Professional Look, Bulk Pack" data-usage="Use for packaging henna dips.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/henna-dip-box.jpg" alt="Henna Dip Box" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Packaging</span>
+                            <h3 class="product-name-new">Henna Dip Box (5pc)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹20</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Henna Dip Box')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="packaging" data-name="Roll-on Bottle (Pack of 5)" data-price="50" data-img="/assets/products/roll-on-bottle.jpg" data-desc="Empty roll-on bottles for oils." data-rating="4.6" data-benefits="Easy Application, Leak Proof, Reusable" data-usage="Fill with oil for easy application.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/roll-on-bottle.jpg" alt="Roll-on Bottle" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Packaging</span>
+                            <h3 class="product-name-new">Roll-on Bottle (5pc)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹50</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Roll-on Bottle')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="packaging" data-name="Balm Container (Pack of 12)" data-price="80" data-img="/assets/products/balm-container.jpg" data-desc="Empty containers for balms." data-rating="4.5" data-benefits="Compact, Durable, Bulk Value" data-usage="Store homemade balms.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/balm-container.jpg" alt="Balm Container" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Packaging</span>
+                            <h3 class="product-name-new">Balm Container (12pc)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹80</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Balm Container')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Oils -->
+            <section class="category-section" id="oils-section">
+                <div class="category-header">
+                    <h2 class="category-title">Oils</h2>
+                </div>
+                <div class="product-grid-new">
+                    <div class="product-card-new" data-category="oils" data-name="Bridal Oil (30ml)" data-price="99" data-img="/assets/products/bridal-oil-30ml.jpg" data-desc="Premium essential oil blend for mixing henna paste." data-rating="4.7" data-benefits="Premium Blend, Dark Stain, Aromatic" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/bridal-oil-30ml.jpg" alt="Bridal Oil - 30ml" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Bridal Oil</span>
+                            <h3 class="product-name-new">Bridal Oil (30ml)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹99</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Bridal Oil 30ml')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="oils" data-name="Bridal Oil (100ml)" data-price="249" data-img="/assets/products/bridal-oil-100ml.jpg" data-desc="Premium essential oil blend for mixing henna paste." data-rating="4.8" data-benefits="Premium Blend, Dark Stain, Aromatic" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/bridal-oil-100ml.jpg" alt="Bridal Oil - 100ml" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Bridal Oil</span>
+                            <h3 class="product-name-new">Bridal Oil (100ml)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹249</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Bridal Oil 100ml')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="oils" data-name="Bridal Oil (500ml)" data-price="999" data-img="/assets/products/bridal-oil-500ml.jpg" data-desc="Premium essential oil blend for mixing henna paste." data-rating="4.9" data-benefits="Bulk Value, Premium Blend, Dark Stain" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/bridal-oil-500ml.jpg" alt="Bridal Oil - 500ml" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Bridal Oil</span>
+                            <h3 class="product-name-new">Bridal Oil (500ml)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹999</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Bridal Oil 500ml')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="oils" data-name="Bridal Oil (1L)" data-price="1650" data-img="/assets/products/bridal-oil-1l.jpg" data-desc="Premium essential oil blend for mixing henna paste." data-rating="5.0" data-benefits="Best Value, Premium Blend, Dark Stain" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/bridal-oil-1l.jpg" alt="Bridal Oil - 1L" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Bridal Oil</span>
+                            <h3 class="product-name-new">Bridal Oil (1L)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹1650</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Bridal Oil 1L')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="oils" data-name="Eucalyptus Oil (30ml)" data-price="90" data-img="/assets/products/eucalyptus-oil-30ml.jpg" data-desc="Pure eucalyptus oil for dark henna stains." data-rating="4.6" data-benefits="Pure Oil, Strong Scent, Dark Stain" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/eucalyptus-oil-30ml.jpg" alt="Eucalyptus Oil - 30ml" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Eucalyptus Oil</span>
+                            <h3 class="product-name-new">Eucalyptus Oil (30ml)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹90</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Eucalyptus Oil 30ml')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                     <div class="product-card-new" data-category="oils" data-name="Eucalyptus Oil (100ml)" data-price="199" data-img="/assets/products/eucalyptus-oil-100ml.jpg" data-desc="Pure eucalyptus oil for dark henna stains." data-rating="4.7" data-benefits="Pure Oil, Strong Scent, Dark Stain" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/eucalyptus-oil-100ml.jpg" alt="Eucalyptus Oil - 100ml" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Eucalyptus Oil</span>
+                            <h3 class="product-name-new">Eucalyptus Oil (100ml)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹199</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Eucalyptus Oil 100ml')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="oils" data-name="Eucalyptus Oil (500ml)" data-price="699" data-img="/assets/products/eucalyptus-oil-500ml.jpg" data-desc="Pure eucalyptus oil for dark henna stains." data-rating="4.8" data-benefits="Bulk Value, Pure Oil, Dark Stain" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/eucalyptus-oil-500ml.jpg" alt="Eucalyptus Oil - 500ml" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Eucalyptus Oil</span>
+                            <h3 class="product-name-new">Eucalyptus Oil (500ml)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹699</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Eucalyptus Oil 500ml')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                    <div class="product-card-new" data-category="oils" data-name="Eucalyptus Oil (1L)" data-price="1299" data-img="/assets/products/eucalyptus-oil-1l.jpg" data-desc="Pure eucalyptus oil for dark henna stains." data-rating="4.9" data-benefits="Best Value, Pure Oil, Dark Stain" data-usage="Mix with henna powder.">
+                        <div class="product-image-wrapper">
+                            <img src="/assets/products/eucalyptus-oil-1l.jpg" alt="Eucalyptus Oil - 1L" loading="lazy">
+                            <button class="btn-quick-view" onclick="openQuickView(this)"><i class="ri-eye-line"></i> <span>View</span></button>
+                        </div>
+                        <div class="product-info-new">
+                            <span class="product-category-label">Eucalyptus Oil</span>
+                            <h3 class="product-name-new">Eucalyptus Oil (1L)</h3>
+                            <div class="product-rating-new"></div>
+                            <p class="product-price-new">₹1299</p>
+                            <button class="btn-whatsapp-order" onclick="orderWhatsApp('Eucalyptus Oil 1L')"><i class="ri-whatsapp-line"></i> Order on WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bulk Order Section -->
+            <section class="bulk-order-section">
+                <div class="bulk-content">
+                    <h2 class="bulk-title">Business & Bulk Orders</h2>
+                    <p class="bulk-text">Are you a henna artist or retailer? Get special pricing for bulk orders.</p>
+                    <span class="bulk-badge">Minimum Order Quantity: 50 pieces</span>
+                    <br>
+                    <a href="https://wa.me/917358671248?text=Hi%2C%20I'm%20interested%20in%20placing%20a%20bulk%20order." target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
+                        <i class="ri-whatsapp-line"></i>
+                        <span>Order Bulk on WhatsApp</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Quick View Modal -->
+    <div class="shop-modal-overlay" id="quickViewModal">
+        <div class="shop-modal">
+            <button class="modal-close" onclick="closeQuickView()"><i class="ri-close-line"></i></button>
+            <div class="modal-image">
+                <img id="modalImg" src="" alt="Product">
+            </div>
+            <div class="modal-content">
+                <span class="modal-category" id="modalCategory">Category</span>
+                <h2 class="modal-title" id="modalTitle">Product Name</h2>
+                <div class="modal-rating" id="modalRatingDisplay">
+                    <!-- Hearts will be dynamically inserted here -->
+                </div>
+                <div class="modal-price" id="modalPrice">₹0</div>
+                
+                <!-- Tabs -->
+                <div class="modal-tabs">
+                    <div class="modal-tab active" onclick="switchModalTab('desc')">Description</div>
+                    <div class="modal-tab" onclick="switchModalTab('benefits')">Benefits</div>
+                    <div class="modal-tab" onclick="switchModalTab('usage')">Usage</div>
+                </div>
+                
+                <div id="tab-desc" class="tab-content-item active">
+                    <p class="modal-desc" id="modalDesc">Description goes here.</p>
+                </div>
+                
+                <div id="tab-benefits" class="tab-content-item">
+                    <ul class="modal-benefits-list" id="modalBenefits">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+                
+                <div id="tab-usage" class="tab-content-item">
+                    <p class="modal-desc" id="modalUsage">Usage instructions.</p>
+                </div>
+                
+                <!-- Thumbnails (Visual only for now) -->
+                <div class="modal-thumbnails">
+                    <img id="thumb1" src="" class="modal-thumb active">
+                    <img id="thumb2" src="" class="modal-thumb">
+                    <img id="thumb3" src="" class="modal-thumb">
+                </div>
+                
+                <!-- Related Products -->
+                <div class="related-products-section">
+                    <h3 class="related-title">You May Also Like</h3>
+                    <div class="related-grid" id="relatedProductsGrid"></div>
+                </div>
+                
+                <div class="modal-actions">
+                    <a href="#" id="modalWhatsAppBtn" target="_blank" class="btn-modal-whatsapp">
+                        <i class="ri-whatsapp-line"></i> Order on WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
 
     <!-- Mobile Bottom Navigation (ALWAYS VISIBLE) -->
@@ -171,7 +1352,7 @@
             </div>
             <span>Studio</span>
         </a>
-<a href="collection.html" class="mobile-nav-item">
+        <a href="collection.html" class="mobile-nav-item">
             <i class="ri-gallery-line"></i>
             <span>Collection</span>
         </a>
@@ -181,76 +1362,257 @@
         </button>
     </div>
 
-    <!-- Back to Top -->
-    <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
-
-    <!-- Chatbot Widget -->
-<div class="chat-widget">
-    <div class="chat-icon" id="chatIcon">
-        <img src="images/chatbot-avatar.png" alt="HF" class="chat-icon-img">
-    </div>
-    
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h4>Henna Assistant</h4>
-            <button type="button" class="close-chat" id="closeChat" aria-label="Close chat">
-                <i class="ri-close-line"></i>
-            </button>
-        </div>
-        
-        <div class="chat-body" id="chatBody">
-            <div class="chat-message bot">
-                <div class="message-avatar">
-                    <img src="images/chatbot-avatar.png" alt="HF" class="avatar-img">
-                </div>
-                <div class="message-content">
-                    <p>Hi! I'm your Henna Assistant. Select a question below:</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="chat-suggestions" id="chatSuggestions"></div>
-        
-        <div class="chat-footer">
-            <button class="new-suggestions-btn" id="newSuggestionsBtn">
-                <i class="ri-refresh-line"></i> Show Different Questions
-            </button>
-        </div>
-    </div>
-</div>
-
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
     
-    <!-- Simple category filter script -->
     <script>
+        // --- UTILITY: Generate Heart Ratings ---
+        function generateHeartRatingHtml(rating) {
+            let html = '';
+            const numFullHearts = Math.round(rating); // Round to nearest integer for full hearts
+            const numEmptyHearts = 5 - numFullHearts;
+
+            for (let i = 0; i < numFullHearts; i++) {
+                html += '<i class="ri-heart-fill"></i>';
+            }
+            for (let i = 0; i < numEmptyHearts; i++) {
+                html += '<i class="ri-heart-line"></i>';
+            }
+            html += `<span style="color: #ccc; font-size: 0.9rem;">(${rating.toFixed(1)})</span>`;
+            return html;
+        }
+
+        // --- SHOP FUNCTIONALITY (Filters & Search) ---
         document.addEventListener('DOMContentLoaded', function() {
-            const filterBtns = document.querySelectorAll('.shop-nav-btn');
-            const products = document.querySelectorAll('.product-card-shop');
-            
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Update active button
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    const category = btn.getAttribute('data-category');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const searchInput = document.getElementById('shopSearch');
+            const allProducts = document.querySelectorAll('.product-card-new');
+
+            // 1. Initialize Ratings on Load
+            allProducts.forEach(card => {
+                const rating = parseFloat(card.getAttribute('data-rating'));
+                const ratingDiv = card.querySelector('.product-rating-new');
+                if (ratingDiv && !isNaN(rating)) {
+                    ratingDiv.innerHTML = generateHeartRatingHtml(rating);
+                }
+            });
+
+            // 2. Main Filter Function
+            function filterProducts() {
+                // Get current active category
+                const activeBtn = document.querySelector('.filter-btn.active');
+                const category = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
+                
+                // Get current search term
+                const term = searchInput ? searchInput.value.toLowerCase().trim() : '';
+                
+                const sections = document.querySelectorAll('.category-section');
+                let totalVisibleProducts = 0;
+                
+                sections.forEach(section => {
+                    const products = section.querySelectorAll('.product-card-new');
+                    let sectionVisibleCount = 0;
                     
                     products.forEach(product => {
-                        const productCategory = product.querySelector('.product-category-shop').textContent;
+                        const prodCategory = product.getAttribute('data-category');
+                        const prodName = product.getAttribute('data-name') ? product.getAttribute('data-name').toLowerCase() : '';
                         
-                        if (category === 'all' || productCategory === category) {
+                        // Check matches
+                        const matchesCategory = category === 'all' || prodCategory === category;
+                        const matchesSearch = prodName.includes(term);
+                        
+                        if (matchesCategory && matchesSearch) {
                             product.style.display = 'flex';
+                            sectionVisibleCount++;
                         } else {
                             product.style.display = 'none';
                         }
                     });
+
+                    // Show/Hide Section based on visible products
+                    if (sectionVisibleCount > 0) {
+                        section.style.display = 'block';
+                        totalVisibleProducts += sectionVisibleCount;
+                    } else {
+                        section.style.display = 'none';
+                    }
                 });
-            });
+
+                // Handle No Results Message
+                let noResultsMsg = document.getElementById('no-results-msg');
+                if (totalVisibleProducts === 0) {
+                    if (!noResultsMsg) {
+                        noResultsMsg = document.createElement('div');
+                        noResultsMsg.id = 'no-results-msg';
+                        noResultsMsg.style.textAlign = 'center';
+                        noResultsMsg.style.padding = '4rem 0';
+                        noResultsMsg.innerHTML = `
+                            <i class="ri-search-line" style="font-size: 3rem; color: #333; margin-bottom: 1rem; display: block;"></i>
+                            <h3 style="color: #fff; margin-bottom: 0.5rem;">No products found</h3>
+                            <p style="color: #888;">Try adjusting your search or filter to find what you're looking for.</p>
+                        `;
+                        document.querySelector('.shop-main .container').appendChild(noResultsMsg);
+                    }
+                    noResultsMsg.style.display = 'block';
+                } else if (noResultsMsg) {
+                    noResultsMsg.style.display = 'none';
+                }
+            }
+
+            // 3. Event Listeners
+            if (filterBtns.length > 0) {
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // Update active class
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        // Run filter
+                        filterProducts();
+                    });
+                });
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    filterProducts();
+                });
+            }
         });
+
+        // --- QUICK VIEW MODAL LOGIC ---
+        const modal = document.getElementById('quickViewModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalWhatsAppBtn = document.getElementById('modalWhatsAppBtn');
+        const modalBenefits = document.getElementById('modalBenefits');
+        const modalUsage = document.getElementById('modalUsage');
+        const relatedGrid = document.getElementById('relatedProductsGrid');
+        const thumb1 = document.getElementById('thumb1');
+        const thumb2 = document.getElementById('thumb2');
+        const thumb3 = document.getElementById('thumb3');
+
+        function openQuickView(btn) {
+            const card = btn.closest('.product-card-new');
+            const name = card.getAttribute('data-name');
+            const price = card.getAttribute('data-price');
+            const img = card.getAttribute('data-img');
+            const category = card.getAttribute('data-category');
+            const desc = card.getAttribute('data-desc');
+            const rating = parseFloat(card.getAttribute('data-rating')); // Get rating from data attribute
+            const benefits = card.getAttribute('data-benefits');
+            const usage = card.getAttribute('data-usage');
+
+            modalImg.src = img;
+            thumb1.src = img;
+            thumb2.src = img; // Placeholder
+            thumb3.src = img; // Placeholder
+            
+            modalCategory.textContent = category;
+            modalTitle.textContent = name;
+            modalPrice.textContent = '₹' + price;
+            modalDesc.textContent = desc;
+            
+            // Populate Benefits
+            if (benefits) {
+                modalBenefits.innerHTML = benefits.split(',').map(b => `<li><i class="ri-check-line"></i> ${b.trim()}</li>`).join('');
+            } else {
+                modalBenefits.innerHTML = '<li><i class="ri-check-line"></i> Premium Quality</li>';
+            }
+            
+            // Populate Usage
+            modalUsage.textContent = usage || "Apply as needed.";
+            
+            const waLink = `https://wa.me/917358671248?text=I'm interested in ordering ${name} (₹${price})`;
+            modalWhatsAppBtn.href = waLink;
+
+            // Populate Related Products
+            relatedGrid.innerHTML = '';
+            const allProducts = Array.from(document.querySelectorAll('.product-card-new'));
+            
+            // Filter: Same category, exclude current product
+            let related = allProducts.filter(p => 
+                p.getAttribute('data-category') === category && 
+                p.getAttribute('data-name') !== name
+            );
+            
+            // If not enough related products, take from other categories
+            if (related.length < 2) {
+                const others = allProducts.filter(p => p.getAttribute('data-name') !== name && !related.includes(p));
+                related = related.concat(others);
+            }
+            
+            // Shuffle and pick 2
+            const selected = related.sort(() => 0.5 - Math.random()).slice(0, 2);
+            
+            selected.forEach(p => {
+                const rName = p.getAttribute('data-name');
+                const rPrice = p.getAttribute('data-price');
+                const rImg = p.getAttribute('data-img');
+                
+                const card = document.createElement('div');
+                card.className = 'related-card';
+                card.innerHTML = `
+                    <img src="${rImg}" alt="${rName}" class="related-img">
+                    <div class="related-name">${rName}</div>
+                    <div class="related-price">₹${rPrice}</div>
+                `;
+                card.onclick = () => {
+                    // Trigger click on the related product's view button to update modal
+                    const viewBtn = p.querySelector('.btn-quick-view');
+                    if(viewBtn) {
+                        viewBtn.click();
+                        // Scroll modal content to top
+                        document.querySelector('.modal-content').scrollTop = 0;
+                    }
+                };
+                relatedGrid.appendChild(card);
+            });
+
+            // Update modal rating display
+            const modalRatingDisplay = document.getElementById('modalRatingDisplay');
+            if (modalRatingDisplay && !isNaN(rating)) {
+                modalRatingDisplay.innerHTML = generateHeartRatingHtml(rating);
+            }
+            
+            // Reset tabs
+            switchModalTab('desc');
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuickView() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function switchModalTab(tabName) {
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content-item').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to selected
+            const selectedTab = Array.from(document.querySelectorAll('.modal-tab')).find(t => t.textContent.toLowerCase().includes(tabName) || (tabName === 'desc' && t.textContent === 'Description'));
+            if(selectedTab) selectedTab.classList.add('active');
+            
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeQuickView();
+        });
+
+        // Direct WhatsApp Order
+        function orderWhatsApp(productName) {
+            const link = `https://wa.me/917358671248?text=I'm interested in ordering ${productName}`;
+            window.open(link, '_blank');
+        }
     </script>
 </body>
 </html>
